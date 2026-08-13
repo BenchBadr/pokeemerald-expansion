@@ -108,7 +108,7 @@ ALIGNED(4) const u8 gFontNarrowLatinGlyphWidths[] = {
     8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  3,
 };
 
-ALIGNED(4) const u16 gFontShortLatinGlyphs[] = INCGFX_U16("graphics/fonts/latin_short.png", ".latfont");
+ALIGNED(4) const u16 gFontShortLatinGlyphs[] = INCGFX_U16("graphics/fonts/latin_frlg_nums.png", ".latfont");
 ALIGNED(4) const u8 gFontShortLatinGlyphWidths[] = {
     3,  6,  6,  6,  6,  6,  6,  6,  6,  6,  3,  6,  6,  6,  6,  6,
     8,  6,  6,  6,  6,  6,  6,  6,  3,  6,  6,  6,  6,  6,  6,  3,
@@ -252,7 +252,7 @@ ALIGNED(4) const u8 gFontSmallNarrowerLatinGlyphWidths[] = {
     8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  3,
 };
 
-ALIGNED(4) const u16 gFontShortNarrowLatinGlyphs[] = INCGFX_U16("graphics/fonts/latin_short_narrow.png", ".latfont");
+ALIGNED(4) const u16 gFontShortNarrowLatinGlyphs[] = INCGFX_U16("graphics/fonts/latin_frlg_nums_narrow.png", ".latfont");
 ALIGNED(4) const u8 gFontShortNarrowLatinGlyphWidths[] = {
     3,  5,  5,  5,  5,  5,  5,  5,  5,  4,  3,  4,  4,  5,  5,  5,
     8,  5,  5,  5,  5,  6,  5,  5,  3,  5,  5,  5,  5,  5,  4,  3,
@@ -288,7 +288,7 @@ ALIGNED(4) const u8 gFontShortNarrowLatinGlyphWidths[] = {
     8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  3,
 };
 
-ALIGNED(4) const u16 gFontShortNarrowerLatinGlyphs[] = INCGFX_U16("graphics/fonts/latin_short_narrower.png", ".latfont");
+ALIGNED(4) const u16 gFontShortNarrowerLatinGlyphs[] = INCGFX_U16("graphics/fonts/latin_frlg_nums_narrower.png", ".latfont");
 ALIGNED(4) const u8 gFontShortNarrowerLatinGlyphWidths[] = {
     1,  4,  4,  4,  4,  4,  4,  4,  4,  4,  3,  4,  4,  4,  4,  4,
     8,  4,  4,  4,  5,  5,  4,  4,  3,  4,  4,  4,  4,  4,  4,  3,
