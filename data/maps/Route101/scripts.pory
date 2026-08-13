@@ -304,8 +304,7 @@ script Route101_FollowerMan {
 	lock 
 	faceplayer
 	msgbox(format("From now on you won't be allowed to roam with your pokemon."))
-	setflag(0x4E)
-	setflag(0x4F)
+	clearflag(0x4E)
 	release 
 	end
 }

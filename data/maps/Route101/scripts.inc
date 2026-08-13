@@ -603,10 +603,8 @@ Route101_FollowerMan::
 # 306 "data/maps/Route101/scripts.pory"
 	msgbox Route101_FollowerMan_Text_0
 # 307 "data/maps/Route101/scripts.pory"
-	setflag 0x4E
+	clearflag 0x4E
 # 308 "data/maps/Route101/scripts.pory"
-	setflag 0x4F
-# 309 "data/maps/Route101/scripts.pory"
 	release
 	end
 
