@@ -119,6 +119,7 @@ enum {
     MENU_CHANGE_FORM,
     MENU_CHANGE_ABILITY,
     MENU_TAKE_OUT,
+    MENU_TAKE_IN,
     MENU_FIELD_MOVES
 };
 
@@ -3694,7 +3695,11 @@ static void SetPartyMonFieldSelectionActions(struct Pokemon *mons, u8 slotId)
     AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, MENU_SUMMARY);
 
     if (slotId == 0 && !FlagGet(0x4E)) {
-        AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, MENU_TAKE_OUT);
+        if (FlagGet(0x4F)) {
+            AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, MENU_TAKE_OUT);
+        } else {
+            AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, MENU_TAKE_IN);
+        }
     }
 
     // Add field moves to action list

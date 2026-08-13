@@ -162,6 +162,15 @@ static const struct WindowTemplate sStandardBattleWindowTemplates[] =
         .paletteNum = 0,
         .baseBlock = 0x0090,
     },
+    [B_WIN_ACTION_PROMPT] = {
+        .bg = 0,
+        .tilemapLeft = 1,
+        .tilemapTop = 35,
+        .width = 14,
+        .height = 4,
+        .paletteNum = 0,
+        .baseBlock = 0x01c0,
+    },
     [B_WIN_ACTION_MENU] = {
         .bg = 0,
         .tilemapLeft = 17,
@@ -382,6 +391,15 @@ static const struct WindowTemplate sKantoTutorialBattleWindowTemplates[] =
         .height = 4,
         .paletteNum = 0,
         .baseBlock = 0x0090,
+    },
+    [B_WIN_ACTION_PROMPT] = {
+        .bg = 0,
+        .tilemapLeft = 1,
+        .tilemapTop = 35,
+        .width = 14,
+        .height = 4,
+        .paletteNum = 0,
+        .baseBlock = 0x01c0,
     },
     [B_WIN_ACTION_MENU] = {
         .bg = 0,
@@ -612,6 +630,15 @@ static const struct WindowTemplate sBattleArenaWindowTemplates[] =
         .height = 4,
         .paletteNum = 0,
         .baseBlock = 0x0090,
+    },
+    [B_WIN_ACTION_PROMPT] = {
+        .bg = 0,
+        .tilemapLeft = 1,
+        .tilemapTop = 35,
+        .width = 14,
+        .height = 4,
+        .paletteNum = 0,
+        .baseBlock = 0x01c0,
     },
     [B_WIN_ACTION_MENU] = {
         .bg = 0,

@@ -848,7 +848,7 @@ void GetBattleAnimBg1Data(struct BattleAnimBgData *out)
         out->bgTiles = gBattleAnimBgTileBuffer;
         out->bgTilemap = (u16 *)gBattleAnimBgTilemapBuffer;
         out->paletteId = BG_ANIM_PAL_CONTEST;
-        out->bgId = 1;
+        out->bgId = 0;
         out->tilesOffset = 0;
         out->unused = 0;
     }
