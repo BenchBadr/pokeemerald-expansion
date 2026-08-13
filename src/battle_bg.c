@@ -404,10 +404,10 @@ static const struct WindowTemplate sKantoTutorialBattleWindowTemplates[] =
     [B_WIN_ACTION_MENU] = {
         .bg = 0,
         .tilemapLeft = 9,
-        .tilemapTop = 35,
-        .width = 12,
+        .tilemapTop = 34,
+        .width = 14,
         .height = 4,
-        .paletteNum = 5,
+        .paletteNum = 0,
         .baseBlock = 0x0190,
     },
     [B_WIN_MOVE_NAME_1] = {
