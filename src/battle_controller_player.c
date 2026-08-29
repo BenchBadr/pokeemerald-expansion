@@ -1825,17 +1825,17 @@ void ActionSelectionCreateCursorAt(u8 cursorPosition, u8 baseTileNum)
     src[0] = 1;
     src[1] = 2;
 
-    CopyToBgTilemapBufferRect_ChangePalette(0, src, 8 * (cursorPosition & 1) + 7, 34 + 1.5 * (cursorPosition & 2), 1, 2, 0x11);
+    CopyToBgTilemapBufferRect_ChangePalette(0, src, 8 * (cursorPosition & 1) + 7, 35 + 1 * (cursorPosition & 2), 1, 2, 0x11);
     CopyBgTilemapBufferToVram(0);
 }
 
-void ActionSelectionDestroyCursorAt(u8 cursorPosition)
+void ActionSelectionDestroyCursorAt(u8 cursorPosition)// position
 {
     u16 src[2];
     src[0] = 0x20;
     src[1] = 0x20;
 
-    CopyToBgTilemapBufferRect_ChangePalette(0, src, 8 * (cursorPosition & 1) + 7, 34 + 1.5 * (cursorPosition & 2), 1, 2, 0x11);
+    CopyToBgTilemapBufferRect_ChangePalette(0, src, 8 * (cursorPosition & 1) + 7, 35 + 1 * (cursorPosition & 2), 1, 2, 0x11);
     CopyBgTilemapBufferToVram(0);
 }
 
