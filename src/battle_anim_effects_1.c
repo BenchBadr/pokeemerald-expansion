@@ -6560,6 +6560,7 @@ static void ReloadBattlerSprites(enum BattlerId battler, struct Pokemon *party)
     struct Pokemon *mon = &party[gBattlerPartyIndexes[battler]];
     BattleLoadMonSpriteGfx(mon, battler);
     CreateBattlerSprite(battler);
+
     UpdateHealthboxAttribute(gHealthboxSpriteIds[battler], mon, HEALTHBOX_ALL);
     // If battler has an indicator for a gimmick, hide the sprite until the move animation finishes.
     UpdateIndicatorVisibilityAndType(gHealthboxSpriteIds[battler], TRUE);

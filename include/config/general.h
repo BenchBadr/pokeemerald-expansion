@@ -9,7 +9,7 @@
 //
 // Use `make release` to automatically enable NDEBUG.
 #ifdef RELEASE
-#define NDEBUG
+// #define NDEBUG
 #endif
 
 // printf debugging is now enabled by default. This allows
