@@ -600,41 +600,41 @@ Route101_FollowerMan::
 	lock
 # 305 "data/maps/Route101/scripts.pory"
 	faceplayer
-# 307 "data/maps/Route101/scripts.pory"
-	msgbox Route101_FollowerMan_Text_0
 # 308 "data/maps/Route101/scripts.pory"
-	setvar VAR_0x8004, 10
+	msgbox Route101_FollowerMan_Text_0
 # 309 "data/maps/Route101/scripts.pory"
+	setvar VAR_0x8004, 10
+# 310 "data/maps/Route101/scripts.pory"
 	callnative Script_AddTrainerPoints
-# 311 "data/maps/Route101/scripts.pory"
+# 312 "data/maps/Route101/scripts.pory"
 	msgbox Route101_FollowerMan_Text_1
-# 313 "data/maps/Route101/scripts.pory"
+# 314 "data/maps/Route101/scripts.pory"
 	release
 	end
 
 
 Route101_ResetPoints::
-# 319 "data/maps/Route101/scripts.pory"
-	lock
 # 320 "data/maps/Route101/scripts.pory"
+	lock
+# 321 "data/maps/Route101/scripts.pory"
 	faceplayer
-# 322 "data/maps/Route101/scripts.pory"
-	msgbox Route101_ResetPoints_Text_0
 # 323 "data/maps/Route101/scripts.pory"
+	msgbox Route101_ResetPoints_Text_0, MSGBOX_SIGN
+# 324 "data/maps/Route101/scripts.pory"
 	callnative Script_ResetPoints
-# 325 "data/maps/Route101/scripts.pory"
+# 326 "data/maps/Route101/scripts.pory"
 	release
 	end
 
 
 Route101_FollowerMan_Text_0:
-# 307 "data/maps/Route101/scripts.pory"
+# 308 "data/maps/Route101/scripts.pory"
 	.string "Ok. Let's add you some points.$"
 
 Route101_FollowerMan_Text_1:
-# 311 "data/maps/Route101/scripts.pory"
+# 312 "data/maps/Route101/scripts.pory"
 	.string "You received 10 Trainer Points!$"
 
 Route101_ResetPoints_Text_0:
-# 322 "data/maps/Route101/scripts.pory"
+# 323 "data/maps/Route101/scripts.pory"
 	.string "I am clearing all your points!$"

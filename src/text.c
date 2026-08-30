@@ -62,7 +62,7 @@ static EWRAM_DATA u16 sFontHalfRowLookupTable[0x100];
 static EWRAM_DATA union TextColor sLastTextColor;
 
 EWRAM_DATA const struct FontInfo *gFonts = NULL;
-EWRAM_DATA bool8 gDisableTextPrinters = FALSE;
+EWRAM_DATA bool8 gDisableTextPrinters = 0;
 EWRAM_DATA TextFlags gTextFlags = {0};
 IWRAM_DATA struct TextGlyph gCurGlyph = {0};
 
@@ -367,7 +367,7 @@ void DeactivateAllTextPrinters(void)
     FreeFinishedTextPrinters();
 }
 
-bool16 AddTextPrinterParameterized(u8 windowId, u8 fontId, const u8 *str, u8 x, u8 y, u8 speed, TextPrinterCallback callback)
+u16 AddTextPrinterParameterized(u8 windowId, u8 fontId, const u8 *str, u8 x, u8 y, u8 speed, void (*callback)(struct TextPrinterTemplate *, u16))
 {
     struct TextPrinterTemplate printerTemplate;
 
@@ -385,7 +385,7 @@ bool16 AddTextPrinterParameterized(u8 windowId, u8 fontId, const u8 *str, u8 x, 
     return AddTextPrinter(&printerTemplate, speed, callback);
 }
 
-bool16 AddSpriteTextPrinterParameterized(u8 spriteId, u8 fontId, const u8 *str, u8 x, u8 y, u8 speed, TextPrinterCallback callback)
+u16 AddSpriteTextPrinterParameterized(u8 spriteId, u8 fontId, const u8 *str, u8 x, u8 y, u8 speed, void (*callback)(struct TextPrinterTemplate *, u16))
 {
     struct TextPrinterTemplate printerTemplate;
 
@@ -1184,11 +1184,14 @@ void TextPrinterDrawDownArrow(struct TextPrinter *textPrinter)
         }
         else
         {
+            u16 arrowX = (gWindows[textPrinter->printerTemplate.windowId].window.width * 8) - 8;
+            u16 arrowY = (gWindows[textPrinter->printerTemplate.windowId].window.height * 8) - 16;
+
             FillWindowPixelRect(
                 textPrinter->printerTemplate.windowId,
                 textPrinter->printerTemplate.color.background << 4 | textPrinter->printerTemplate.color.background,
-                textPrinter->printerTemplate.currentX,
-                textPrinter->printerTemplate.currentY,
+                arrowX,
+                arrowY,
                 8,
                 16);
 
@@ -1210,8 +1213,8 @@ void TextPrinterDrawDownArrow(struct TextPrinter *textPrinter)
                 sDownArrowYCoords[textPrinter->downArrowYPosIdx],
                 8,
                 16,
-                textPrinter->printerTemplate.currentX,
-                textPrinter->printerTemplate.currentY,
+                arrowX,
+                arrowY,
                 8,
                 16);
             CopyWindowToVram(textPrinter->printerTemplate.windowId, COPYWIN_GFX);
@@ -1224,11 +1227,14 @@ void TextPrinterDrawDownArrow(struct TextPrinter *textPrinter)
 
 void TextPrinterClearDownArrow(struct TextPrinter *textPrinter)
 {
+    u16 arrowX = (gWindows[textPrinter->printerTemplate.windowId].window.width * 8) - 8;
+    u16 arrowY = (gWindows[textPrinter->printerTemplate.windowId].window.height * 8) - 16;
+
     FillWindowPixelRect(
         textPrinter->printerTemplate.windowId,
         textPrinter->printerTemplate.color.background << 4 | textPrinter->printerTemplate.color.background,
-        textPrinter->printerTemplate.currentX,
-        textPrinter->printerTemplate.currentY,
+        arrowX,
+        arrowY,
         8,
         16);
     CopyWindowToVram(textPrinter->printerTemplate.windowId, COPYWIN_GFX);
@@ -1352,10 +1358,8 @@ static u16 RenderText(struct TextPrinter *textPrinter)
         else
             textPrinter->delayCounter = textPrinter->textSpeed;
 
-        do {
-            currChar = *textPrinter->printerTemplate.currentChar;
-            textPrinter->printerTemplate.currentChar++;
-        } while (currChar == CHAR_ZWS);
+        currChar = *textPrinter->printerTemplate.currentChar;
+        textPrinter->printerTemplate.currentChar++;
 
         switch (currChar)
         {
@@ -1803,9 +1807,6 @@ static u32 (*GetFontWidthFunc(u8 fontId))(u16, bool32)
 
 s32 GetGlyphWidth(u16 glyphId, bool32 isJapanese, u8 fontId)
 {
-    if (!isJapanese && glyphId == CHAR_ZWS)
-        return 0;
-
     u32 (*func)(u16 fontId, bool32 isJapanese);
 
     func = GetFontWidthFunc(fontId);

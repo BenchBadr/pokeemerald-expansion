@@ -468,7 +468,7 @@ static void PrintTime(u8 windowId, u8 x, u8 y, u16 days, u8 hours, u8 minutes, u
 
 static void ShowChooseTimeWindow(u8 windowId, u16 days, u8 hours, u8 minutes, u8 seconds)
 {
-    DrawStdFrameWithCustomTileAndPalette(windowId, FALSE, 0x214, 0xE);
+    DrawStdFrameWithCustomTileAndPalette(windowId, FALSE, 0x21A, 0xE);
     PrintTime(windowId, 0, 1, days, hours, minutes, seconds);
     AddTextPrinterParameterized(windowId, FONT_NORMAL, gText_Confirm2, 126, 1, 0, NULL);
     ScheduleBgCopyTilemapToVram(0);
@@ -599,7 +599,7 @@ void CB2_InitResetRtcScreen(void)
     SetGpuReg(REG_OFFSET_DISPCNT, 0);
     SetVBlankCallback(NULL);
     DmaClear16(3, PLTT, PLTT_SIZE);
-    DmaClearLarge16(3, (void *)VRAM, VRAM_SIZE, 0x1000);
+    DmaFillLarge16(3, 0, (u8 *)VRAM, VRAM_SIZE, 0x1000);
     ResetOamRange(0, 128);
     LoadOam();
     ScanlineEffect_Stop();
@@ -658,7 +658,7 @@ static void Task_ShowResetRtcPrompt(u8 taskId)
     switch (tState)
     {
     case 0:
-        DrawStdFrameWithCustomTileAndPalette(WIN_TIME, FALSE, 0x214, 0xE);
+        DrawStdFrameWithCustomTileAndPalette(WIN_TIME, FALSE, 0x21A, 0xE);
 
         AddTextPrinterParameterized(WIN_TIME, FONT_NORMAL, gText_PresentTime, 0, 1, TEXT_SKIP_DRAW, 0);
         PrintTime(

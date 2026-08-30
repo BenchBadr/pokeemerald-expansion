@@ -53,6 +53,10 @@
 
 // trainer rank
 #include "trainer_rank.h"
+#include "item_icon.h"
+
+#define TAG_ITEM_ICON_BASE 9110
+
 
 
 // Menu actions
@@ -65,7 +69,7 @@ enum
     MENU_ACTION_PLAYER,
     MENU_ACTION_SAVE,
     MENU_ACTION_OPTION,
-    MENU_ACTION_EXIT,
+    // MENU_ACTION_EXIT,
     MENU_ACTION_RETIRE_SAFARI,
     MENU_ACTION_PLAYER_LINK,
     MENU_ACTION_REST_FRONTIER,
@@ -99,6 +103,8 @@ EWRAM_DATA static u8 (*sSaveDialogCallback)(void) = NULL;
 EWRAM_DATA static u8 sSaveDialogTimer = 0;
 EWRAM_DATA static bool8 sSavingComplete = FALSE;
 EWRAM_DATA static u8 sSaveInfoWindowId = 0;
+
+EWRAM_DATA static u8 sRankIconSpriteId = 0;
 
 // Menu action callbacks
 static bool8 StartMenuPokedexCallback(void);
@@ -181,6 +187,8 @@ static const struct WindowTemplate sWindowTemplate_PyramidFloor = {
     .baseBlock = 0x8
 };
 
+
+
 static const struct WindowTemplate sWindowTemplate_PyramidPeak = {
     .bg = 0,
     .tilemapLeft = 1,
@@ -202,7 +210,7 @@ static const struct MenuAction sStartMenuItems[] =
     [MENU_ACTION_PLAYER]          = {gText_MenuPlayer,  {.u8_void = StartMenuPlayerNameCallback}},
     [MENU_ACTION_SAVE]            = {gText_MenuSave,    {.u8_void = StartMenuSaveCallback}},
     [MENU_ACTION_OPTION]          = {gText_MenuOption,  {.u8_void = StartMenuOptionCallback}},
-    [MENU_ACTION_EXIT]            = {gText_MenuExit,    {.u8_void = StartMenuExitCallback}},
+    // [MENU_ACTION_EXIT]            = {gText_MenuExit,    {.u8_void = StartMenuExitCallback}},
     [MENU_ACTION_RETIRE_SAFARI]   = {gText_MenuRetire,  {.u8_void = StartMenuSafariZoneRetireCallback}},
     [MENU_ACTION_PLAYER_LINK]     = {gText_MenuPlayer,  {.u8_void = StartMenuLinkModePlayerNameCallback}},
     [MENU_ACTION_REST_FRONTIER]   = {gText_MenuRest,    {.u8_void = StartMenuSaveCallback}},
@@ -249,6 +257,16 @@ static const struct WindowTemplate sSaveInfoWindowTemplate = {
     .baseBlock = 8
 };
 
+// static const struct WindowTemplate sRankBarTemplate = {
+//     .bg = 0,
+//     .tilemapLeft = 3,  
+//     .tilemapTop = 1,
+//     .width = 5,        
+//     .height = 2,       
+//     .paletteNum = 14,  
+//     .baseBlock = 0x220,
+// };
+
 // Local functions
 static void BuildStartMenuActions(void);
 static void AddStartMenuAction(u8 action);
@@ -283,6 +301,48 @@ static void ShowSaveInfoWindow(void);
 static void RemoveSaveInfoWindow(void);
 static void HideStartMenuWindow(void);
 static void HideStartMenuDebug(void);
+
+
+
+/// Visuals ranks ----------
+
+
+
+static void ShowStartMenuRankIcon(void)
+{
+    if (sRankIconSpriteId == 0)
+    {
+        sRankIconSpriteId = AddItemIconSprite(TAG_ITEM_ICON_BASE, TAG_ITEM_ICON_BASE, ITEM_POKE_BALL);
+        
+        if (sRankIconSpriteId != MAX_SPRITES)
+        {
+            gSprites[sRankIconSpriteId].x2 = 224;
+            gSprites[sRankIconSpriteId].y2 = 144;
+            gSprites[sRankIconSpriteId].oam.priority = 0;
+            gSprites[sRankIconSpriteId].subpriority = 0;
+        }
+    }
+
+    // show the progress bar
+    // u8 winId = AddWindow(&sRankBarTemplate);
+    // FillWindowPixelRect(winId, 0x7, 8, 7, 56, 8);
+    // PutWindowTilemap(winId);
+    // CopyWindowToVram(winId, COPYWIN_GFX);
+    
+}
+
+static void HideStartMenuRankIcon(void)
+{
+    if (sRankIconSpriteId != 0)
+    {
+        FreeSpriteTilesByTag(TAG_ITEM_ICON_BASE);
+        FreeSpritePaletteByTag(TAG_ITEM_ICON_BASE);
+        DestroySprite(&gSprites[sRankIconSpriteId]);
+        
+        sRankIconSpriteId = 0;
+    }
+}
+//--------------------------------------------------
 
 void SetDexPokemonPokenavFlags(void) // unused
 {
@@ -336,7 +396,7 @@ static void AddStartMenuAction(u8 action)
 static void BuildNormalStartMenu(void)
 {
 
-    DebugPrintf("Trainer Rank: %d | Points: %d | Goal: %d", GetTrainerRank(), GetTrainerPoints(), GetRankGoal());
+    // DebugPrintf("Trainer Rank: %d | Points: %d | Goal: %d", GetTrainerRank(), GetTrainerPoints(), GetRankGoal());
 
     if (FlagGet(FLAG_SYS_POKEDEX_GET) == TRUE)
         AddStartMenuAction(MENU_ACTION_POKEDEX);
@@ -355,7 +415,7 @@ static void BuildNormalStartMenu(void)
     AddStartMenuAction(MENU_ACTION_PLAYER);
     AddStartMenuAction(MENU_ACTION_SAVE);
     AddStartMenuAction(MENU_ACTION_OPTION);
-    AddStartMenuAction(MENU_ACTION_EXIT);
+    // AddStartMenuAction(MENU_ACTION_EXIT);
 }
 
 static void BuildDebugStartMenu(void)
@@ -381,7 +441,7 @@ static void BuildSafariZoneStartMenu(void)
     AddStartMenuAction(MENU_ACTION_BAG);
     AddStartMenuAction(MENU_ACTION_PLAYER);
     AddStartMenuAction(MENU_ACTION_OPTION);
-    AddStartMenuAction(MENU_ACTION_EXIT);
+    // AddStartMenuAction(MENU_ACTION_EXIT);
 }
 
 static void BuildLinkModeStartMenu(void)
@@ -396,7 +456,7 @@ static void BuildLinkModeStartMenu(void)
 
     AddStartMenuAction(MENU_ACTION_PLAYER_LINK);
     AddStartMenuAction(MENU_ACTION_OPTION);
-    AddStartMenuAction(MENU_ACTION_EXIT);
+    // AddStartMenuAction(MENU_ACTION_EXIT);
 }
 
 static void BuildUnionRoomStartMenu(void)
@@ -411,7 +471,7 @@ static void BuildUnionRoomStartMenu(void)
 
     AddStartMenuAction(MENU_ACTION_PLAYER);
     AddStartMenuAction(MENU_ACTION_OPTION);
-    AddStartMenuAction(MENU_ACTION_EXIT);
+    // AddStartMenuAction(MENU_ACTION_EXIT);
 }
 
 static void BuildBattlePikeStartMenu(void)
@@ -420,7 +480,7 @@ static void BuildBattlePikeStartMenu(void)
     AddStartMenuAction(MENU_ACTION_POKEMON);
     AddStartMenuAction(MENU_ACTION_PLAYER);
     AddStartMenuAction(MENU_ACTION_OPTION);
-    AddStartMenuAction(MENU_ACTION_EXIT);
+    // AddStartMenuAction(MENU_ACTION_EXIT);
 }
 
 static void BuildBattlePyramidStartMenu(void)
@@ -431,7 +491,7 @@ static void BuildBattlePyramidStartMenu(void)
     AddStartMenuAction(MENU_ACTION_REST_FRONTIER);
     AddStartMenuAction(MENU_ACTION_RETIRE_FRONTIER);
     AddStartMenuAction(MENU_ACTION_OPTION);
-    AddStartMenuAction(MENU_ACTION_EXIT);
+    // AddStartMenuAction(MENU_ACTION_EXIT);
 }
 
 static void BuildMultiPartnerRoomStartMenu(void)
@@ -439,7 +499,7 @@ static void BuildMultiPartnerRoomStartMenu(void)
     AddStartMenuAction(MENU_ACTION_POKEMON);
     AddStartMenuAction(MENU_ACTION_PLAYER);
     AddStartMenuAction(MENU_ACTION_OPTION);
-    AddStartMenuAction(MENU_ACTION_EXIT);
+    // AddStartMenuAction(MENU_ACTION_EXIT);
 }
 
 static void ShowSafariBallsWindow(void)
@@ -635,6 +695,9 @@ void ShowStartMenu(void)
         StopPlayerAvatar();
     }
     CreateStartMenuTask(Task_ShowStartMenu);
+    
+    ShowStartMenuRankIcon();
+
     LockPlayerFieldControls();
 }
 
@@ -682,6 +745,7 @@ static bool8 HandleStartMenuInput(void)
     {
         RemoveExtraStartMenuWindows();
         HideStartMenu();
+        HideStartMenuRankIcon();
         return TRUE;
     }
 
@@ -772,6 +836,10 @@ static bool8 StartMenuPlayerNameCallback(void)
 
 static bool8 StartMenuSaveCallback(void)
 {
+    DebugPrintf("Trying to save...");
+    HideStartMenuRankIcon();
+
+
     if (CurrentBattlePyramidLocation() != PYRAMID_LOCATION_NONE)
         RemoveExtraStartMenuWindows();
 
@@ -1005,6 +1073,7 @@ static void SaveGameTask(u8 taskId)
 static void HideSaveMessageWindow(void)
 {
     ClearDialogWindowAndFrame(0, TRUE);
+    ShowStartMenuRankIcon();
 }
 
 static void HideSaveInfoWindow(void)
@@ -1525,3 +1594,5 @@ void Script_ForceSaveGame(struct ScriptContext *ctx)
     gMenuCallback = SaveCallback;
     sSaveDialogCallback = SaveSavingMessageCallback;
 }
+
+

@@ -304,6 +304,7 @@ script Route101_FollowerMan {
 	lock 
 	faceplayer
 
+
 	msgbox(format("Ok. Let's add you some points."))
 	setvar(VAR_0x8004, 10)
 	callnative(Script_AddTrainerPoints)
@@ -319,7 +320,7 @@ script Route101_ResetPoints {
 	lock
 	faceplayer
 
-	msgbox(format("I am clearing all your points!"))
+	msgbox(format("I am clearing all your points!"), MSGBOX_SIGN)
 	callnative(Script_ResetPoints)
 
 	release 
