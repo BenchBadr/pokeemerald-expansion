@@ -313,3 +313,15 @@ script Route101_FollowerMan {
 	release 
 	end
 }
+
+
+script Route101_ResetPoints {
+	lock
+	faceplayer
+
+	msgbox(format("I am clearing all your points!"))
+	callnative(Script_ResetPoints)
+
+	release 
+	end
+}
