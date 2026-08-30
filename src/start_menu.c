@@ -51,6 +51,10 @@
 #include "constants/rgb.h"
 #include "constants/songs.h"
 
+// trainer rank
+#include "trainer_rank.h"
+
+
 // Menu actions
 enum
 {
@@ -331,6 +335,9 @@ static void AddStartMenuAction(u8 action)
 
 static void BuildNormalStartMenu(void)
 {
+
+    DebugPrintf("Trainer Rank: %d | Points: %d | Goal: %d", GetTrainerRank(), GetTrainerPoints(), GetRankGoal());
+
     if (FlagGet(FLAG_SYS_POKEDEX_GET) == TRUE)
         AddStartMenuAction(MENU_ACTION_POKEDEX);
 

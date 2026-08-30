@@ -600,16 +600,23 @@ Route101_FollowerMan::
 	lock
 # 305 "data/maps/Route101/scripts.pory"
 	faceplayer
-# 306 "data/maps/Route101/scripts.pory"
-	msgbox Route101_FollowerMan_Text_0
 # 307 "data/maps/Route101/scripts.pory"
-	clearflag 0x4E
+	msgbox Route101_FollowerMan_Text_0
 # 308 "data/maps/Route101/scripts.pory"
+	setvar VAR_0x8004, 10
+# 309 "data/maps/Route101/scripts.pory"
+	callnative Script_AddTrainerPoints
+# 311 "data/maps/Route101/scripts.pory"
+	msgbox Route101_FollowerMan_Text_1
+# 313 "data/maps/Route101/scripts.pory"
 	release
 	end
 
 
 Route101_FollowerMan_Text_0:
-# 306 "data/maps/Route101/scripts.pory"
-	.string "From now on you won't be allowed to roam\n"
-	.string "with your pokemon.$"
+# 307 "data/maps/Route101/scripts.pory"
+	.string "Ok. Let's add you some points.$"
+
+Route101_FollowerMan_Text_1:
+# 311 "data/maps/Route101/scripts.pory"
+	.string "You received 10 Trainer Points!$"

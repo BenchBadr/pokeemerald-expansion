@@ -303,8 +303,13 @@ Route101_Text_RouteSign:
 script Route101_FollowerMan {
 	lock 
 	faceplayer
-	msgbox(format("From now on you won't be allowed to roam with your pokemon."))
-	clearflag(0x4E)
+
+	msgbox(format("Ok. Let's add you some points."))
+	setvar(VAR_0x8004, 10)
+	callnative(Script_AddTrainerPoints)
+
+	msgbox(format("You received 10 Trainer Points!"))
+
 	release 
 	end
 }
