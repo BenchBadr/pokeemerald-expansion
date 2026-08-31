@@ -105,6 +105,7 @@ EWRAM_DATA static bool8 sSavingComplete = FALSE;
 EWRAM_DATA static u8 sSaveInfoWindowId = 0;
 
 EWRAM_DATA static u8 sRankIconSpriteId = 0;
+EWRAM_DATA static u8 sRankBarId = 0;
 
 // Menu action callbacks
 static bool8 StartMenuPokedexCallback(void);
@@ -258,20 +259,16 @@ static const struct WindowTemplate sSaveInfoWindowTemplate = {
 };
 
 
-enum CustomSprites
-{
-    SPRITE_ARR_ID_BALL,
-};
 
-// static const struct WindowTemplate sRankBarTemplate = {
-//     .bg = 0,
-//     .tilemapLeft = 3,  
-//     .tilemapTop = 1,
-//     .width = 5,        
-//     .height = 2,       
-//     .paletteNum = 14,  
-//     .baseBlock = 0x220,
-// };
+static const struct WindowTemplate sRankBarTemplate = {
+    .bg = 0,
+    .tilemapLeft = 23,  
+    .tilemapTop = 17,
+    .width = 5,        
+    .height = 2,       
+    .paletteNum = 15,  
+    .baseBlock = 700,
+};
 
 // Local functions
 static void BuildStartMenuActions(void);
@@ -314,10 +311,14 @@ static void HideStartMenuDebug(void);
 
 static void ShowStartMenuRankIcon(void)
 {
+
+    u16 currentPoints = GetTrainerPoints();
+    u16 goalRank = GetRankGoal();
+
     if (sRankIconSpriteId == 0)
     {
 
-        u8 ball = BALL_POKE;
+        u8 ball = BALL_CHERISH;
         LoadBallGfx(ball);
         sRankIconSpriteId = CreateSprite(&gPokeBalls[ball].spriteTemplate, 224, 144, 6);
 
@@ -326,7 +327,7 @@ static void ShowStartMenuRankIcon(void)
             gSprites[sRankIconSpriteId].callback = SpriteCallbackDummy;
             gSprites[sRankIconSpriteId].oam.priority = 1;
 
-            if (GetRankGoal() == GetTrainerPoints()) 
+            if (goalRank == currentPoints) 
             {
                 StartSpriteAnim(&gSprites[sRankIconSpriteId], 1);
             }
@@ -334,6 +335,24 @@ static void ShowStartMenuRankIcon(void)
             {
                 StartSpriteAnim(&gSprites[sRankIconSpriteId], 0);
             }
+        }
+    }
+
+    // handling the progressbar
+    if (sRankBarId == 0) {
+        sRankBarId = AddWindow(&sRankBarTemplate);
+        PutWindowTilemap(sRankBarId);
+        {
+            u16 maxBarWidth = 32;
+
+            u16 fillWidth = (currentPoints * maxBarWidth) / goalRank;
+            if (fillWidth > maxBarWidth) fillWidth = maxBarWidth;
+
+            PutWindowTilemap(sRankBarId);
+
+            FillWindowPixelRect(sRankBarId, PIXEL_FILL(2), 2, 7, maxBarWidth, 2); // bar
+            FillWindowPixelRect(sRankBarId, PIXEL_FILL(15), 2, 7, fillWidth, 2); // filling
+            CopyWindowToVram(sRankBarId, COPYWIN_FULL);
         }
     }
 }
@@ -344,6 +363,15 @@ static void HideStartMenuRankIcon(void)
         DestroySprite(&gSprites[sRankIconSpriteId]);
         
         sRankIconSpriteId = 0;
+    }
+
+
+    // clearing p
+    if (sRankBarId != 0) 
+    {
+        ClearWindowTilemap(sRankBarId);
+        RemoveWindow(sRankBarId);
+        sRankBarId = 0;
     }
 }
 //--------------------------------------------------

@@ -603,40 +603,44 @@ Route101_FollowerMan::
 # 308 "data/maps/Route101/scripts.pory"
 	msgbox Route101_FollowerMan_Text_0
 # 309 "data/maps/Route101/scripts.pory"
-	setvar VAR_0x8004, 10
+	setvar VAR_0x8004, 1
 # 310 "data/maps/Route101/scripts.pory"
 	callnative Script_AddTrainerPoints
 # 312 "data/maps/Route101/scripts.pory"
+	setvar VAR_0x8014, 1
+# 313 "data/maps/Route101/scripts.pory"
 	msgbox Route101_FollowerMan_Text_1
 # 314 "data/maps/Route101/scripts.pory"
+	setvar VAR_0x8014, 0
+# 316 "data/maps/Route101/scripts.pory"
 	release
 	end
 
 
 Route101_ResetPoints::
-# 320 "data/maps/Route101/scripts.pory"
+# 322 "data/maps/Route101/scripts.pory"
 	lock
-# 321 "data/maps/Route101/scripts.pory"
+# 323 "data/maps/Route101/scripts.pory"
 	faceplayer
-# 324 "data/maps/Route101/scripts.pory"
+# 326 "data/maps/Route101/scripts.pory"
 	msgbox Route101_ResetPoints_Text_0
-# 325 "data/maps/Route101/scripts.pory"
-	callnative Script_ResetPoints
 # 327 "data/maps/Route101/scripts.pory"
+	callnative Script_ResetPoints
+# 329 "data/maps/Route101/scripts.pory"
 	release
 	end
 
 
 Route101_GiveBalls::
-# 332 "data/maps/Route101/scripts.pory"
+# 334 "data/maps/Route101/scripts.pory"
 	lock
-# 333 "data/maps/Route101/scripts.pory"
-	faceplayer
 # 335 "data/maps/Route101/scripts.pory"
-	msgbox Route101_GiveBalls_Text_0
-# 336 "data/maps/Route101/scripts.pory"
-	giveitem ITEM_POKE_BALL
+	faceplayer
 # 337 "data/maps/Route101/scripts.pory"
+	msgbox Route101_GiveBalls_Text_0
+# 338 "data/maps/Route101/scripts.pory"
+	giveitem ITEM_POKE_BALL
+# 339 "data/maps/Route101/scripts.pory"
 	release
 	end
 
@@ -646,15 +650,15 @@ Route101_FollowerMan_Text_0:
 	.string "Ok. Let's add you some points.$"
 
 Route101_FollowerMan_Text_1:
-# 312 "data/maps/Route101/scripts.pory"
-	.string "You received 10 Trainer Points!$"
+# 313 "data/maps/Route101/scripts.pory"
+	.string "You received 1 Trainer Points!$"
 
 Route101_ResetPoints_Text_0:
-# 324 "data/maps/Route101/scripts.pory"
+# 326 "data/maps/Route101/scripts.pory"
 	.string "I am clearing all your points!$"
 
 Route101_GiveBalls_Text_0:
-# 335 "data/maps/Route101/scripts.pory"
+# 337 "data/maps/Route101/scripts.pory"
 	.string "Here is a PokéBall! Also let's make this\n"
 	.string "textunecessarily long just because i\l"
 	.string "need to check$"

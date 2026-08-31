@@ -306,10 +306,12 @@ script Route101_FollowerMan {
 
 
 	msgbox(format("Ok. Let's add you some points."))
-	setvar(VAR_0x8004, 10)
+	setvar(VAR_0x8004, 1)
 	callnative(Script_AddTrainerPoints)
                  
-	msgbox(format("You received 10 Trainer Points!"))
+	setvar(VAR_0x8014, 1)
+	msgbox(format("You received 1 Trainer Points!"))
+	setvar(VAR_0x8014, 0)
 
 	release 
 	end
