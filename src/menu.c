@@ -264,7 +264,7 @@ void DrawDialogueFrame(u8 windowId, bool8 copyToVram)
         SetGpuReg(REG_OFFSET_BLDCNT, BLDCNT_TGT1_BG0 | BLDCNT_TGT2_ALL | BLDCNT_EFFECT_BLEND);
 
         SetGpuRegBits(REG_OFFSET_WININ, WININ_WIN0_CLR);
-        SetGpuReg(REG_OFFSET_BLDALPHA, BLDALPHA_BLEND(6, 10));
+        SetGpuReg(REG_OFFSET_BLDALPHA, BLDALPHA_BLEND(16, 3));
     }
 
     if (copyToVram == TRUE)
