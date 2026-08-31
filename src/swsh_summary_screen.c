@@ -61,6 +61,8 @@
 #include "constants/rgb.h"
 #include "constants/songs.h"
 
+#include "daycare.h"
+
 #if SWSH_SUMMARY_SCREEN == TRUE
 enum SWSHPSSEffect
 {

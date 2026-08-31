@@ -8087,17 +8087,18 @@ static void DisplayPartyPokemonDataForFusion(u8 slot)
     }
 }
 
+// Feature to bring back
 static void DisplayPartyPokemonDataForFormChange(u8 slot)
 {
-    struct Pokemon *mon = &gParties[B_TRAINER_PLAYER][slot];
-    enum Species species = GetMonData(mon, MON_DATA_SPECIES);
-    enum Species targetSpecies;
-    bool8 canUse;
+    // struct Pokemon *mon = &gParties[B_TRAINER_PLAYER][slot];
+    // enum Species species = GetMonData(mon, MON_DATA_SPECIES);
+    // enum Species targetSpecies;
+    // bool8 canUse;
 
-    targetSpecies = GetFormChangeTargetSpecies(mon, FORM_CHANGE_ITEM_USE);
-    canUse = (targetSpecies != species);
+    // targetSpecies = GetFormChangeTargetSpecies(mon, FORM_CHANGE_ITEM_USE, sPartyMenuItemId);
+    // canUse = (targetSpecies != species);
 
-    DisplayPartyPokemonDescriptionData(slot, canUse ? PARTYBOX_DESC_ABLE : PARTYBOX_DESC_NOT_ABLE);
+    // DisplayPartyPokemonDescriptionData(slot, canUse ? PARTYBOX_DESC_ABLE : PARTYBOX_DESC_NOT_ABLE);
 }
 
 static void Task_TryItemUseFusionChange(u8 taskId);
