@@ -2968,9 +2968,27 @@ static void SetPartyMonFieldSelectionActions(struct Pokemon *mons, u8 slotId)
         AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, MENU_TAKE_OUT);
     }
 
+    DebugPrintf("Going to populate them moves");
+
     // Add field moves to action list
     for (i = 0; i < MAX_MON_MOVES; i++)
     {
+        u16 move = GetMonData(&mons[slotId], i + MON_DATA_MOVE1);
+
+        DebugPrintf("Checking move %s", gMovesInfo[move].name);
+
+        // slicing moves
+        for (j = 0; j != FIELD_MOVES_COUNT; j++)
+        {
+            if (gMovesInfo[move].slicingMove)
+            {
+                // AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, j + MENU_FIELD_MOVES);
+                DebugPrintf("Hey I have a slicing move!! It's %s", gMovesInfo[move].name);
+                break;
+            }
+        }
+
+        // other field moves
         for (j = 0; j != FIELD_MOVES_COUNT; j++)
         {
             if (GetMonData(&mons[slotId], i + MON_DATA_MOVE1) == FieldMove_GetMoveId(j))

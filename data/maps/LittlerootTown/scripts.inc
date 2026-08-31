@@ -2030,3 +2030,21 @@ LittlerootTown_Text_BirchSomethingToShowYouAtLab:
 	.string "I have something to show you.\n"
 # 1016 "data/maps/LittlerootTown/scripts.pory"
 	.string "Let's go to my LAB.$"
+
+LittlerootTown_Givemon::
+# 1021 "data/maps/LittlerootTown/scripts.pory"
+	lock
+# 1022 "data/maps/LittlerootTown/scripts.pory"
+	faceplayer
+# 1030 "data/maps/LittlerootTown/scripts.pory"
+	msgbox LittlerootTown_Givemon_Text_0
+# 1032 "data/maps/LittlerootTown/scripts.pory"
+	givemon SPECIES_SAMUROTT_HISUI, 36, ITEM_ORAN_BERRY, abilityNum = 2, move1 = MOVE_CEASELESS_EDGE, move2 = MOVE_RAZOR_SHELL, move3 = MOVE_KNOCK_OFF, move4 = MOVE_AQUA_JET
+# 1043 "data/maps/LittlerootTown/scripts.pory"
+	release
+	end
+
+
+LittlerootTown_Givemon_Text_0:
+# 1030 "data/maps/LittlerootTown/scripts.pory"
+	.string "Here is a Samurott just for you$"

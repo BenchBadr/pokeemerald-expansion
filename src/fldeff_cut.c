@@ -164,7 +164,7 @@ bool32 SetUpFieldMove_Cut(void)
     {
         PlayerGetDestCoords(&gPlayerFacingPosition.x, &gPlayerFacingPosition.y);
         userAbility = GetMonAbility(&gParties[B_TRAINER_PLAYER][GetCursorSelectionMonId()]);
-        if (userAbility == ABILITY_HYPER_CUTTER)
+        if (userAbility == ABILITY_HYPER_CUTTER && userAbility != ABILITY_SHARPNESS)
         {
             sCutSquareSide = CUT_HYPER_SIDE;
             sTileCountFromPlayer_X = 2;
@@ -182,7 +182,10 @@ bool32 SetUpFieldMove_Cut(void)
         for (i = 0; i < CUT_HYPER_AREA; i++)
             sHyperCutTiles[i] = FALSE;
 
-        ret = FALSE;
+
+
+        // will always play the cut animation
+        ret = FALSE; // TRUE;
 
         for (i = 0; i < CUT_NORMAL_SIDE; i++)
         {
@@ -223,7 +226,7 @@ bool32 SetUpFieldMove_Cut(void)
             }
         }
 
-        if (userAbility != ABILITY_HYPER_CUTTER)
+        if (userAbility != ABILITY_HYPER_CUTTER && userAbility != ABILITY_SHARPNESS)
         {
             if (ret == TRUE)
             {

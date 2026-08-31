@@ -10,10 +10,11 @@
 
 static bool32 IsFieldMoveUnlocked_Cut(void)
 {
-    if (IS_FRLG)
-        return FlagGet(FLAG_BADGE02_GET);
+    // if (IS_FRLG)
+    //     return FlagGet(FLAG_BADGE02_GET);
 
-    return FlagGet(FLAG_BADGE01_GET);
+    // return FlagGet(FLAG_BADGE01_GET);
+    return TRUE;
 }
 
 static bool32 IsFieldMoveUnlocked_Flash(void)

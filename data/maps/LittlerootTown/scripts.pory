@@ -1016,3 +1016,30 @@ LittlerootTown_Text_BirchSomethingToShowYouAtLab:
 	.string "Let's go to my LAB.$"
 
 `
+
+script LittlerootTown_Givemon {
+    lock
+    faceplayer
+
+    // givemon arguments:
+    // species, level, item, ball, nature, abilityNum, gender, 
+    // hpEv, atkEv, defEv, speedEv, spAtkEv, spDefEv, 
+    // hpIv, atkIv, defIv, speedIv, spAtkIv, spDefIv, 
+    // move1, move2, move3, move4
+    
+	msgbox(format("Here is a Samurott just for you"))
+
+    givemon(
+        SPECIES_SAMUROTT_HISUI, 
+        36, 
+        ITEM_ORAN_BERRY, 
+        abilityNum = 2, // 2 = Hidden Ability slot
+        move1 = MOVE_CEASELESS_EDGE, 
+        move2 = MOVE_RAZOR_SHELL, 
+        move3 = MOVE_KNOCK_OFF, 
+        move4 = MOVE_AQUA_JET
+    )
+
+    release
+    end
+}
