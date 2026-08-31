@@ -308,11 +308,26 @@ static void HideStartMenuDebug(void);
 
 
 
+// 1. Define the affine animation using AffineAnimCmd union
+static const union AffineAnimCmd sRankIconScale05[] =
+{
+    // AFFINEANIMCMD_FRAME(xScale, yScale, rotation, duration)
+    // 128 (0x80) represents 0.5x scale (256 = 1.0x)
+    // Duration 0 instantly applies the scale on initial load
+    AFFINEANIMCMD_FRAME(180, 180, 0, 0),
+    AFFINEANIMCMD_END,
+};
+
+
+
+// 2. Wrap it in a table pointer
+static const union AffineAnimCmd *const sRankIconScaleAnims[] =
+{
+    sRankIconScale05,
+};
+
 static void ShowStartMenuRankIcon(void)
 {
-
-    
-
     if (sRankIconSpriteId == 0)
     {
         sRankIconSpriteId = AddItemIconSprite(TAG_ITEM_ICON_BASE, TAG_ITEM_ICON_BASE, ITEM_POKE_BALL);
@@ -323,15 +338,14 @@ static void ShowStartMenuRankIcon(void)
             gSprites[sRankIconSpriteId].y2 = 144;
             gSprites[sRankIconSpriteId].oam.priority = 0;
             gSprites[sRankIconSpriteId].subpriority = 0;
+
+            gSprites[sRankIconSpriteId].affineAnims = sRankIconScaleAnims;
+            gSprites[sRankIconSpriteId].oam.affineMode = ST_OAM_AFFINE_NORMAL;
+
+            InitSpriteAffineAnim(&gSprites[sRankIconSpriteId]);
+            StartSpriteAffineAnim(&gSprites[sRankIconSpriteId], 0);
         }
     }
-
-    // show the progress bar
-    // u8 winId = AddWindow(&sRankBarTemplate);
-    // FillWindowPixelRect(winId, 0x7, 8, 7, 56, 8);
-    // PutWindowTilemap(winId);
-    // CopyWindowToVram(winId, COPYWIN_GFX);
-    
 }
 
 static void HideStartMenuRankIcon(void)
