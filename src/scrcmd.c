@@ -2316,6 +2316,38 @@ bool8 ScrCmd_checkfieldmove(struct ScriptContext *ctx)
     if (doUnlockedCheck && !IsFieldMoveUnlocked(fieldMove))
         return FALSE;
 
+
+    // cut field move
+    if (fieldMove == FIELD_MOVE_CUT) {
+        for (u32 i = 0; i < PARTY_SIZE; i++) 
+            {
+                struct Pokemon *mon = &gParties[B_TRAINER_PLAYER][i];
+                enum Species species = GetMonData(mon, MON_DATA_SPECIES);
+
+                if (!species)
+                    break;
+
+                if (!GetMonData(mon, MON_DATA_IS_EGG))
+                {
+                    for (u32 j = 0; j < MAX_MON_MOVES; j++)
+                    {
+                        u16 currentMove = GetMonData(mon, MON_DATA_MOVE1 + j);
+                        
+                        if (currentMove != MOVE_NONE && gMovesInfo[currentMove].slicingMove)
+                        {
+                            gSpecialVar_Result = i;
+                            gSpecialVar_0x8004 = species;
+                            gSpecialVar_0x8005 = currentMove;
+                            return FALSE;
+                        }
+                    }
+                }
+            }
+        return FALSE;
+    }
+
+    // other fields moves
+
     move = FieldMove_GetMoveId(fieldMove);
     for (u32 i = 0; i < PARTY_SIZE; i++)
     {
