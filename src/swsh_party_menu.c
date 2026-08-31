@@ -210,6 +210,8 @@ struct PartyMenuInternal
     u16 palBuffer[BG_PLTT_SIZE / sizeof(u16)];
     s16 switchCounter;
     s16 data[16];
+
+    u16 dynamicFieldMoves[8];
 };
 
 struct PartyMenuBox
@@ -3621,18 +3623,24 @@ static u8 DisplaySelectionWindow(u8 windowType)
     {
         const u8 *text;
         u8 fontColorsId = 3;
+        u8 fontId = FONT_NORMAL;
 
         if (sPartyMenuInternal->actions[i] >= MENU_FIELD_MOVES)
         {
             fontColorsId = 4;
-            text = GetMoveName(FieldMove_GetMoveId(sPartyMenuInternal->actions[i] - MENU_FIELD_MOVES));
+            u16 move = sPartyMenuInternal->dynamicFieldMoves[i];
+            text = GetMoveName(move);
+            fontId = FONT_NARROW;
         }
         else
         {
             text = sCursorOptions[sPartyMenuInternal->actions[i]].text;
         }
 
-        AddTextPrinterParameterized4(sPartyMenuInternal->windowId[0], FONT_NORMAL, cursorDimension, (i * 16) + 1, letterSpacing, 0, sFontColorTable[fontColorsId], 0, text);
+        // cursorDimension = GetMenuCursorDimensionByFont(fontId, 0);
+        // letterSpacing = GetFontAttribute(fontId, FONTATTR_LETTER_SPACING);
+
+        AddTextPrinterParameterized4(sPartyMenuInternal->windowId[0], fontId, cursorDimension, (i * 16) + 1, letterSpacing, 0, sFontColorTable[fontColorsId], 0, text);
     }
 
     InitMenuInUpperLeftCorner(sPartyMenuInternal->windowId[0], sPartyMenuInternal->numActions, 0, TRUE);
@@ -3712,6 +3720,7 @@ static void SetPartyMonFieldSelectionActions(struct Pokemon *mons, u8 slotId)
         {
             if (gMovesInfo[move].slicingMove)
             {
+                sPartyMenuInternal->dynamicFieldMoves[sPartyMenuInternal->numActions] = move;
                 AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, MENU_FIELD_MOVES + 0);
                 break;
             }

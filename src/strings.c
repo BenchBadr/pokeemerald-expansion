@@ -307,7 +307,8 @@ const u8 gText_TeachWhichPokemon[] = _("Teach which POKéMON?");
 const u8 gText_UseOnWhichPokemon[] = _("Use on which POKéMON?");
 const u8 gText_GiveToWhichPokemon[] = _("Give to which POKéMON?");
 const u8 gText_DoWhatWithPokemon[] = _("Do what with this {PKMN}?");
-const u8 gText_NothingToCut[] = _("There's nothing to CUT.");
+
+const u8 gText_NothingToCut[] = _("There's nothing to cut.");
 const u8 gText_CantSurfHere[] = _("You can't SURF here.");
 const u8 gText_AlreadySurfing[] = _("You're already SURFING.");
 const u8 gText_CantUseHere[] = _("Can't use that here.");
