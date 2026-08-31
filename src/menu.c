@@ -241,19 +241,25 @@ static void WindowFunc_DrawSignFrame(u8 bg, u8 left, u8 top, u8 width, u8 height
 
 static inline void *GetWindowFunc_DialogueFrame(void)
 {
-    return (gMsgIsSignPost ? WindowFunc_DrawSignFrame : WindowFunc_DrawDialogueFrame);
+    u8 dark = gSpecialVar_0x8005;
+    return (gMsgIsSignPost || dark ? WindowFunc_DrawSignFrame : WindowFunc_DrawDialogueFrame);
 }
 
 void DrawDialogueFrame(u8 windowId, bool8 copyToVram)
 {
+
+
     sTileNum = DLG_WINDOW_BASE_TILE_NUM;
     sPaletteNum = DLG_WINDOW_PALETTE_NUM;
+
     CallWindowFunction(windowId, GetWindowFunc_DialogueFrame());
+
     FillWindowPixelBuffer(windowId, PIXEL_FILL(1));
     PutWindowTilemap(windowId);
     if (copyToVram == TRUE)
         CopyWindowToVram(windowId, COPYWIN_FULL);
 }
+
 
 static void WindowFunc_RedrawDialogueFrame(u8 bg, u8 left, u8 top, u8 width, u8 height, u8 paletteNum)
 {

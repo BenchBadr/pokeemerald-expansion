@@ -618,11 +618,29 @@ Route101_ResetPoints::
 	lock
 # 321 "data/maps/Route101/scripts.pory"
 	faceplayer
-# 323 "data/maps/Route101/scripts.pory"
-	msgbox Route101_ResetPoints_Text_0, MSGBOX_SIGN
 # 324 "data/maps/Route101/scripts.pory"
+	msgbox Route101_ResetPoints_Text_0
+# 325 "data/maps/Route101/scripts.pory"
 	callnative Script_ResetPoints
-# 326 "data/maps/Route101/scripts.pory"
+# 327 "data/maps/Route101/scripts.pory"
+	release
+	end
+
+
+Route101_GiveBalls::
+# 332 "data/maps/Route101/scripts.pory"
+	lock
+# 333 "data/maps/Route101/scripts.pory"
+	faceplayer
+# 335 "data/maps/Route101/scripts.pory"
+	setvar VAR_0x8005, 1
+# 336 "data/maps/Route101/scripts.pory"
+	msgbox Route101_GiveBalls_Text_0
+# 337 "data/maps/Route101/scripts.pory"
+	giveitem ITEM_POKE_BALL
+# 338 "data/maps/Route101/scripts.pory"
+	setvar VAR_0x8005, 0
+# 339 "data/maps/Route101/scripts.pory"
 	release
 	end
 
@@ -636,5 +654,9 @@ Route101_FollowerMan_Text_1:
 	.string "You received 10 Trainer Points!$"
 
 Route101_ResetPoints_Text_0:
-# 323 "data/maps/Route101/scripts.pory"
+# 324 "data/maps/Route101/scripts.pory"
 	.string "I am clearing all your points!$"
+
+Route101_GiveBalls_Text_0:
+# 336 "data/maps/Route101/scripts.pory"
+	.string "Here is a PokéBall!$"

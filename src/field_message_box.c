@@ -9,6 +9,8 @@
 #include "script.h"
 #include "field_name_box.h"
 
+#include "event_data.h"
+
 static EWRAM_DATA u8 sFieldMessageBoxMode = 0;
 EWRAM_DATA u8 gWalkAwayFromSignpostTimer = 0;
 
@@ -30,12 +32,12 @@ static void Task_DrawFieldMessage(u8 taskId)
 {
     struct Task *task = &gTasks[taskId];
 
-    DebugPrintf("Test, %d", sFieldMessageBoxMode);
 
     switch (task->tState)
     {
     case 0:
-        if (gMsgIsSignPost)
+        u8 dark = gSpecialVar_0x8005;
+        if (gMsgIsSignPost || dark)
             LoadSignPostWindowFrameGfx();
         else
             LoadMessageBoxAndBorderGfx();

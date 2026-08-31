@@ -310,6 +310,9 @@ static void HideStartMenuDebug(void);
 
 static void ShowStartMenuRankIcon(void)
 {
+
+    
+
     if (sRankIconSpriteId == 0)
     {
         sRankIconSpriteId = AddItemIconSprite(TAG_ITEM_ICON_BASE, TAG_ITEM_ICON_BASE, ITEM_POKE_BALL);
@@ -836,7 +839,6 @@ static bool8 StartMenuPlayerNameCallback(void)
 
 static bool8 StartMenuSaveCallback(void)
 {
-    DebugPrintf("Trying to save...");
     HideStartMenuRankIcon();
 
 
@@ -1489,6 +1491,8 @@ static void ShowSaveInfoWindow(void)
 
     sSaveInfoWindowId = AddWindow(&saveInfoWindow);
     DrawStdWindowFrame(sSaveInfoWindowId, FALSE);
+    SetGpuReg(REG_OFFSET_BLDCNT, BLDCNT_EFFECT_BLEND | BLDCNT_TGT1_BG0 | BLDCNT_TGT2_BG1);
+    SetGpuReg(REG_OFFSET_BLDALPHA, BLDALPHA_BLEND(8, 8));
 
     gender = gSaveBlock2Ptr->playerGender;
     color = TEXT_COLOR_RED;  // Red when female, blue when male.

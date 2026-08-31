@@ -110,7 +110,6 @@ void LoadStdWindowGfx(u8 windowId, u16 destOffset, u8 palOffset)
 
 void LoadSignBoxGfx(u8 windowId, u16 destOffset, u8 palOffset)
 {
-    DebugPrintf("HELLO THIS IS HERE");
     LoadBgTiles(GetWindowAttribute(windowId, WINDOW_BG), gSignpostWindow_Gfx, 0x1C0, destOffset);
     LoadPalette(GetTextWindowPalette(1), palOffset, PLTT_SIZE_4BPP);
 }

@@ -308,7 +308,7 @@ script Route101_FollowerMan {
 	msgbox(format("Ok. Let's add you some points."))
 	setvar(VAR_0x8004, 10)
 	callnative(Script_AddTrainerPoints)
-
+                 
 	msgbox(format("You received 10 Trainer Points!"))
 
 	release 
@@ -320,9 +320,22 @@ script Route101_ResetPoints {
 	lock
 	faceplayer
 
-	msgbox(format("I am clearing all your points!"), MSGBOX_SIGN)
+	// setvar(VAR_0x4001, 1)
+	msgbox(format("I am clearing all your points!"))
 	callnative(Script_ResetPoints)
 
+	release 
+	end
+}
+
+script Route101_GiveBalls {
+	lock
+	faceplayer
+
+	setvar(VAR_0x8005, 1)
+	msgbox(format("Here is a PokéBall!"))
+	giveitem(ITEM_POKE_BALL)
+	setvar(VAR_0x8005, 0)
 	release 
 	end
 }
