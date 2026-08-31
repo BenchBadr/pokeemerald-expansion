@@ -633,14 +633,10 @@ Route101_GiveBalls::
 # 333 "data/maps/Route101/scripts.pory"
 	faceplayer
 # 335 "data/maps/Route101/scripts.pory"
-	setvar VAR_0x8005, 1
-# 336 "data/maps/Route101/scripts.pory"
 	msgbox Route101_GiveBalls_Text_0
-# 337 "data/maps/Route101/scripts.pory"
+# 336 "data/maps/Route101/scripts.pory"
 	giveitem ITEM_POKE_BALL
-# 338 "data/maps/Route101/scripts.pory"
-	setvar VAR_0x8005, 0
-# 339 "data/maps/Route101/scripts.pory"
+# 337 "data/maps/Route101/scripts.pory"
 	release
 	end
 
@@ -658,7 +654,7 @@ Route101_ResetPoints_Text_0:
 	.string "I am clearing all your points!$"
 
 Route101_GiveBalls_Text_0:
-# 336 "data/maps/Route101/scripts.pory"
+# 335 "data/maps/Route101/scripts.pory"
 	.string "Here is a PokéBall! Also let's make this\n"
 	.string "textunecessarily long just because i\l"
 	.string "need to check$"

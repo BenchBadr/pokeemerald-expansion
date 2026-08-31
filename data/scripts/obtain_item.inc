@@ -2,10 +2,12 @@
 .set AMOUNT, VAR_0x8001
 
 Std_ObtainItem::
+	setvar 0x8014, 1
 	copyvar VAR_0x8006, ITEMID
 	additem ITEMID, AMOUNT
 	copyvar VAR_0x8007, VAR_RESULT
 	call EventScript_ObtainItemMessage
+	setvar 0x8014, 0
 	return
 
 EventScript_ObtainItemMessage::

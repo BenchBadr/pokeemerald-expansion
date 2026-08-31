@@ -241,13 +241,13 @@ static void WindowFunc_DrawSignFrame(u8 bg, u8 left, u8 top, u8 width, u8 height
 
 static inline void *GetWindowFunc_DialogueFrame(void)
 {
-    u8 dark = gSpecialVar_0x8005;
+    u8 dark = gSpecialVar_Unused_0x8014;
     return (gMsgIsSignPost || dark ? WindowFunc_DrawSignFrame : WindowFunc_DrawDialogueFrame);
 }
 
 void DrawDialogueFrame(u8 windowId, bool8 copyToVram)
 {
-    u8 dark = gSpecialVar_0x8005;
+    u8 dark = gSpecialVar_Unused_0x8014;
 
     sTileNum = DLG_WINDOW_BASE_TILE_NUM;
     sPaletteNum = DLG_WINDOW_PALETTE_NUM;
@@ -259,7 +259,7 @@ void DrawDialogueFrame(u8 windowId, bool8 copyToVram)
 
 
 
-    if (dark && !IsWeatherAlphaBlend()) {
+    if ((dark || gMsgIsSignPost) && !IsWeatherAlphaBlend()) {
 
         SetGpuReg(REG_OFFSET_BLDCNT, BLDCNT_TGT1_BG0 | BLDCNT_TGT2_ALL | BLDCNT_EFFECT_BLEND);
 

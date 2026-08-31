@@ -36,7 +36,7 @@ static void Task_DrawFieldMessage(u8 taskId)
     switch (task->tState)
     {
     case 0:
-        u8 dark = gSpecialVar_0x8005;
+        u8 dark = gSpecialVar_Unused_0x8014;
         if (gMsgIsSignPost || dark)
             LoadSignPostWindowFrameGfx();
         else

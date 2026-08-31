@@ -287,7 +287,7 @@
 #define VAR_0x8002                    0x8002
 #define VAR_0x8003                    0x8003
 #define VAR_0x8004                    0x8004 // used for points
-#define VAR_0x8005                    0x8005 // used for dark mode text
+#define VAR_0x8005                    0x8005 
 #define VAR_0x8006                    0x8006
 #define VAR_0x8007                    0x8007
 #define VAR_0x8008                    0x8008
@@ -302,7 +302,7 @@
 #define VAR_CONTEST_CATEGORY          0x8011
 #define VAR_MON_BOX_ID                0x8012
 #define VAR_MON_BOX_POS               0x8013
-#define VAR_UNUSED_0x8014             0x8014
+#define VAR_UNUSED_0x8014             0x8014 // used for dark mode text
 #define VAR_TRAINER_BATTLE_OPPONENT_A 0x8015 // Alias of TRAINER_BATTLE_PARAM.opponentA
 
 #define SPECIAL_VARS_END              0x8015
