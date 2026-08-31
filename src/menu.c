@@ -247,7 +247,7 @@ static inline void *GetWindowFunc_DialogueFrame(void)
 
 void DrawDialogueFrame(u8 windowId, bool8 copyToVram)
 {
-
+    u8 dark = gSpecialVar_0x8005;
 
     sTileNum = DLG_WINDOW_BASE_TILE_NUM;
     sPaletteNum = DLG_WINDOW_PALETTE_NUM;
@@ -256,6 +256,17 @@ void DrawDialogueFrame(u8 windowId, bool8 copyToVram)
 
     FillWindowPixelBuffer(windowId, PIXEL_FILL(1));
     PutWindowTilemap(windowId);
+
+
+
+    if (dark && !IsWeatherAlphaBlend()) {
+
+        SetGpuReg(REG_OFFSET_BLDCNT, BLDCNT_TGT1_BG0 | BLDCNT_TGT2_ALL | BLDCNT_EFFECT_BLEND);
+
+        SetGpuRegBits(REG_OFFSET_WININ, WININ_WIN0_CLR);
+        SetGpuReg(REG_OFFSET_BLDALPHA, BLDALPHA_BLEND(6, 10));
+    }
+
     if (copyToVram == TRUE)
         CopyWindowToVram(windowId, COPYWIN_FULL);
 }
@@ -307,6 +318,11 @@ void ClearDialogWindowAndFrame(u8 windowId, bool8 copyToVram)
     CallWindowFunction(windowId, WindowFunc_ClearDialogWindowAndFrame);
     FillWindowPixelBuffer(windowId, PIXEL_FILL(1));
     ClearWindowTilemap(windowId);
+
+    SetGpuReg(REG_OFFSET_BLDCNT, 0);
+    SetGpuReg(REG_OFFSET_BLDALPHA, 0);
+    
+
     if (copyToVram == TRUE)
         CopyWindowToVram(windowId, COPYWIN_FULL);
 }

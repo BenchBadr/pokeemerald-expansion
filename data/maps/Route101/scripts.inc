@@ -659,4 +659,6 @@ Route101_ResetPoints_Text_0:
 
 Route101_GiveBalls_Text_0:
 # 336 "data/maps/Route101/scripts.pory"
-	.string "Here is a PokéBall!$"
+	.string "Here is a PokéBall! Also let's make this\n"
+	.string "textunecessarily long just because i\l"
+	.string "need to check$"

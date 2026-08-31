@@ -333,7 +333,7 @@ script Route101_GiveBalls {
 	faceplayer
 
 	setvar(VAR_0x8005, 1)
-	msgbox(format("Here is a PokéBall!"))
+	msgbox(format("Here is a PokéBall! Also let's make this textunecessarily long just because i need to check"))
 	giveitem(ITEM_POKE_BALL)
 	setvar(VAR_0x8005, 0)
 	release 

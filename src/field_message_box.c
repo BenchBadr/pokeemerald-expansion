@@ -141,7 +141,7 @@ static void ExpandStringAndStartDrawFieldMessage(const u8 *str, bool32 allowSkip
 
 static void StartDrawFieldMessage(void)
 {
-    AddTextPrinterForMessage(TRUE);
+    AddTextPrinterForMessage(FALSE);
     CreateTask_DrawFieldMessage();
 }
 
