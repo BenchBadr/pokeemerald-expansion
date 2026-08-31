@@ -53,7 +53,7 @@
 
 // trainer rank
 #include "trainer_rank.h"
-#include "item_icon.h"
+#include "pokeball.h"
 
 #define TAG_ITEM_ICON_BASE 9110
 
@@ -257,6 +257,12 @@ static const struct WindowTemplate sSaveInfoWindowTemplate = {
     .baseBlock = 8
 };
 
+
+enum CustomSprites
+{
+    SPRITE_ARR_ID_BALL,
+};
+
 // static const struct WindowTemplate sRankBarTemplate = {
 //     .bg = 0,
 //     .tilemapLeft = 3,  
@@ -306,54 +312,35 @@ static void HideStartMenuDebug(void);
 
 /// Visuals ranks ----------
 
-
-
-// 1. Define the affine animation using AffineAnimCmd union
-static const union AffineAnimCmd sRankIconScale05[] =
-{
-    // AFFINEANIMCMD_FRAME(xScale, yScale, rotation, duration)
-    // 128 (0x80) represents 0.5x scale (256 = 1.0x)
-    // Duration 0 instantly applies the scale on initial load
-    AFFINEANIMCMD_FRAME(180, 180, 0, 0),
-    AFFINEANIMCMD_END,
-};
-
-
-
-// 2. Wrap it in a table pointer
-static const union AffineAnimCmd *const sRankIconScaleAnims[] =
-{
-    sRankIconScale05,
-};
-
 static void ShowStartMenuRankIcon(void)
 {
     if (sRankIconSpriteId == 0)
     {
-        sRankIconSpriteId = AddItemIconSprite(TAG_ITEM_ICON_BASE, TAG_ITEM_ICON_BASE, ITEM_POKE_BALL);
-        
+
+        u8 ball = BALL_POKE;
+        LoadBallGfx(ball);
+        sRankIconSpriteId = CreateSprite(&gPokeBalls[ball].spriteTemplate, 224, 144, 6);
+
         if (sRankIconSpriteId != MAX_SPRITES)
         {
-            gSprites[sRankIconSpriteId].x2 = 224;
-            gSprites[sRankIconSpriteId].y2 = 144;
-            gSprites[sRankIconSpriteId].oam.priority = 0;
-            gSprites[sRankIconSpriteId].subpriority = 0;
+            gSprites[sRankIconSpriteId].callback = SpriteCallbackDummy;
+            gSprites[sRankIconSpriteId].oam.priority = 1;
 
-            gSprites[sRankIconSpriteId].affineAnims = sRankIconScaleAnims;
-            gSprites[sRankIconSpriteId].oam.affineMode = ST_OAM_AFFINE_NORMAL;
-
-            InitSpriteAffineAnim(&gSprites[sRankIconSpriteId]);
-            StartSpriteAffineAnim(&gSprites[sRankIconSpriteId], 0);
+            if (GetRankGoal() == GetTrainerPoints()) 
+            {
+                StartSpriteAnim(&gSprites[sRankIconSpriteId], 1);
+            }
+            else
+            {
+                StartSpriteAnim(&gSprites[sRankIconSpriteId], 0);
+            }
         }
     }
 }
-
 static void HideStartMenuRankIcon(void)
 {
     if (sRankIconSpriteId != 0)
     {
-        FreeSpriteTilesByTag(TAG_ITEM_ICON_BASE);
-        FreeSpritePaletteByTag(TAG_ITEM_ICON_BASE);
         DestroySprite(&gSprites[sRankIconSpriteId]);
         
         sRankIconSpriteId = 0;
@@ -412,8 +399,6 @@ static void AddStartMenuAction(u8 action)
 
 static void BuildNormalStartMenu(void)
 {
-
-    // DebugPrintf("Trainer Rank: %d | Points: %d | Goal: %d", GetTrainerRank(), GetTrainerPoints(), GetRankGoal());
 
     if (FlagGet(FLAG_SYS_POKEDEX_GET) == TRUE)
         AddStartMenuAction(MENU_ACTION_POKEDEX);
