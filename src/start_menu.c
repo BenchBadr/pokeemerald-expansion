@@ -318,7 +318,7 @@ static void ShowStartMenuRankIcon(void)
     if (sRankIconSpriteId == 0)
     {
 
-        u8 ball = BALL_CHERISH;
+        u8 ball = BALL_POKE;
         LoadBallGfx(ball);
         sRankIconSpriteId = CreateSprite(&gPokeBalls[ball].spriteTemplate, 224, 144, 6);
 
@@ -582,11 +582,14 @@ static void RemoveExtraStartMenuWindows(void)
         ClearStdWindowAndFrameToTransparent(sBattlePyramidFloorWindowId, FALSE);
         RemoveWindow(sBattlePyramidFloorWindowId);
     }
+
+    HideStartMenuRankIcon();
 }
 
 static bool32 PrintStartMenuActions(s8 *pIndex, u32 count)
 {
     s8 index = *pIndex;
+
 
     do
     {
@@ -644,6 +647,8 @@ static bool32 InitStartMenuStep(void)
     case 4:
         if (PrintStartMenuActions(&sInitStartMenuData[1], 2))
             sInitStartMenuData[0]++;
+
+        ShowStartMenuRankIcon();
         break;
     case 5:
         sStartMenuCursorPos = InitMenuNormal(GetStartMenuWindowId(), FONT_NORMAL, 0, 9, 16, sNumStartMenuActions, sStartMenuCursorPos);
@@ -686,6 +691,7 @@ static bool8 FieldCB_ReturnToFieldStartMenu(void)
     }
 
     ReturnToFieldOpenStartMenu();
+    ShowStartMenuRankIcon();
     return TRUE;
 }
 
@@ -866,9 +872,8 @@ static bool8 StartMenuPlayerNameCallback(void)
 
 static bool8 StartMenuSaveCallback(void)
 {
+
     HideStartMenuRankIcon();
-
-
     if (CurrentBattlePyramidLocation() != PYRAMID_LOCATION_NONE)
         RemoveExtraStartMenuWindows();
 
@@ -993,6 +998,7 @@ static bool8 SaveCallback(void)
     case SAVE_CANCELED: // Back to start menu
         ClearDialogWindowAndFrameToTransparent(0, FALSE);
         InitStartMenu();
+
         gMenuCallback = HandleStartMenuInput;
         return FALSE;
     case SAVE_SUCCESS:
@@ -1102,7 +1108,6 @@ static void SaveGameTask(u8 taskId)
 static void HideSaveMessageWindow(void)
 {
     ClearDialogWindowAndFrame(0, TRUE);
-    ShowStartMenuRankIcon();
 }
 
 static void HideSaveInfoWindow(void)
@@ -1569,6 +1574,7 @@ static void ShowSaveInfoWindow(void)
 static void RemoveSaveInfoWindow(void)
 {
     ClearStdWindowAndFrame(sSaveInfoWindowId, FALSE);
+    HideStartMenuRankIcon();
     RemoveWindow(sSaveInfoWindowId);
 }
 
@@ -1604,6 +1610,7 @@ void HideStartMenu(void)
 {
     PlaySE(SE_SELECT);
     HideStartMenuWindow();
+    HideStartMenuRankIcon();
 }
 
 void AppendToList(u8 *list, u8 *pos, u8 newEntry)
