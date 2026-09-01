@@ -350,7 +350,7 @@ static void ShowStartMenuRankIcon(void)
 
             PutWindowTilemap(sRankBarId);
 
-            FillWindowPixelRect(sRankBarId, PIXEL_FILL(2), 2, 7, maxBarWidth, 2); // bar
+            FillWindowPixelRect(sRankBarId, PIXEL_FILL(8), 2, 7, maxBarWidth, 2); // bar
             FillWindowPixelRect(sRankBarId, PIXEL_FILL(15), 2, 7, fillWidth, 2); // filling
             CopyWindowToVram(sRankBarId, COPYWIN_FULL);
         }

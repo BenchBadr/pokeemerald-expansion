@@ -1994,7 +1994,7 @@ static const struct BattleWindowText sTextOnWindowsInfo_KantoTutorial[] =
         .color.accent = 14,
         .color.shadow = 15,
     },
-    [B_WIN_YESNO] = {
+    [B_WIN_YESNO] = { // test 1
         .fillValue = PIXEL_FILL(0xE),
         .fontId = FONT_NORMAL,
         .x = 0,

@@ -8,15 +8,21 @@ script ScraftyBeers_Sign {
 
 
 script ManTest {
-	msgbox(format("Just a little yesno test"), MSGBOX_YESNO)
-	if (var(VAR_RESULT)) {
-		msgbox(format("Yes!"))
-	}
+	// setvar(0x8014, 1)
+	msgbox(format("Just a little yesno test"))
+
+	setvar(VAR_0x8004, -5)
+	callnative(Script_AddTrainerPointsAnim)
+	waitbuttonpress
+	callnative(Script_HideRankDisplay)
+
+	msgbox(format("Cool eh!"))
+	// setvar(0x8014, 0)
 	closemessage
 	end
 }
 
-script BattleZone1_SawyerBattle {
+script BattleZone1_Matchmaking {
     lock
     faceplayer
 	setvar(0x8014, 1)
@@ -25,11 +31,41 @@ script BattleZone1_SawyerBattle {
 
 	closemessage
 
-	if (var(VAR_RESULT)) {
-		// Uses trainerbattle_no_intro so the engine doesn't look for an Object Event target
-		trainerbattle_no_intro(TRAINER_SAWYER_1, format("Crushed like a pebble..."))
-		msgbox(format("I need to head back to the mountains and train my Geodude harder."), MSGBOX_AUTOCLOSE)
-	}
+	if (!var(VAR_RESULT)) { return }
+
+	applymovement(2, moves(
+		walk_left * 2
+		walk_up * 2
+		face_down
+	))
+	waitmovement(0)
+
+	setflag(0x4D)
+
+	trainerbattle_no_intro(TRAINER_SAWYER_1, format("Crushed like a pebble..."))
+
+	special(HealPlayerParty)
+
+	setvar(0x8014, 1)
+	if (var(VAR_RESULT) == B_OUTCOME_WON) {
+        msgbox(format("Congratulations on your victory!"))
+		setvar(0x8014, 0)
+
+		closemessage
+
+		setvar(VAR_0x8004, 5)
+		callnative(Script_AddTrainerPointsAnim)
+
+
+    } else {
+        msgbox(format("Your rank got lower"))
+		setvar(0x8014, 0)
+
+		setvar(VAR_0x8004, -5)
+		callnative(Script_AddTrainerPointsAnim)
+    }
+
+	clearflag(0x4D)
     release
     end
 }
