@@ -1,6 +1,35 @@
 mapscripts OldaleTown_MapScripts {}
 
 script ScraftyBeers_Sign {
-	msgbox(format("Scrafty Beers. Specialized in Craft Beers"))
+	msgbox(format("Scrafty Beers. \nIndependent brewery. \pHandcrafted Beers, brewed tough, served cold."), MSGBOX_SIGN)
+	closemessage
 	end
+}
+
+
+script ManTest {
+	msgbox(format("Just a little yesno test"), MSGBOX_YESNO)
+	if (var(VAR_RESULT)) {
+		msgbox(format("Yes!"))
+	}
+	closemessage
+	end
+}
+
+script BattleZone1_SawyerBattle {
+    lock
+    faceplayer
+	setvar(0x8014, 1)
+	msgbox(format("Do you want to find an opponent?"), MSGBOX_YESNO)
+	setvar(0x8014, 0)
+
+	closemessage
+
+	if (var(VAR_RESULT)) {
+		// Uses trainerbattle_no_intro so the engine doesn't look for an Object Event target
+		trainerbattle_no_intro(TRAINER_SAWYER_1, format("Crushed like a pebble..."))
+		msgbox(format("I need to head back to the mountains and train my Geodude harder."), MSGBOX_AUTOCLOSE)
+	}
+    release
+    end
 }

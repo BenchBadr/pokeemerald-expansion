@@ -1427,7 +1427,7 @@ void CreateYesNoMenu(const struct WindowTemplate *window, u16 baseTileNum, u8 pa
     struct TextPrinterTemplate printer;
 
     sYesNoWindowId = AddWindow(window);
-    DrawStdFrameWithCustomTileAndPalette(sYesNoWindowId, TRUE, baseTileNum, paletteNum);
+    DrawStdFrameWithCustomTileAndPalette(sYesNoWindowId, TRUE, baseTileNum, 15);
 
     printer.currentChar = gText_YesNo;
     printer.type = WINDOW_TEXT_PRINTER;

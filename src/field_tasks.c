@@ -883,93 +883,34 @@ enum {
 };
 #define tSlopeAnimTime(i) data[(i) * SLOPE_DATA_SIZE + SLOPE_DATA_START + SLOPE_TIME]
 
-static const u16 sMuddySlopeMetatiles[] = {
-    METATILE_General_MuddySlope_Frame0,
-    METATILE_General_MuddySlope_Frame3,
-    METATILE_General_MuddySlope_Frame2,
-    METATILE_General_MuddySlope_Frame1
-};
 
-#define SLOPE_ANIM_TIME 32
-#define SLOPE_ANIM_STEP_TIME (SLOPE_ANIM_TIME / (int)ARRAY_COUNT(sMuddySlopeMetatiles))
+// removed
+// static const u16 sMuddySlopeMetatiles[] = {
+//     METATILE_General_MuddySlope_Frame0,
+//     METATILE_General_MuddySlope_Frame3,
+//     METATILE_General_MuddySlope_Frame2,
+//     METATILE_General_MuddySlope_Frame1
+// };
+
+// #define SLOPE_ANIM_TIME 32
+// #define SLOPE_ANIM_STEP_TIME (SLOPE_ANIM_TIME / (int)ARRAY_COUNT(sMuddySlopeMetatiles))
 
 static void SetMuddySlopeMetatile(s16 *data, s16 x, s16 y)
 {
-    u16 metatileId;
-    if ((--data[SLOPE_TIME]) == 0)
-        metatileId = METATILE_General_MuddySlope_Frame0;
-    else
-        metatileId = sMuddySlopeMetatiles[data[SLOPE_TIME] / SLOPE_ANIM_STEP_TIME];
+    // u16 metatileId;
+    // if ((--data[SLOPE_TIME]) == 0)
+    //     metatileId = METATILE_General_MuddySlope_Frame0;
+    // else
+    //     metatileId = sMuddySlopeMetatiles[data[SLOPE_TIME] / SLOPE_ANIM_STEP_TIME];
 
-    MapGridSetMetatileIdAt(x, y, metatileId);
-    CurrentMapDrawMetatileAt(x, y);
-    MapGridSetMetatileIdAt(x, y, METATILE_General_MuddySlope_Frame0);
+    // MapGridSetMetatileIdAt(x, y, metatileId);
+    // CurrentMapDrawMetatileAt(x, y);
+    // MapGridSetMetatileIdAt(x, y, METATILE_General_MuddySlope_Frame0);
 }
 
 static void Task_MuddySlope(u8 taskId)
 {
-    s16 x, y, cameraOffsetX, cameraOffsetY;
-    int i;
-    u16 mapId;
-    s16 *data = gTasks[taskId].data;
-    PlayerGetDestCoords(&x, &y);
-    mapId = (gSaveBlock1Ptr->location.mapGroup << 8) | gSaveBlock1Ptr->location.mapNum;
-    switch (tState)
-    {
-    case 0:
-        tMapId = mapId;
-        tPrevX = x;
-        tPrevY = y;
-        tState = 1;
-        tSlopeAnimTime(0) = 0;
-        tSlopeAnimTime(1) = 0;
-        tSlopeAnimTime(2) = 0;
-        tSlopeAnimTime(3) = 0;
-        break;
-    case 1:
-        // Skip if player hasn't moved
-        if (tPrevX == x && tPrevY == y)
-            break;
 
-        tPrevX = x;
-        tPrevY = y;
-        if (MetatileBehavior_IsMuddySlope(MapGridGetMetatileBehaviorAt(x, y)))
-        {
-            for (i = SLOPE_DATA_START; i <= SLOPE_DATA_END; i += SLOPE_DATA_SIZE)
-            {
-                if (data[i] == 0)
-                {
-                    data[i + SLOPE_TIME] = SLOPE_ANIM_TIME;
-                    data[i + SLOPE_X] = x;
-                    data[i + SLOPE_Y] = y;
-                    break;
-                }
-            }
-        }
-        break;
-    }
-
-    if (gCamera.active && mapId != tMapId)
-    {
-        tMapId = mapId;
-        cameraOffsetX = gCamera.x;
-        cameraOffsetY = gCamera.y;
-    }
-    else
-    {
-        cameraOffsetX = 0;
-        cameraOffsetY = 0;
-    }
-
-    for (i = SLOPE_DATA_START; i <= SLOPE_DATA_END; i += SLOPE_DATA_SIZE)
-    {
-        if (data[i + SLOPE_TIME])
-        {
-            data[i + SLOPE_X] -= cameraOffsetX;
-            data[i + SLOPE_Y] -= cameraOffsetY;
-            SetMuddySlopeMetatile(&data[i + SLOPE_TIME], data[i + SLOPE_X], data[i + SLOPE_Y]);
-        }
-    }
 }
 
 static void MarkIcefallCavePuzzleCoordVisited(s16 x, s16 y)
