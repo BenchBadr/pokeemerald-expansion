@@ -115,18 +115,16 @@
     {
       "id": "HEAL_LOCATION_OLDALE_TOWN",
       "map": "MAP_OLDALE_TOWN",
-      "x": 6,
-      "y": 17,
+      "x": 90,
+      "y": 47,
       "respawn_map": "MAP_OLDALE_TOWN_POKEMON_CENTER_1F",
       "respawn_npc": "LOCALID_OLDALE_NURSE"
     },
     {
       "id": "HEAL_LOCATION_DEWFORD_TOWN",
       "map": "MAP_DEWFORD_TOWN",
-      "x": 2,
-      "y": 11,
-      "respawn_map": "MAP_DEWFORD_TOWN_POKEMON_CENTER_1F",
-      "respawn_npc": "LOCALID_DEWFORD_NURSE"
+      "x": 10,
+      "y": 10
     },
     {
       "id": "HEAL_LOCATION_LAVARIDGE_TOWN",

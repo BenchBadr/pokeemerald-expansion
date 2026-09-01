@@ -41,6 +41,18 @@ const struct Tileset gTileset_General =
     .callback = InitTilesetAnim_General,
 };
 
+// New Tilesets
+const struct Tileset gTileset_Lutecia =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_Lutecia,
+    .palettes = gTilesetPalettes_Lutecia,
+    .metatiles = gMetatiles_Lutecia,
+    .metatileAttributes = gMetatileAttributes_Lutecia,
+    .callback = InitTilesetAnim_Lutecia,
+};
+
 const struct Tileset gTileset_Petalburg =
 {
     .isCompressed = TRUE,
