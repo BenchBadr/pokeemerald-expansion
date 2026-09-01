@@ -232,7 +232,6 @@ void Script_AddTrainerPointsAnim(void)
 {
     s8 points = gSpecialVar_0x8004;
 
-    DebugPrintf("Points : %d", GetTrainerPoints());
 
     DisplayRankBall();
     DrawRankBar();

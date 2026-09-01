@@ -8,7 +8,7 @@ script ScraftyBeers_Sign {
 
 
 script ManTest {
-	// setvar(0x8014, 1)
+	setvar(0x8014, 1)
 	msgbox(format("Just a little yesno test"))
 
 	setvar(VAR_0x8004, -5)
@@ -17,7 +17,7 @@ script ManTest {
 	callnative(Script_HideRankDisplay)
 
 	msgbox(format("Cool eh!"))
-	// setvar(0x8014, 0)
+	setvar(0x8014, 0)
 	closemessage
 	end
 }
