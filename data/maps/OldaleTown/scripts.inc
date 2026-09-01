@@ -11,6 +11,8 @@ ScraftyBeers_Sign::
 
 
 ManTest::
+# 11 "data/maps/OldaleTown/scripts.pory"
+	setvar 0x8014, 1
 # 12 "data/maps/OldaleTown/scripts.pory"
 	msgbox ManTest_Text_0
 # 14 "data/maps/OldaleTown/scripts.pory"
@@ -23,6 +25,8 @@ ManTest::
 	callnative Script_HideRankDisplay
 # 19 "data/maps/OldaleTown/scripts.pory"
 	msgbox ManTest_Text_1
+# 20 "data/maps/OldaleTown/scripts.pory"
+	setvar 0x8014, 0
 # 21 "data/maps/OldaleTown/scripts.pory"
 	closemessage
 	end
