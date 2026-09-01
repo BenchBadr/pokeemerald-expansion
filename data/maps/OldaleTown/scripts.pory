@@ -11,7 +11,7 @@ script ManTest {
 	setvar(0x8014, 1)
 	msgbox(format("Just a little yesno test"))
 
-	setvar(VAR_0x8004, -5)
+	setvar(VAR_0x8004, 5)
 	callnative(Script_AddTrainerPointsAnim)
 	waitbuttonpress
 	callnative(Script_HideRankDisplay)
@@ -27,13 +27,16 @@ script BattleZone1_Matchmaking {
     faceplayer
 	setvar(0x8014, 1)
 	msgbox(format("Do you want to find an opponent?"), MSGBOX_YESNO)
-	setvar(0x8014, 0)
 
 	closemessage
 
 	if (!var(VAR_RESULT)) { return }
 
-	applymovement(2, moves(
+	setflag(0x4E) // disable follower
+	hidefollower
+
+
+	applymovement(OBJ_EVENT_ID_PLAYER, moves(
 		walk_left * 2
 		walk_up * 2
 		face_down
@@ -42,30 +45,35 @@ script BattleZone1_Matchmaking {
 
 	setflag(0x4D)
 
+	setvar(0x8014, 0)
+
 	trainerbattle_no_intro(TRAINER_SAWYER_1, format("Crushed like a pebble..."))
 
 	special(HealPlayerParty)
 
-	setvar(0x8014, 1)
-	if (var(VAR_RESULT) == B_OUTCOME_WON) {
-        msgbox(format("Congratulations on your victory!"))
-		setvar(0x8014, 0)
 
-		closemessage
+	setvar(0x8014, 1) // dark mode again
+
+
+	if (var(VAR_RESULT) == B_OUTCOME_WON) {
+        msgbox(format("Congratulations on your victory! Your rank is being updated..."))
 
 		setvar(VAR_0x8004, 5)
-		callnative(Script_AddTrainerPointsAnim)
 
 
     } else {
-        msgbox(format("Your rank got lower"))
-		setvar(0x8014, 0)
+        msgbox(format("You lost your battle. Your rank is being updated..."))
 
 		setvar(VAR_0x8004, -5)
-		callnative(Script_AddTrainerPointsAnim)
     }
 
-	clearflag(0x4D)
+	callnative(Script_AddTrainerPointsAnim)
+	waitbuttonpress
+	callnative(Script_HideRankDisplay)
+
+	setvar(0x8014, 0) 
+	clearflag(0x4E) // enable follower again
+	clearflag(0x4D) // enable whiteout again
     release
     end
 }

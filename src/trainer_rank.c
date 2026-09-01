@@ -97,8 +97,7 @@ static void Task_AnimateRankBar(u8 taskId)
         case 1: 
             tTimer++;
             
-            DebugPrintf("Color : %d", tColor);
-            if (tColor == 8 || 1) {
+            if (tColor == 8) {
                 FillWindowPixelRect(sRankBarId, PIXEL_FILL(tColor), tXPos - tTimer, 7, tTimer, BAR_HEIGHT);
                 if (tTimer >= tXPos - tWidth + 2)
                 {
@@ -144,7 +143,7 @@ void AnimateRankBar(s8 points) {
     gTasks[taskId].data[2] = points < 0 ? adjustBase + points + 2 : adjustBase + 2;
 
     // color (if substracting, fill color = bg color)
-    gTasks[taskId].data[3] = points > GetTrainerPoints() ? 15 : 8;
+    gTasks[taskId].data[3] = points >= GetTrainerPoints() ? 15 : 8;
 
     // width
     gTasks[taskId].data[4] = ((points < 0 ? -points : points) * MAX_BAR_WIDTH) / GetRankGoal();
@@ -159,8 +158,15 @@ static const union AffineAnimCmd sPokeBallAffineAnim_Grow[] = {
     AFFINEANIMCMD_END,
 };
 
+static const union AffineAnimCmd sPokeBallAffineAnim_Tilt[] = {
+    AFFINEANIMCMD_FRAME(0, 0, 32, 8),
+    AFFINEANIMCMD_FRAME(0, 0, -32, 8),
+    AFFINEANIMCMD_END,
+};
+
 static const union AffineAnimCmd *const sPokeBallAffineAnims[] = {
     sPokeBallAffineAnim_Grow,
+    sPokeBallAffineAnim_Tilt
 };
 
 

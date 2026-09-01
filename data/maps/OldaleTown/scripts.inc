@@ -16,7 +16,7 @@ ManTest::
 # 12 "data/maps/OldaleTown/scripts.pory"
 	msgbox ManTest_Text_0
 # 14 "data/maps/OldaleTown/scripts.pory"
-	setvar VAR_0x8004, -5
+	setvar VAR_0x8004, 5
 # 15 "data/maps/OldaleTown/scripts.pory"
 	callnative Script_AddTrainerPointsAnim
 # 16 "data/maps/OldaleTown/scripts.pory"
@@ -41,40 +41,50 @@ BattleZone1_Matchmaking::
 	setvar 0x8014, 1
 # 29 "data/maps/OldaleTown/scripts.pory"
 	msgbox BattleZone1_Matchmaking_Text_0, MSGBOX_YESNO
-# 30 "data/maps/OldaleTown/scripts.pory"
-	setvar 0x8014, 0
-# 32 "data/maps/OldaleTown/scripts.pory"
+# 31 "data/maps/OldaleTown/scripts.pory"
 	closemessage
-# 34 "data/maps/OldaleTown/scripts.pory"
+# 33 "data/maps/OldaleTown/scripts.pory"
 	compare VAR_RESULT, 0
 	goto_if_eq BattleZone1_Matchmaking_2
+# 35 "data/maps/OldaleTown/scripts.pory"
+	setflag 0x4E
 # 36 "data/maps/OldaleTown/scripts.pory"
-	applymovement 2, BattleZone1_Matchmaking_Movement_0
-# 41 "data/maps/OldaleTown/scripts.pory"
+	hidefollower
+# 39 "data/maps/OldaleTown/scripts.pory"
+	applymovement OBJ_EVENT_ID_PLAYER, BattleZone1_Matchmaking_Movement_0
+# 44 "data/maps/OldaleTown/scripts.pory"
 	waitmovement 0
-# 43 "data/maps/OldaleTown/scripts.pory"
+# 46 "data/maps/OldaleTown/scripts.pory"
 	setflag 0x4D
-# 45 "data/maps/OldaleTown/scripts.pory"
-	trainerbattle_no_intro TRAINER_SAWYER_1, BattleZone1_Matchmaking_Text_1
-# 47 "data/maps/OldaleTown/scripts.pory"
-	special HealPlayerParty
-# 49 "data/maps/OldaleTown/scripts.pory"
-	setvar 0x8014, 1
+# 48 "data/maps/OldaleTown/scripts.pory"
+	setvar 0x8014, 0
 # 50 "data/maps/OldaleTown/scripts.pory"
+	trainerbattle_no_intro TRAINER_SAWYER_1, BattleZone1_Matchmaking_Text_1
+# 52 "data/maps/OldaleTown/scripts.pory"
+	special HealPlayerParty
+# 55 "data/maps/OldaleTown/scripts.pory"
+	setvar 0x8014, 1
+# 58 "data/maps/OldaleTown/scripts.pory"
 	compare VAR_RESULT, B_OUTCOME_WON
 	goto_if_eq BattleZone1_Matchmaking_5
-# 61 "data/maps/OldaleTown/scripts.pory"
-	msgbox BattleZone1_Matchmaking_Text_3
-# 62 "data/maps/OldaleTown/scripts.pory"
-	setvar 0x8014, 0
-# 64 "data/maps/OldaleTown/scripts.pory"
-	setvar VAR_0x8004, -5
 # 65 "data/maps/OldaleTown/scripts.pory"
-	callnative Script_AddTrainerPointsAnim
+	msgbox BattleZone1_Matchmaking_Text_3
+# 67 "data/maps/OldaleTown/scripts.pory"
+	setvar VAR_0x8004, -5
 BattleZone1_Matchmaking_4:
-# 68 "data/maps/OldaleTown/scripts.pory"
+# 70 "data/maps/OldaleTown/scripts.pory"
+	callnative Script_AddTrainerPointsAnim
+# 71 "data/maps/OldaleTown/scripts.pory"
+	waitbuttonpress
+# 72 "data/maps/OldaleTown/scripts.pory"
+	callnative Script_HideRankDisplay
+# 74 "data/maps/OldaleTown/scripts.pory"
+	setvar 0x8014, 0
+# 75 "data/maps/OldaleTown/scripts.pory"
+	clearflag 0x4E
+# 76 "data/maps/OldaleTown/scripts.pory"
 	clearflag 0x4D
-# 69 "data/maps/OldaleTown/scripts.pory"
+# 77 "data/maps/OldaleTown/scripts.pory"
 	release
 	end
 
@@ -82,30 +92,24 @@ BattleZone1_Matchmaking_2:
 	return
 
 BattleZone1_Matchmaking_5:
-# 51 "data/maps/OldaleTown/scripts.pory"
+# 59 "data/maps/OldaleTown/scripts.pory"
 	msgbox BattleZone1_Matchmaking_Text_2
-# 52 "data/maps/OldaleTown/scripts.pory"
-	setvar 0x8014, 0
-# 54 "data/maps/OldaleTown/scripts.pory"
-	closemessage
-# 56 "data/maps/OldaleTown/scripts.pory"
+# 61 "data/maps/OldaleTown/scripts.pory"
 	setvar VAR_0x8004, 5
-# 57 "data/maps/OldaleTown/scripts.pory"
-	callnative Script_AddTrainerPointsAnim
 	goto BattleZone1_Matchmaking_4
 
 
-# 36 "data/maps/OldaleTown/scripts.pory"
-BattleZone1_Matchmaking_Movement_0:
-# 37 "data/maps/OldaleTown/scripts.pory"
-	walk_left
-# 37 "data/maps/OldaleTown/scripts.pory"
-	walk_left
-# 38 "data/maps/OldaleTown/scripts.pory"
-	walk_up
-# 38 "data/maps/OldaleTown/scripts.pory"
-	walk_up
 # 39 "data/maps/OldaleTown/scripts.pory"
+BattleZone1_Matchmaking_Movement_0:
+# 40 "data/maps/OldaleTown/scripts.pory"
+	walk_left
+# 40 "data/maps/OldaleTown/scripts.pory"
+	walk_left
+# 41 "data/maps/OldaleTown/scripts.pory"
+	walk_up
+# 41 "data/maps/OldaleTown/scripts.pory"
+	walk_up
+# 42 "data/maps/OldaleTown/scripts.pory"
 	face_down
 	step_end
 
@@ -129,13 +133,15 @@ BattleZone1_Matchmaking_Text_0:
 	.string "Do you want to find an opponent?$"
 
 BattleZone1_Matchmaking_Text_1:
-# 45 "data/maps/OldaleTown/scripts.pory"
+# 50 "data/maps/OldaleTown/scripts.pory"
 	.string "Crushed like a pebble...$"
 
 BattleZone1_Matchmaking_Text_2:
-# 51 "data/maps/OldaleTown/scripts.pory"
-	.string "Congratulations on your victory!$"
+# 59 "data/maps/OldaleTown/scripts.pory"
+	.string "Congratulations on your victory! Your\n"
+	.string "rank is being updated...$"
 
 BattleZone1_Matchmaking_Text_3:
-# 61 "data/maps/OldaleTown/scripts.pory"
-	.string "Your rank got lower$"
+# 65 "data/maps/OldaleTown/scripts.pory"
+	.string "You lost your battle. Your rank is being\n"
+	.string "updated...$"
