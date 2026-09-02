@@ -22,11 +22,11 @@ static const struct MatchmakingOpponent sMatchmakingPool[] =
         .speechAfter = sText_SawyerAfter,
         .pts = 5
     },
-    {
-        .trainerId = TRAINER_GRUNT_AQUA_HIDEOUT_2,
-        .graphicsId = OBJ_EVENT_GFX_LASS,
-        .speechBefore = sText_LassBefore,
-        .speechAfter = sText_LassAfter,
-        .pts = 5
-    },
+    // {
+    //     .trainerId = TRAINER_GRUNT_AQUA_HIDEOUT_2,
+    //     .graphicsId = OBJ_EVENT_GFX_LASS,
+    //     .speechBefore = sText_LassBefore,
+    //     .speechAfter = sText_LassAfter,
+    //     .pts = 5
+    // },
 };

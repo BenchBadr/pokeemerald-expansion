@@ -14,6 +14,8 @@
 #include "battle_setup.h"
 #include "pokemon.h"
 
+#include "pokemon_icon.h"
+
 
 
 
@@ -22,29 +24,14 @@
 #include "pokemon.h"
 #include "debug.h"
 
-static void PrintSpeciesNames(u16 trainerId)
-{
-    u8 difficulty = GetCurrentDifficultyLevel();
-    const struct Trainer *trainer = &gTrainers[difficulty][trainerId];
 
-    DebugPrintf("Trainer ID: %d | Difficulty: %d | Party Size: %d", 
-        trainerId, difficulty, trainer->partySize);
-
-    for (u32 i = 0; i < trainer->partySize; i++)
-    {
-        u16 species = SPECIES_NONE;
-        u8 level = 0;
-
-        DebugPrintf("  Mon %d: %d (Lvl %d)", i + 1, trainer->party[i].species, trainer->party[i].lvl);
-    }
-}
 
 void Script_SetupRandomOpponent(void)
 {
     u8 index = Random() % ARRAY_COUNT(sMatchmakingPool);
     const struct MatchmakingOpponent *opp = &sMatchmakingPool[index];
 
-    PrintSpeciesNames(opp->trainerId);
+    // ShowOppParty(opp->trainerId);
 
     // gSpecialVar_0x8005 = opp->trainerId;
     // gSpecialVar_0x8004 = opp->graphicsId;    // Graphics ID for VAR_OBJ_GFX_ID_0

@@ -85,6 +85,8 @@
 #include "constants/rgb.h"
 #include "constants/songs.h"
 
+#include "constants/trainers.h"
+
 
 
 #if SWSH_PARTY_MENU
@@ -278,6 +280,9 @@ static EWRAM_DATA u8 sSavedPartyMessageId = 0;
 static EWRAM_DATA TaskFunc sSavedPartyTask = NULL;
 static EWRAM_DATA MainCallback sSavedPartyExitCallback = NULL;
 static EWRAM_DATA u8 sSavedPartySlotId = 0;
+
+static u8 sOpponentIconSpriteIds[6] = { MAX_SPRITES, MAX_SPRITES, MAX_SPRITES, MAX_SPRITES, MAX_SPRITES, MAX_SPRITES };
+
 #endif
 
 
@@ -899,6 +904,11 @@ static bool8 ShowPartyMenu(void)
         gMain.state++;
         break;
     case 17:
+        if (gPartyMenu.menuType == PARTY_MENU_TYPE_CHOOSE_HALF) {
+            gMain.state++;
+            break;
+        }
+
         if (gPartyMenu.menuType != PARTY_MENU_TYPE_IN_BATTLE
             && gPartyMenu.menuType != PARTY_MENU_TYPE_MULTI_SHOWCASE
             && gPartyMenu.menuType != PARTY_MENU_TYPE_MULTI_FULL_SHOWCASE
@@ -917,6 +927,7 @@ static bool8 ShowPartyMenu(void)
         gMain.state++;
         break;
     case 19:
+        if (gPartyMenu.menuType == PARTY_MENU_TYPE_CHOOSE_HALF) gMain.state++;
         if (gPartyMenu.menuType != PARTY_MENU_TYPE_IN_BATTLE
             && gPartyMenu.menuType != PARTY_MENU_TYPE_MULTI_SHOWCASE
             && gPartyMenu.menuType != PARTY_MENU_TYPE_MULTI_FULL_SHOWCASE
@@ -1039,6 +1050,10 @@ static bool8 ReloadPartyMenu(void)
         gMain.state++;
         break;
     case 14:
+        if (gPartyMenu.menuType == PARTY_MENU_TYPE_CHOOSE_HALF) {
+            gMain.state++;
+            break;
+        }
         if (gPartyMenu.menuType != PARTY_MENU_TYPE_IN_BATTLE
             && gPartyMenu.menuType != PARTY_MENU_TYPE_MULTI_SHOWCASE
             && gPartyMenu.menuType != PARTY_MENU_TYPE_MULTI_FULL_SHOWCASE
@@ -1372,6 +1387,71 @@ static void InitPartyMenuBoxes(u8 layout)
     LoadPartyMenuBoxes(layout);
 }
 
+
+// important
+static void ShowOppParty(void)
+{
+
+    LoadCompressedSpriteSheet(&sSpriteSheet_MoveTypes);
+    u8 difficulty = GetCurrentDifficultyLevel();
+    const struct Trainer *trainer = &gTrainers[difficulty][1];
+
+
+
+    for (u32 i = 0; i < trainer->partySize; i++)
+    {
+        u16 species = trainer->party[i].species;
+
+        DebugPrintf("Creating ||  Mon %d: %d (Lvl %d)", i + 1, trainer->party[i].species, trainer->party[i].lvl);
+
+
+        s16 x = 200;
+        s16 y = 8 + (i * 24);
+
+        LoadMonIconPalette(species);
+        u8 spriteId = CreateMonIcon(species, SpriteCB_MonIcon, x, y, 0, 0);
+
+        if (spriteId != MAX_SPRITES)
+        {
+            sOpponentIconSpriteIds[i] = spriteId;
+
+            // Ensure the sprite renders on top of UI layers
+            gSprites[spriteId].oam.priority = 0; 
+            gSprites[spriteId].subpriority = 0;
+            gSprites[spriteId].invisible = FALSE;
+        }
+
+        u8 type1 = gSpeciesInfo[species].types[0];
+        u8 type2 = gSpeciesInfo[species].types[1];
+
+        struct SpriteTemplate template = sSpriteTemplate_MoveTypes;
+
+        // Positioned next to the party mon icon horizontally (x + 32) and matching its row (y)
+        template.paletteTag = POKE_ICON_BASE_PAL_TAG + sMoveTypeToPalOffset[type1];
+        u8 sprite2Id = CreateSprite(&template, x + 20, y + 4, 2);
+        if (sprite2Id != MAX_SPRITES)
+        {
+            StartSpriteAnim(&gSprites[sprite2Id], type1);
+            gSprites[sprite2Id].oam.priority = 0;
+        }
+
+        if (type1 != type2) {
+            template.paletteTag = POKE_ICON_BASE_PAL_TAG + sMoveTypeToPalOffset[type2];
+            u8 sprite3Id = CreateSprite(&template, x + 32, y + 4, 2);
+            if (sprite3Id != MAX_SPRITES)
+            {
+                StartSpriteAnim(&gSprites[sprite3Id], type2);
+                gSprites[sprite3Id].oam.priority = 0;
+            }
+        }
+
+        
+    }
+
+    // todo : show types sprites
+}
+
+
 static void LoadPartyMenuBoxes(enum PartyMenuLayout layout)
 {
     u32 i;
@@ -1383,6 +1463,11 @@ static void LoadPartyMenuBoxes(enum PartyMenuLayout layout)
         sPartyMenuBoxes[i].monSpriteId = SPRITE_NONE;
         sPartyMenuBoxes[i].itemSpriteId = SPRITE_NONE;
         sPartyMenuBoxes[i].statusSpriteId = SPRITE_NONE;
+    }
+
+    if (gPartyMenu.menuType == PARTY_MENU_TYPE_CHOOSE_HALF)
+    {
+        ShowOppParty();
     }
 }
 
@@ -2319,6 +2404,7 @@ static u16 PartyMenuButtonHandler(s8 *slotPtr)
 
 static void UpdatePartyMonSprite(u8 slotId)
 {
+    if (gPartyMenu.menuType == PARTY_MENU_TYPE_CHOOSE_HALF) return;
     s16 state;
     u8 spriteId;
 
@@ -3630,7 +3716,7 @@ static u8 DisplaySelectionWindow(u8 windowType)
             fontColorsId = 4;
             u16 move = sPartyMenuInternal->dynamicFieldMoves[i];
             text = GetMoveName(move);
-            fontId = FONT_NARROW;
+            fontId = GetFontIdToFit(GetMoveName(move), FONT_NORMAL, 0, 72);
         }
         else
         {
