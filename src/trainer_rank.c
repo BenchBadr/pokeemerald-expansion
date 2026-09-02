@@ -7,6 +7,7 @@
 #include "task.h"
 
 #include "window.h"
+#include "confetti_helper.h"
 
 #define TAG_ITEM_ICON_BASE 9110
 
@@ -251,6 +252,10 @@ void Script_AddTrainerPointsAnim(void)
     AnimateRankBar(newPoints);
 
     AddTrainerPoints(points);
+    
+    if (GetTrainerPoints() == GetRankGoal()) {
+        StartHofConfetti(200);
+    }
 
 }
 
@@ -258,6 +263,7 @@ void Script_HideRankDisplay(void)
 {
     DestroyRankBall();
     DestroyRankBar();
+    StopHofConfetti();
 }
 
 void Script_AddPointsClearAnim(void)

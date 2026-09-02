@@ -119,7 +119,7 @@
       "x": 40,
       "y": 43,
       "elevation": 0,
-      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_NORTH",
       "script": "BattleZone1_Matchmaking"
     },
     {
@@ -127,7 +127,7 @@
       "x": 35,
       "y": 43,
       "elevation": 0,
-      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_NORTH",
       "script": "BattleZone1_Matchmaking"
     }
   ],

@@ -286,7 +286,7 @@
 #define VAR_0x8001                    0x8001
 #define VAR_0x8002                    0x8002
 #define VAR_0x8003                    0x8003
-#define VAR_0x8004                    0x8004 // used for points
+#define VAR_0x8004                    0x8004
 #define VAR_0x8005                    0x8005 
 #define VAR_0x8006                    0x8006
 #define VAR_0x8007                    0x8007

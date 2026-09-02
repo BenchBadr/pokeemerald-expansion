@@ -30,4 +30,8 @@ u8 ConfettiUtil_SetData(u8 id, u8 dataArrayId, s16 dataValue);
 u8 ConfettiUtil_AddNew(const struct OamData *oam, u16 tileTag, u16 palTag, s16 x, s16 y, u8 animNum, u8 priority);
 u8 ConfettiUtil_Remove(u8 id);
 
+// for reusability - added
+u8 StartConfettiSequence(u16 durationFrames, u8 maxParticles);
+void StopConfettiSequence(u8 taskId);
+
 #endif // GUARD_CONFETTI_UTIL_H

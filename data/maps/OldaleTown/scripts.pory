@@ -8,16 +8,32 @@ script ScraftyBeers_Sign {
 
 
 script ManTest {
-	setvar(0x8014, 1)
-	msgbox(format("Just a little yesno test"))
+	lock
+	faceplayer
 
-	setvar(VAR_0x8004, 5)
-	callnative(Script_AddTrainerPointsAnim)
-	waitbuttonpress
-	callnative(Script_HideRankDisplay)
+	msgbox(format("Welcome to the Battle Zone! Do you need any explanation ?"))
 
-	msgbox(format("Cool eh!"))
-	setvar(0x8014, 0)
+	// dynmultichoice(left, top, ignoreBPress, maxBeforeScroll, initialSelected, callbacks, option1,...
+	dynmultichoice(0, 0, FALSE, 3, 0, DYN_MULTICHOICE_CB_NONE, "What are ranks", "What is this place", "Add Points","Remove Points", "No thanks")
+	switch (var(VAR_RESULT)) {
+		case 0:
+			msgbox(format("There are 5 ranks in the PWC."))
+		case 1: 
+			msgbox(format("This place is what we call a Battle Zone."))
+		case 2: 
+			setvar(0x8004, 5)
+			callnative(Script_AddTrainerPointsAnim)
+			delay(120)
+			waitbuttonpress
+			callnative(Script_HideRankDisplay)
+		case 3: 
+			setvar(0x8004, -5)
+			callnative(Script_AddTrainerPointsAnim)
+			delay(120)
+			waitbuttonpress
+			callnative(Script_HideRankDisplay)
+	}
+
 	closemessage
 	end
 }
@@ -32,23 +48,49 @@ script BattleZone1_Matchmaking {
 
 	if (!var(VAR_RESULT)) { return }
 
-	setflag(0x4E) // disable follower
-	hidefollower
 
 
-	applymovement(OBJ_EVENT_ID_PLAYER, moves(
-		walk_left * 2
-		walk_up * 2
-		face_down
-	))
-	waitmovement(0)
 
-	setflag(0x4D)
 
-	setvar(0x8014, 0)
 
-	trainerbattle_no_intro(TRAINER_SAWYER_1, format("Crushed like a pebble..."))
 
+	// get trainer
+		
+		callnative(Script_SetupRandomOpponent)
+
+	// Movement and setup
+
+		applymovement(OBJ_EVENT_ID_PLAYER, moves(
+			walk_left * 2
+			walk_up * 2
+			face_down
+		))
+		waitmovement(0)
+
+
+		setflag(0x4D) // for whiteout
+		setvar(0x8014, 0) // for dark mode
+		hidefollower
+
+		special(HealPlayerParty)
+		
+
+	// Party selection 
+
+		setvar(VAR_0x8005, 3)
+		special(ChoosePartyForBattleFrontier)
+		waitstate
+		frontier_set(FRONTIER_DATA_SELECTED_MON_ORDER)
+		frontier_setpartyorder(3)
+
+	// Battle
+	
+	// Get the trainer
+	msgbox(format("{STR_VAR_1}"))
+	trainerbattle_no_intro(TRAINER_SAWYER_1, format("{STR_VAR_3}"))
+
+
+	// heal party after
 	special(HealPlayerParty)
 
 
@@ -68,8 +110,11 @@ script BattleZone1_Matchmaking {
     }
 
 	callnative(Script_AddTrainerPointsAnim)
+	delay(120)
 	waitbuttonpress
 	callnative(Script_HideRankDisplay)
+
+	special(LoadPlayerParty) // bring back the team
 
 	setvar(0x8014, 0) 
 	clearflag(0x4E) // enable follower again

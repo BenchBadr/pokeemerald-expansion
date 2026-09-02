@@ -92,18 +92,16 @@ Music: Hiker
 Double Battle: No
 AI: Check Bad Move
 
-/*
-Squirtle @ Leftovers  
-Level: 3
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-Ability: Rain Dish  
-- Rain Dance  
-- Protect  
-- Water Pulse  
-- Weather Ball
-*/
 
 Bulbasaur
+Level: 1
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+
+Squirtle
+Level: 1
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+
+Charmander
 Level: 1
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
