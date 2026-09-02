@@ -904,7 +904,7 @@ static bool8 ShowPartyMenu(void)
         gMain.state++;
         break;
     case 17:
-        if (gPartyMenu.menuType == PARTY_MENU_TYPE_CHOOSE_HALF) {
+        if (gPartyMenu.menuType == PARTY_MENU_TYPE_CHOOSE_HALF && gSpecialVar_0x8006) {
             gMain.state++;
             break;
         }
@@ -927,7 +927,7 @@ static bool8 ShowPartyMenu(void)
         gMain.state++;
         break;
     case 19:
-        if (gPartyMenu.menuType == PARTY_MENU_TYPE_CHOOSE_HALF) gMain.state++;
+        if (gPartyMenu.menuType == PARTY_MENU_TYPE_CHOOSE_HALF && gSpecialVar_0x8006) gMain.state++;
         if (gPartyMenu.menuType != PARTY_MENU_TYPE_IN_BATTLE
             && gPartyMenu.menuType != PARTY_MENU_TYPE_MULTI_SHOWCASE
             && gPartyMenu.menuType != PARTY_MENU_TYPE_MULTI_FULL_SHOWCASE
@@ -1050,7 +1050,7 @@ static bool8 ReloadPartyMenu(void)
         gMain.state++;
         break;
     case 14:
-        if (gPartyMenu.menuType == PARTY_MENU_TYPE_CHOOSE_HALF) {
+        if (gPartyMenu.menuType == PARTY_MENU_TYPE_CHOOSE_HALF && gSpecialVar_0x8006) {
             gMain.state++;
             break;
         }
@@ -1463,7 +1463,7 @@ static void LoadPartyMenuBoxes(enum PartyMenuLayout layout)
         sPartyMenuBoxes[i].statusSpriteId = SPRITE_NONE;
     }
 
-    if (gPartyMenu.menuType == PARTY_MENU_TYPE_CHOOSE_HALF)
+    if (gPartyMenu.menuType == PARTY_MENU_TYPE_CHOOSE_HALF && gSpecialVar_0x8006)
     {
         ShowOppParty();
     }
@@ -2402,7 +2402,7 @@ static u16 PartyMenuButtonHandler(s8 *slotPtr)
 
 static void UpdatePartyMonSprite(u8 slotId)
 {
-    if (gPartyMenu.menuType == PARTY_MENU_TYPE_CHOOSE_HALF) return;
+    if (gPartyMenu.menuType == PARTY_MENU_TYPE_CHOOSE_HALF && gSpecialVar_0x8006) return;
     s16 state;
     u8 spriteId;
 
