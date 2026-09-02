@@ -1398,11 +1398,9 @@ static void ShowOppParty(void)
 
 
 
-    for (u32 i = 0; i < trainer->partySize; i++)
+    for (u32 i = 0; i < trainer->poolSize; i++)
     {
         u16 species = trainer->party[i].species;
-
-        DebugPrintf("Creating ||  Mon %d: %d (Lvl %d)", i + 1, trainer->party[i].species, trainer->party[i].lvl);
 
 
         s16 x = 200;
@@ -1416,8 +1414,8 @@ static void ShowOppParty(void)
             sOpponentIconSpriteIds[i] = spriteId;
 
             // Ensure the sprite renders on top of UI layers
-            gSprites[spriteId].oam.priority = 0; 
-            gSprites[spriteId].subpriority = 0;
+            gSprites[spriteId].oam.priority = 2; 
+            // gSprites[spriteId].subpriority = 20;
             gSprites[spriteId].invisible = FALSE;
         }
 
@@ -1432,7 +1430,7 @@ static void ShowOppParty(void)
         if (sprite2Id != MAX_SPRITES)
         {
             StartSpriteAnim(&gSprites[sprite2Id], type1);
-            gSprites[sprite2Id].oam.priority = 0;
+            gSprites[sprite2Id].oam.priority = 2;
         }
 
         if (type1 != type2) {
@@ -1441,7 +1439,7 @@ static void ShowOppParty(void)
             if (sprite3Id != MAX_SPRITES)
             {
                 StartSpriteAnim(&gSprites[sprite3Id], type2);
-                gSprites[sprite3Id].oam.priority = 0;
+                gSprites[sprite3Id].oam.priority = 2;
             }
         }
 
