@@ -115,7 +115,7 @@
       "id": "LAYOUT_OLDALE_TOWN",
       "name": "OldaleTown_Layout",
       "width": 100,
-      "height": 63,
+      "height": 72,
       "primary_tileset": "gTileset_General",
       "secondary_tileset": "gTileset_Lutecia",
       "border_filepath": "data/layouts/OldaleTown/border.bin",
@@ -664,8 +664,8 @@
     {
       "id": "LAYOUT_POKEMON_CENTER_1F",
       "name": "PokemonCenter_1F_Layout",
-      "width": 14,
-      "height": 26,
+      "width": 13,
+      "height": 24,
       "primary_tileset": "gTileset_Building",
       "secondary_tileset": "gTileset_PokemonCenter",
       "border_filepath": "data/layouts/PokemonCenter_1F/border.bin",
@@ -9330,9 +9330,19 @@
       "width": 20,
       "height": 10,
       "primary_tileset": "gTileset_Building",
-      "secondary_tileset": "gTileset_PokemonCenter",
+      "secondary_tileset": "gTileset_Lab",
       "border_filepath": "data/layouts/Arr2_TrainerClub_1F/border.bin",
       "blockdata_filepath": "data/layouts/Arr2_TrainerClub_1F/map.bin"
+    },
+    {
+      "id": "LAYOUT_ARR2_BLISS_RES_1",
+      "name": "Arr2_BlissRes_1_Layout",
+      "width": 13,
+      "height": 13,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_GenericBuilding",
+      "border_filepath": "data/layouts/Arr2_BlissRes_1/border.bin",
+      "blockdata_filepath": "data/layouts/Arr2_BlissRes_1/map.bin"
     }
   ]
 }

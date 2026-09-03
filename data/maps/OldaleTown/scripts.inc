@@ -124,7 +124,7 @@ BattleZone1_Matchmaking::
 # 103 "data/maps/OldaleTown/scripts.pory"
 	msgbox BattleZone1_Matchmaking_Text_4
 # 106 "data/maps/OldaleTown/scripts.pory"
-	trainerbattle_no_intro TRAINER_ALBERTO, BattleZone1_Matchmaking_Text_5
+	trainerbattle_no_intro TRAINER_NONE, BattleZone1_Matchmaking_Text_5
 # 110 "data/maps/OldaleTown/scripts.pory"
 	special HealPlayerParty
 # 113 "data/maps/OldaleTown/scripts.pory"

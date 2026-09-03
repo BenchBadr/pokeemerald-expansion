@@ -485,6 +485,14 @@ static void DoBattlePikeWildBattle(void)
 
 static void DoTrainerBattle(void)
 {
+    if (TRAINER_BATTLE_PARAM.opponentA == TRAINER_NONE) {
+        // Auto-fix
+        // when passing TRAINER_NONE
+        // loads from VAR_0x8007
+        DebugPrintf("Wie get %d", VarGet(VAR_0x8007));
+        TRAINER_BATTLE_PARAM.opponentA = VarGet(VAR_0x8007);
+    }
+
     CreateNPCTrainerParty(&gParties[B_TRAINER_OPPONENT_A][0], TRAINER_BATTLE_PARAM.opponentA);
     if (gBattleTypeFlags & BATTLE_TYPE_TWO_OPPONENTS && !BATTLE_TWO_VS_ONE_OPPONENT)
         CreateNPCTrainerParty(&gParties[B_TRAINER_OPPONENT_B][0], TRAINER_BATTLE_PARAM.opponentB);

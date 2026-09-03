@@ -1395,8 +1395,6 @@ static void ShowOppParty(void)
     LoadCompressedSpriteSheet(&sSpriteSheet_MoveTypes);
     u8 difficulty = GetCurrentDifficultyLevel();
 
-    DebugPrintf("Trainer id is %d", gSpecialVar_0x8007);
-
     const struct Trainer *trainer = &gTrainers[difficulty][gSpecialVar_0x8007]; // TODO
 
 

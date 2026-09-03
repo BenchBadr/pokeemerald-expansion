@@ -8,6 +8,8 @@
 #include "difficulty.h"
 #include "debug.h"
 
+#include "event_data.h"
+
 #define MAX_TRAINER_ITEMS 4
 
 #define TRAINER_PIC_WIDTH 64

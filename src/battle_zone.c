@@ -34,6 +34,7 @@ void Script_SetupRandomOpponent(void)
 
     StringCopy(gStringVar1, GetTrainerNameFromId(opp->trainerId));
 
+    gSpecialVar_0x8007 = opp->trainerId;
     // gSpecialVar_0x8004 = opp->graphicsId;    // Graphics ID for VAR_OBJ_GFX_ID_0
 
 }
@@ -41,8 +42,9 @@ void Script_SetupRandomOpponent(void)
 
 void Script_LoadTrainerID(void)
 {
-    DebugPrintf("In theory... %d", opp->trainerId);
-    gSpecialVar_0x8007 = opp->trainerId;
+    // DebugPrintf("In theory... %d", opp->trainerId);
+    // gSpecialVar_Result = opp->trainerId;
+    DebugPrintf("In practice... %d", gSpecialVar_0x8007);
 }
 
 void Script_LoadOpponentSpeech(void)

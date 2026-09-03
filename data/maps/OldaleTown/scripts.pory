@@ -102,8 +102,8 @@ script BattleZone1_Matchmaking {
 		setspeaker("{STR_VAR_1}")
 		msgbox(format("{STR_VAR_2}"))
 
-		// This to change !!!!
-		trainerbattle_no_intro(TRAINER_ALBERTO, format("{STR_VAR_3}"))
+		// setvar(VAR_0x8007, 1)
+		trainerbattle_no_intro(TRAINER_NONE, format("{STR_VAR_3}"))
 
 
 	// heal party after
@@ -132,7 +132,7 @@ script BattleZone1_Matchmaking {
 
 	special(LoadPlayerParty) // bring back the team
 
-	setvar(0x8014, 0) 
+	setvar(0x8014, 0) // end dark mode
 	clearflag(0x4E) // enable follower again
 	clearflag(0x4D) // enable whiteout again
     release
