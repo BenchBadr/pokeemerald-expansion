@@ -1092,6 +1092,7 @@ void TrainerBattleLoadArgs(const u8 *data)
     InitTrainerBattleParameter();
     memcpy(gTrainerBattleParameter.data, data, sizeof(TrainerBattleParameter));
     sTrainerBattleEndScript = (u8*)data + sizeof(TrainerBattleParameter);
+
 }
 
 // loads trainer A parameter to trainer B. Used for second trainer in trainer_see.c

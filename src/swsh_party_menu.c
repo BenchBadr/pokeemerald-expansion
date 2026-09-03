@@ -1394,7 +1394,10 @@ static void ShowOppParty(void)
 
     LoadCompressedSpriteSheet(&sSpriteSheet_MoveTypes);
     u8 difficulty = GetCurrentDifficultyLevel();
-    const struct Trainer *trainer = &gTrainers[difficulty][1];
+
+    DebugPrintf("Trainer id is %d", gSpecialVar_0x8007);
+
+    const struct Trainer *trainer = &gTrainers[difficulty][gSpecialVar_0x8007]; // TODO
 
 
 
@@ -3978,9 +3981,17 @@ static void CursorCb_Summary(u8 taskId)
 
 static void CursorCb_TakeOut(u8 taskId)
 {
+    PartyMenuRemoveWindow(&sPartyMenuInternal->windowId[0]);
     PlaySE(SE_SELECT);
     FlagToggle(0x4F);
-    Task_ClosePartyMenu(taskId);
+
+    struct Pokemon *mon = GetPartyMonFromPartyMenuId(0);
+
+    GetMonNickname(mon, gStringVar1);
+    StringExpandPlaceholders(gStringVar4, FlagGet(0x4F) ? gText_TakeOut : gText_TakeIn); 
+    DisplayPartyMenuMessage(gStringVar4, TRUE);
+
+    gTasks[taskId].func = Task_ClosePartyMenuAfterText;
 }
 
 static const u8 sMultiSummaryMenuToArrayIndex[PARTY_SIZE] = {0, 2, 3, 1, 4, 5};
@@ -9321,6 +9332,7 @@ static const u8 *CheckBattleEntriesAndGetMessage(void)
             return sActionStringTable[PARTY_MSG_NO_MON_FOR_BATTLE];
         ConvertIntToDecimalStringN(gStringVar1, minBattlers, STR_CONV_MODE_LEFT_ALIGN, 1);
         StringExpandPlaceholders(gStringVar4, sActionStringTable[PARTY_MSG_X_MONS_ARE_NEEDED]);
+
         return gStringVar4;
     }
 
@@ -9377,9 +9389,18 @@ static void Task_ValidateChosenHalfParty(u8 taskId)
 
 static void Task_ContinueChoosingHalfParty(u8 taskId)
 {
+    if (IsPartyMenuTextPrinterActive() == TRUE)
+        return;
+    
     if ((JOY_NEW(A_BUTTON)) || (JOY_NEW(B_BUTTON)))
     {
         PlaySE(SE_SELECT);
+
+        ClearStdWindowAndFrameToTransparent(WIN_MSG, FALSE);
+        ClearWindowTilemap(WIN_MSG);
+        DestroyMessageWindowSprite();
+        ScheduleBgCopyTilemapToVram(0);
+
         gTasks[taskId].func = Task_HandleChooseMonInput;
     }
 }

@@ -284,14 +284,67 @@ Gender: Male
 Music: Cool
 Double Battle: No
 AI: Check Bad Move
+Party Size: 3
 
-Pelipper
-Level: 30
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Chimchar  
+Ability: Blaze  
+Level: 5  
+- Swords Dance  
+- Flame Charge  
+- Rock Tomb  
+- Double Kick
 
-Xatu
-Level: 30
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Charmander @ Berry Juice  
+Ability: Solar Power
+Tags: Weather Abuser / Ace
+Level: 5  
+Jolly Nature  
+IVs: 0 Atk  
+- Flame Charge
+- Incinerate
+- Sunny Day  
+- Work Up  
+
+Bulbasaur @ Occa Berry  
+Ability: Chlorophyll
+Tags: Weather Abuser / Ace
+Level: 5  
+Modest Nature  
+IVs: 0 Atk  
+- Mega Drain  
+- Acid Spray  
+- Growth  
+- Synthesis  
+
+Vulpix @ Heat Rock  
+Ability: Drought
+Tags : Lead / Weather Setter  
+Level: 5  
+IVs: 0 Atk  
+- Incinerate  
+- Healing Wish  
+- Confuse Ray  
+- Reflect 
+
+Darumaka  
+Ability: Hustle  
+Level: 5  
+Jolly Nature  
+- Belly Drum  
+- Flame Charge  
+- Strength  
+- Dig  
+
+Koffing  
+Ability: Levitate  
+Level: 5  
+IVs: 0 Atk  
+- Clear Smog  
+- Memento  
+- Pain Split  
+- Incinerate  
+
+
 
 === TRAINER_ED ===
 Name: ED

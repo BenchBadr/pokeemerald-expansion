@@ -1321,6 +1321,11 @@ extern const u8 gText_OtherTrainersPkmnCantBeTraded[];
 extern const u8 gText_OtherTrainerCantAcceptPkmn[];
 extern const u8 gText_CantTradeWithTrainer[];
 
+
+// added - menu options
+extern const u8 gText_TakeOut[];
+extern const u8 gText_TakeIn[];
+
 // trade
 extern const u8 gText_XWillBeSentToY[];
 extern const u8 gText_ByeByeVar1[];

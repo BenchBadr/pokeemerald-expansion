@@ -246,6 +246,9 @@ const u8 gText_UseOnWhichPokemon[] = _("Use on which POKéMON?");
 const u8 gText_GiveToWhichPokemon[] = _("Give to which POKéMON?");
 const u8 gText_DoWhatWithPokemon[] = _("Do what with this {PKMN}?");
 
+const u8 gText_TakeIn[] = _("{STR_VAR_1} is now back in his ball.{PAUSE_UNTIL_PRESS}");
+const u8 gText_TakeOut[] = _("{STR_VAR_1} will now walk with you!{PAUSE_UNTIL_PRESS}");
+
 const u8 gText_NothingToCut[] = _("There's nothing to cut.");
 const u8 gText_CantSurfHere[] = _("You can't SURF here.");
 const u8 gText_AlreadySurfing[] = _("You're already SURFING.");
@@ -256,7 +259,9 @@ const u8 gText_DoWhatWithItem[] = _("Do what with an item?");
 const u8 gText_NoPokemonForBattle[] = _("No POKéMON for battle!");
 const u8 gText_ChoosePokemon2[] = _("Choose a POKéMON.");
 const u8 gText_NotEnoughHp[] = _("Not enough HP…");
+
 const u8 gText_PokemonAreNeeded[] = _("{STR_VAR_1} Pokémon are needed.");
+
 const u8 gText_PokemonCantBeSame[] = _("POKéMON can't be the same.");
 const u8 gText_NoIdenticalHoldItems[] = _("No identical hold items.");
 const u8 gText_CurrentIsTooFast[] = _("The current is much too fast!");
@@ -293,6 +298,10 @@ const u8 gText_EscapeFromHere[] = _("Want to escape from here and return\nto {ST
 const u8 gText_ReturnToHealingSpot[] = _("Want to return to the healing spot\nused last in {STR_VAR_1}?");
 const u8 gText_PauseUntilPress[] = _("{PAUSE_UNTIL_PRESS}");
 const u8 gJPText_AreYouSureYouWantToSpinTradeMon[] = _("{STR_VAR_1}を ぐるぐるこうかんに\nだして よろしいですか？");
+
+
+
+
 ALIGNED(4) const u8 gText_OnlyPkmnForBattle[] = _("That's your only\nPOKéMON for battle.");
 ALIGNED(4) const u8 gText_PkmnCantBeTradedNow[] = _("That POKéMON can't be traded\nnow.");
 ALIGNED(4) const u8 gText_PkmnCantBeTraded[] = _("That POKéMON can't be traded.");
@@ -300,6 +309,10 @@ ALIGNED(4) const u8 gText_EggCantBeTradedNow[] = _("An EGG can't be traded now."
 ALIGNED(4) const u8 gText_OtherTrainersPkmnCantBeTraded[] = _("The other TRAINER's POKéMON\ncan't be traded now.");
 ALIGNED(4) const u8 gText_OtherTrainerCantAcceptPkmn[] = _("The other TRAINER can't accept\nthat POKéMON now.");
 ALIGNED(4) const u8 gText_CantTradeWithTrainer[] = _("You can't trade with that\nTRAINER now.");
+
+
+
+
 ALIGNED(4) const u8 gText_NotPkmnOtherTrainerWants[] = _("That isn't the type of POKéMON\nthat the other TRAINER wants.");
 ALIGNED(4) const u8 gText_ThatIsntAnEgg[] = _("That isn't an EGG.");
 const u8 gText_Register[] = _("REGISTER");

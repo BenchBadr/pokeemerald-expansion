@@ -41,27 +41,42 @@ script ManTest {
 script BattleZone1_Matchmaking {
     lock
     faceplayer
-	setvar(0x8014, 1)
-	msgbox(format("Do you want to find an opponent?"), MSGBOX_YESNO)
 
+	setvar(0x8014, 1) // enable dark sign
+
+	msgbox(format("Do you want to find an opponent?"), MSGBOX_YESNO)
 	closemessage
 
 	if (!var(VAR_RESULT)) { return }
 
-
-
-
-
-
-
 	// get trainer
+
+		hidefollower
 		
+
+		msgbox(format("Matchmaking in progress... {PAUSE 10} ... {PAUSE 10} ... "))
+
+
 		callnative(Script_SetupRandomOpponent)
-		msgbox(format("Wait please."))
+
+		msgbox("An opponent has been found!\nGet ready to battle {STR_VAR_1}!")
+
+
+		
+
+	// Party selection 
+
+		special(SavePlayerParty)
+		setvar(VAR_0x8006, 1) // we'll use this to toggle preview
+		setvar(VAR_0x8005, 3) // number of pokemon
+		callnative(Script_LoadTrainerID)
+		special(ChoosePartyForBattleFrontier)
+		// waitstate
+
+
 
 	// Movement and setup
 
-		hidefollower
 		applymovement(OBJ_EVENT_ID_PLAYER, moves(
 			walk_left * 2
 			walk_up * 2
@@ -74,26 +89,21 @@ script BattleZone1_Matchmaking {
 		setvar(0x8014, 0) // for dark mode
 
 		special(HealPlayerParty)
-		
 
-	// Party selection 
 
-		special(SavePlayerParty)
-		setvar(VAR_0x8005, 3)
 
-		setvar(VAR_0x8006, 0) // we'll use this to toggle preview
+	// Battle settings
 
-		special(ChoosePartyForBattleFrontier)
-		waitstate
 		frontier_set(FRONTIER_DATA_SELECTED_MON_ORDER)
 		frontier_setpartyorder(3)
-		setvar(VAR_0x8006, 0) 
 
-	// Battle
-	
-	// Get the trainer
-	msgbox(format("{STR_VAR_1}"))
-	trainerbattle_no_intro(TRAINER_SAWYER_1, format("{STR_VAR_3}"))
+	// Battle	
+		callnative(Script_LoadOpponentSpeech)
+		setspeaker("{STR_VAR_1}")
+		msgbox(format("{STR_VAR_2}"))
+
+		// This to change !!!!
+		trainerbattle_no_intro(TRAINER_ALBERTO, format("{STR_VAR_3}"))
 
 
 	// heal party after
@@ -128,3 +138,13 @@ script BattleZone1_Matchmaking {
     release
     end
 }
+
+
+// Todos
+// - [ ] Fix trainer text
+// - [ ] Fix trainer obtention 
+// - [ ] Add the trainer object 
+
+// - [x] Fix the message appearing
+
+// - [ ] Add more trainers! 

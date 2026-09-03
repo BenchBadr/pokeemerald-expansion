@@ -1,22 +1,38 @@
-raw `
-OldaleTown_PokemonCenter_2F_MapScripts::
-	map_script MAP_SCRIPT_ON_FRAME_TABLE, CableClub_OnFrame
-	map_script MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE, CableClub_OnWarp
-	map_script MAP_SCRIPT_ON_LOAD, CableClub_OnLoad
-	map_script MAP_SCRIPT_ON_TRANSITION, CableClub_OnTransition
-	.byte 0
+mapscripts OldaleTown_PokemonCenter_2F_MapScripts {
+    MAP_SCRIPT_ON_FRAME_TABLE [
+		
+        VAR_TEMP_0, 0 {
+			if (!flag(FLAG_UNUSED_0x493)) {
+                lock
 
-@ The below 3 are unused and leftover from RS
-OldaleTown_PokemonCenter_2F_EventScript_Colosseum::
-	call CableClub_EventScript_Colosseum
-	end
+				// setvar(VAR_0x8004, 2)  // vertical pan
+                // setvar(VAR_0x8005, 2)  // horizontal pan
+                // setvar(VAR_0x8006, 8)  // num shakes
+                // setvar (VAR_0x8007, 5)  // shake delay
+				// special(ShakeCamera)
 
-OldaleTown_PokemonCenter_2F_EventScript_TradeCenter::
-	call CableClub_EventScript_TradeCenter
-	end
+                msgbox(format("{FONT_SMALL}{COLOR GREEN}{SHADOW LIGHT_GREEN}This train terminates at {COLOR RED}{SHADOW LIGHT_RED}Place Suicune."))
+				applymovement(OBJ_EVENT_ID_PLAYER, moves(face_right))
+				msgbox(format("I assume it's your first time in a Lutecian metro."))
+				closemessage
+				msgbox(format("Take some water, you must be tired with all that traveling."))
+				closemessage
+				giveitem(ITEM_FRESH_WATER, 1)
+				msgbox(format("There is multiple metro lines, allowing you to go from a place to another. You can always check which line it is by reading the signpost in front of the entrance of the stations."))
+				closemessage
+				msgbox(format("This metro for example is the {COLOR RED}{SHADOW LIGHT_RED}ligne A."))
+				closemessage
+				msgbox(format("One important thing to now, you gotta be ready to fight here. People come for various workplaces, they are tired and bored so they battle."))
+				closemessage
+				msgbox(format("So next time you take one, keep battling until you arrive!"))
+				closemessage
+				msgbox(format("{FONT_SMALL}{COLOR GREEN}{SHADOW LIGHT_GREEN}Place Suicune."))
+				msgbox(format("{FONT_SMALL}{COLOR GREEN}{SHADOW LIGHT_GREEN}This is our last stop."))
+				warp(MAP_DEWFORD_TOWN, 0)
+                release
+                end
+            }
+        }
+    ]
+}
 
-OldaleTown_PokemonCenter_2F_EventScript_RecordCorner::
-	call CableClub_EventScript_RecordCorner
-	end
-
-`

@@ -3,8 +3,8 @@
 #include "random.h"
 #include "string_util.h"
 #include "constants/event_objects.h"
-#include "constants/opponents.h"
 
+#include "constants/opponents.h"
 #include "constants/trainers.h"
 
 
@@ -19,24 +19,39 @@
 
 
 
-
-#include "global.h"
 #include "pokemon.h"
 #include "debug.h"
+#include "data.h"
+
+static const struct MatchmakingOpponent *opp = 0;
 
 
 
 void Script_SetupRandomOpponent(void)
 {
-    u8 index = Random() % ARRAY_COUNT(sMatchmakingPool);
-    const struct MatchmakingOpponent *opp = &sMatchmakingPool[index];
+    u16 index = Random() % ARRAY_COUNT(sMatchmakingPool);
+    opp = &sMatchmakingPool[index];
 
-    // ShowOppParty(opp->trainerId);
+    StringCopy(gStringVar1, GetTrainerNameFromId(opp->trainerId));
 
-    // gSpecialVar_0x8005 = opp->trainerId;
     // gSpecialVar_0x8004 = opp->graphicsId;    // Graphics ID for VAR_OBJ_GFX_ID_0
-    
-    // Copy text strings so script msgboxes can read them
-    StringCopy(gStringVar1, opp->speechBefore);
+
+}
+
+
+void Script_LoadTrainerID(void)
+{
+    DebugPrintf("In theory... %d", opp->trainerId);
+    gSpecialVar_0x8007 = opp->trainerId;
+}
+
+void Script_LoadOpponentSpeech(void)
+{
+
+    StringCopy(gStringVar1, GetTrainerNameFromId(opp->trainerId));
+    StringCopy(gStringVar2, opp->speechBefore);
     StringCopy(gStringVar3, opp->speechAfter);
+
+    opp = 0;
+
 }
