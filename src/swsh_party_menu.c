@@ -3986,7 +3986,7 @@ static void CursorCb_TakeOut(u8 taskId)
     struct Pokemon *mon = GetPartyMonFromPartyMenuId(0);
 
     GetMonNickname(mon, gStringVar1);
-    StringExpandPlaceholders(gStringVar4, FlagGet(0x4F) ? gText_TakeOut : gText_TakeIn); 
+    StringExpandPlaceholders(gStringVar4, !FlagGet(0x4F) ? gText_TakeOut : gText_TakeIn); 
     DisplayPartyMenuMessage(gStringVar4, TRUE);
 
     gTasks[taskId].func = Task_ClosePartyMenuAfterText;

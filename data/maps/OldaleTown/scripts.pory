@@ -1,11 +1,6 @@
 mapscripts OldaleTown_MapScripts {}
 
-script ScraftyBeers_Sign {
-	msgbox(format("Scrafty Beers. \nIndependent brewery. \pHandcrafted Beers, brewed tough, served cold."), MSGBOX_SIGN)
-	closemessage
-	end
-}
-
+// IN THE BATTLE ZONE
 
 script ManTest {
 	lock
@@ -69,7 +64,7 @@ script BattleZone1_Matchmaking {
 		special(SavePlayerParty)
 		setvar(VAR_0x8006, 1) // we'll use this to toggle preview
 		setvar(VAR_0x8005, 3) // number of pokemon
-		callnative(Script_LoadTrainerID)
+
 		special(ChoosePartyForBattleFrontier)
 		// waitstate
 
@@ -102,7 +97,6 @@ script BattleZone1_Matchmaking {
 		setspeaker("{STR_VAR_1}")
 		msgbox(format("{STR_VAR_2}"))
 
-		// setvar(VAR_0x8007, 1)
 		trainerbattle_no_intro(TRAINER_NONE, format("{STR_VAR_3}"))
 
 
@@ -140,11 +134,40 @@ script BattleZone1_Matchmaking {
 }
 
 
+
+
+
 // Todos
-// - [ ] Fix trainer text
-// - [ ] Fix trainer obtention 
+// - [ ] Fix trainer text defeat
 // - [ ] Add the trainer object 
 
 // - [x] Fix the message appearing
 
 // - [ ] Add more trainers! 
+
+
+
+// Some signposts
+
+script ScraftyBeers_Sign {
+	msgbox(format("Scrafty Beers. \nIndependent brewery. \p"), MSGBOX_SIGN)
+	closemessage
+	end
+}
+
+
+script TrainerClub_Sign {
+	msgbox(format("Trainer Club\n \p"), MSGBOX_SIGN)
+	closemessage
+	end
+}
+
+
+// Tests
+
+script TestGiveTM {
+	msgbox(format("Here is a TM just for you."))
+	giveitem(ITEM_TM_AERIAL_ACE)
+	closemessage
+	end
+}

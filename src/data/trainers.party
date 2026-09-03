@@ -267,13 +267,14 @@ Music: Cool
 Items: Hyper Potion
 Double Battle: No
 AI: Basic Trainer
+Party Size: 2
 
-Manectric
-Level: 29
+Snivy
+Level: 1
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 
-Shiftry
-Level: 29
+Tepig
+Level: 1
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 
 === TRAINER_ALBERTO ===

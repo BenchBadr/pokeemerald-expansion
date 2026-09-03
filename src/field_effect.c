@@ -678,10 +678,10 @@ static const struct Coords16 sPokeballCoordOffsets[PARTY_SIZE] =
 {
     {.x = 0, .y = 0},
     {.x = 6, .y = 0},
+    {.x = 12, .y = 0},
     {.x = 0, .y = 4},
     {.x = 6, .y = 4},
-    {.x = 0, .y = 8},
-    {.x = 6, .y = 8}
+    {.x = 12, .y = 4}
 };
 
 static const u8 sPokeballGlowReds[]   = {16, 12, 8, 0};
@@ -1132,10 +1132,10 @@ bool8 FldEff_PokecenterHeal(void)
     nPokemon = (OW_IGNORE_EGGS_ON_HEAL <= GEN_3) ? CalculatePlayerPartyCount() : CountPartyNonEggMons();
     task = &gTasks[CreateTask(Task_PokecenterHeal, 0xff)];
     task->tNumMons = nPokemon;
-    task->tFirstBallX = 93;
-    task->tFirstBallY = 36;
-    task->tMonitorX = 124;
-    task->tMonitorY = 24;
+    task->tFirstBallX = 106;
+    task->tFirstBallY = 10;
+    // task->tMonitorX = 124;
+    // task->tMonitorY = 32;
     return FALSE;
 }
 
@@ -1150,14 +1150,14 @@ static void PokecenterHealEffect_Init(struct Task *task)
 {
     task->tState++;
     task->tBallSpriteId = CreateGlowingPokeballsEffect(task->tNumMons, task->tFirstBallX, task->tFirstBallY, TRUE);
-    task->tMonitorSpriteId = CreatePokecenterMonitorSprite(task->tMonitorX, task->tMonitorY);
+    // task->tMonitorSpriteId = CreatePokecenterMonitorSprite(task->tMonitorX, task->tMonitorY);
 }
 
 static void PokecenterHealEffect_WaitForBallPlacement(struct Task *task)
 {
     if (gSprites[task->tBallSpriteId].sState > 1)
     {
-        gSprites[task->tMonitorSpriteId].data[0]++;
+        // gSprites[task->tMonitorSpriteId].data[0]++;
         task->tState++;
     }
 }

@@ -20,7 +20,7 @@ static const struct MatchmakingOpponent sMatchmakingPool[] =
         .pts = 5
     },
     {
-        .trainerId = TRAINER_ALBERTO,
+        .trainerId = TRAINER_MARCEL,
         .graphicsId = OBJ_EVENT_GFX_LASS,
         .speechBefore = COMPOUND_STRING("My Pokémon are ready for this!"),
         .speechAfter = COMPOUND_STRING("Oh no, we lost!"),

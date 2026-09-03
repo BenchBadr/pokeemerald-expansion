@@ -40,20 +40,11 @@ void Script_SetupRandomOpponent(void)
 }
 
 
-void Script_LoadTrainerID(void)
-{
-    // DebugPrintf("In theory... %d", opp->trainerId);
-    // gSpecialVar_Result = opp->trainerId;
-    DebugPrintf("In practice... %d", gSpecialVar_0x8007);
-}
-
 void Script_LoadOpponentSpeech(void)
 {
 
     StringCopy(gStringVar1, GetTrainerNameFromId(opp->trainerId));
     StringCopy(gStringVar2, opp->speechBefore);
     StringCopy(gStringVar3, opp->speechAfter);
-
-    opp = 0;
 
 }
