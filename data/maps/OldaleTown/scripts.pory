@@ -179,7 +179,7 @@ script Arr2_Fisherman {
 
 	msgbox(format("Let's get fishing, I am not doing to find the golden Magikarp just by staring at the water"))
 
-	msgbox(format("... ... .."))
+	msgbox(format("... ... ..."))
 
 	getpartysize
 	if (var(VAR_RESULT) < 2) {
@@ -198,7 +198,7 @@ script Arr2_Fisherman {
 	showobjectat(8, MAP_OLDALE_TOWN)
 	applymovement(6, moves(
 		face_right
-		jump_in_place_right * 3
+		jump_in_place_left * 3
 	))
 	applymovement(6, moves(jump_in_place_left * 3))
 
@@ -213,6 +213,20 @@ script Arr2_Fisherman {
 	clearflag(FLAG_UNUSED_0x1DE)
 	clearflag(FLAG_UNUSED_0x1DF)
 
+
+	faceplayer
+	msgbox(format("Oh! You saved me! I wonder what could have happened if you weren't here. I don't want to fish anymore. I'll find myself another passion. Please, have this, I wont be using it anymore."))
+
+	giveitem(ITEM_OLD_ROD)
+	fadescreen(FADE_TO_BLACK)
+	removeobject(7, MAP_OLDALE_TOWN)
+	setflag(FLAG_RECEIVED_OLD_ROD)
+	
+	fadescreen(FADE_FROM_BLACK)
+
+
+
+
 	release
 	end
 
@@ -224,8 +238,9 @@ script Arr2_TradeMagikarp {
 	faceplayer
 
 	setspeaker("Marcel")
-	msgbox(format("I always dreamed of having a Gyarados. Seems easy, Magikarps are everywhere to be found, but... Not for me. I am incredibely unlucky so they never come accross my rod."))
-	msgbox(format("Do you want to trade a Magikarp for a Luvdisc?"))
+	msgbox(format("I've always dreamed of having a Gyarados. It should be easy : Magikarp are everywhere, but not for me. I'm so unlucky that one never bites my line."))
+	msgbox(format("All I have is this stupid Luvdisc my ex gave me. I don't even want it... it just reminds me of her."))
+	msgbox(format("Would you trade a Magikarp for a Luvdisc?"))
 
 	release
 	end

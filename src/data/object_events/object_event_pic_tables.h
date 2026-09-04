@@ -242,7 +242,7 @@ static const struct SpriteFrameImage sPicTable_Fisherman[] = {
 };
 
 static const struct SpriteFrameImage sPicTable_RunningTriathleteM[] = {
-    overworld_ascending_frames(gObjectEventPic_RunningTriathleteM, 2, 4),
+    overworld_ascending_frames(gObjectEventPic_RunningTriathleteM, 4, 4),
 };
 
 static const struct SpriteFrameImage sPicTable_RunningTriathleteF[] = {
