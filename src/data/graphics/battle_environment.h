@@ -36,7 +36,12 @@ const u32 gBattleEnvironmentTilemap_Building[] = INCGFX_U32("graphics/battle_env
 
 const u16 gBattleEnvironmentPalette_BuildingGym[] = INCGFX_U16("graphics/battle_environment/building/gym.pal", ".gbapal");
 const u16 gBattleEnvironmentPalette_BuildingLeader[] = INCGFX_U16("graphics/battle_environment/building/leader.pal", ".gbapal");
+
+
 const u16 gBattleEnvironmentPalette_Plain[] = INCGFX_U16("graphics/battle_environment/plain/palette.pal", ".gbapal");
+// added bg for plain - custom for lutecia
+const u32 gBattleEnvironmentTiles_Plain[] = INCGFX_U32("graphics/battle_environment/plain/tiles.png", ".4bpp.smol");
+const u32 gBattleEnvironmentTilemap_Plain[] = INCGFX_U32("graphics/battle_environment/plain/map.bin", ".smolTM");
 
 const u32 gBattleEnvironmentTiles_Stadium[] = INCGFX_U32("graphics/battle_environment/stadium/tiles.png", ".4bpp.smol");
 const u32 gBattleEnvironmentTilemap_Stadium[] = INCGFX_U32("graphics/battle_environment/stadium/map.bin", ".smolTM");
@@ -83,6 +88,10 @@ const u32 gBattleEnvironmentAnimTilemap_Cave[] = INCGFX_U32("graphics/battle_env
 
 const u32 gBattleEnvironmentAnimTiles_Building[] = INCGFX_U32("graphics/battle_environment/building/anim_tiles.png", ".4bpp.smol");
 const u32 gBattleEnvironmentAnimTilemap_Building[] = INCGFX_U32("graphics/battle_environment/building/anim_map.bin", ".smolTM");
+
+const u32 gBattleEnvironmentAnimTilemap_Plain[] = INCGFX_U32("graphics/battle_environment/plain/anim_map.bin", ".smolTM");
+const u32 gBattleEnvironmentAnimTiles_Plain[] = INCGFX_U32("graphics/battle_environment/sky/anim_tiles.png", ".4bpp.smol");
+
 
 const u32 gBattleEnvironmentAnimTiles_Rayquaza[] = INCGFX_U32("graphics/battle_environment/sky/anim_tiles.png", ".4bpp.smol");
 const u32 gBattleEnvironmentAnimTilemap_Rayquaza[] = INCGFX_U32("graphics/battle_environment/sky/anim_map.bin", ".smolTM");

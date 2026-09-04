@@ -171,3 +171,62 @@ script TestGiveTM {
 	closemessage
 	end
 }
+
+// Fisherman 
+
+script Arr2_Fisherman {
+	lock
+
+	msgbox(format("Let's get fishing, I am not doing to find the golden Magikarp just by staring at the water"))
+
+	msgbox(format("... ... .."))
+
+	getpartysize
+	if (var(VAR_RESULT) < 2) {
+		msgbox(format("Not even a nibble..."))
+		release 
+		end
+	}
+
+
+	showobjectat(6, MAP_OLDALE_TOWN)
+	applymovement(6, moves(jump_in_place_left * 3))
+
+	msgbox(format("Oh good lord! He seems angry!"))
+	msgbox(format("No, don't attack me! Please, I won't fish here anymore, I promise!"))
+
+	showobjectat(8, MAP_OLDALE_TOWN)
+	applymovement(6, moves(
+		face_right
+		jump_in_place_right * 3
+	))
+	applymovement(6, moves(jump_in_place_left * 3))
+
+    msgbox(format("Oh no, another one?! Somebody, please help me!"))
+
+	setflag(FLAG_UNUSED_0x1DE)
+	setflag(FLAG_UNUSED_0x1DF)
+
+	setwildbattle(SPECIES_MAGIKARP, 4, ITEM_NONE, SPECIES_MAGIKARP, 3, ITEM_NONE)
+	dowildbattle
+
+	clearflag(FLAG_UNUSED_0x1DE)
+	clearflag(FLAG_UNUSED_0x1DF)
+
+	release
+	end
+
+
+}
+
+script Arr2_TradeMagikarp {
+	lock 
+	faceplayer
+
+	setspeaker("Marcel")
+	msgbox(format("I always dreamed of having a Gyarados. Seems easy, Magikarps are everywhere to be found, but... Not for me. I am incredibely unlucky so they never come accross my rod."))
+	msgbox(format("Do you want to trade a Magikarp for a Luvdisc?"))
+
+	release
+	end
+}

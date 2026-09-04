@@ -9394,12 +9394,7 @@ static void Task_ContinueChoosingHalfParty(u8 taskId)
     {
         PlaySE(SE_SELECT);
 
-        ClearStdWindowAndFrameToTransparent(WIN_MSG, FALSE);
-        ClearWindowTilemap(WIN_MSG);
-        DestroyMessageWindowSprite();
-        ScheduleBgCopyTilemapToVram(0);
-
-        gTasks[taskId].func = Task_HandleChooseMonInput;
+        Task_ReturnToChooseMonAfterText(taskId);
     }
 }
 

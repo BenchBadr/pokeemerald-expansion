@@ -184,6 +184,74 @@ TestGiveTM::
 	end
 
 
+Arr2_Fisherman::
+# 178 "data/maps/OldaleTown/scripts.pory"
+	lock
+# 180 "data/maps/OldaleTown/scripts.pory"
+	msgbox Arr2_Fisherman_Text_0
+# 182 "data/maps/OldaleTown/scripts.pory"
+	msgbox Arr2_Fisherman_Text_1
+# 184 "data/maps/OldaleTown/scripts.pory"
+	getpartysize
+# 185 "data/maps/OldaleTown/scripts.pory"
+	compare VAR_RESULT, 2
+	goto_if_lt Arr2_Fisherman_2
+# 192 "data/maps/OldaleTown/scripts.pory"
+	showobjectat 6, MAP_OLDALE_TOWN
+# 193 "data/maps/OldaleTown/scripts.pory"
+	applymovement 6, Arr2_Fisherman_Movement_0
+# 195 "data/maps/OldaleTown/scripts.pory"
+	msgbox Arr2_Fisherman_Text_3
+# 196 "data/maps/OldaleTown/scripts.pory"
+	msgbox Arr2_Fisherman_Text_4
+# 198 "data/maps/OldaleTown/scripts.pory"
+	showobjectat 8, MAP_OLDALE_TOWN
+# 199 "data/maps/OldaleTown/scripts.pory"
+	applymovement 6, Arr2_Fisherman_Movement_1
+# 203 "data/maps/OldaleTown/scripts.pory"
+	applymovement 6, Arr2_Fisherman_Movement_0
+# 205 "data/maps/OldaleTown/scripts.pory"
+	msgbox Arr2_Fisherman_Text_5
+# 207 "data/maps/OldaleTown/scripts.pory"
+	setflag FLAG_UNUSED_0x1DE
+# 208 "data/maps/OldaleTown/scripts.pory"
+	setflag FLAG_UNUSED_0x1DF
+# 210 "data/maps/OldaleTown/scripts.pory"
+	setwildbattle SPECIES_MAGIKARP, 4, ITEM_NONE, SPECIES_MAGIKARP, 3, ITEM_NONE
+# 211 "data/maps/OldaleTown/scripts.pory"
+	dowildbattle
+# 213 "data/maps/OldaleTown/scripts.pory"
+	clearflag FLAG_UNUSED_0x1DE
+# 214 "data/maps/OldaleTown/scripts.pory"
+	clearflag FLAG_UNUSED_0x1DF
+# 216 "data/maps/OldaleTown/scripts.pory"
+	release
+	end
+
+Arr2_Fisherman_2:
+# 186 "data/maps/OldaleTown/scripts.pory"
+	msgbox Arr2_Fisherman_Text_2
+# 187 "data/maps/OldaleTown/scripts.pory"
+	release
+	end
+
+
+Arr2_TradeMagikarp::
+# 223 "data/maps/OldaleTown/scripts.pory"
+	lock
+# 224 "data/maps/OldaleTown/scripts.pory"
+	faceplayer
+# 226 "data/maps/OldaleTown/scripts.pory"
+	setspeaker Arr2_TradeMagikarp_Text_0
+# 227 "data/maps/OldaleTown/scripts.pory"
+	msgbox Arr2_TradeMagikarp_Text_1
+# 228 "data/maps/OldaleTown/scripts.pory"
+	msgbox Arr2_TradeMagikarp_Text_2
+# 230 "data/maps/OldaleTown/scripts.pory"
+	release
+	end
+
+
 # 75 "data/maps/OldaleTown/scripts.pory"
 BattleZone1_Matchmaking_Movement_0:
 # 76 "data/maps/OldaleTown/scripts.pory"
@@ -196,6 +264,28 @@ BattleZone1_Matchmaking_Movement_0:
 	walk_up
 # 78 "data/maps/OldaleTown/scripts.pory"
 	face_down
+	step_end
+
+# 193 "data/maps/OldaleTown/scripts.pory"
+Arr2_Fisherman_Movement_0:
+# 193 "data/maps/OldaleTown/scripts.pory"
+	jump_in_place_left
+# 193 "data/maps/OldaleTown/scripts.pory"
+	jump_in_place_left
+# 193 "data/maps/OldaleTown/scripts.pory"
+	jump_in_place_left
+	step_end
+
+# 199 "data/maps/OldaleTown/scripts.pory"
+Arr2_Fisherman_Movement_1:
+# 200 "data/maps/OldaleTown/scripts.pory"
+	face_right
+# 201 "data/maps/OldaleTown/scripts.pory"
+	jump_in_place_right
+# 201 "data/maps/OldaleTown/scripts.pory"
+	jump_in_place_right
+# 201 "data/maps/OldaleTown/scripts.pory"
+	jump_in_place_right
 	step_end
 
 ManTest_Text_0:
@@ -280,3 +370,48 @@ TrainerClub_Sign_Text_0:
 TestGiveTM_Text_0:
 # 169 "data/maps/OldaleTown/scripts.pory"
 	.string "Here is a TM just for you.$"
+
+Arr2_Fisherman_Text_0:
+# 180 "data/maps/OldaleTown/scripts.pory"
+	.string "Let's get fishing, I am not doing to find\n"
+	.string "the golden Magikarp just by staring at\l"
+	.string "the water$"
+
+Arr2_Fisherman_Text_1:
+# 182 "data/maps/OldaleTown/scripts.pory"
+	.string "... ... ..$"
+
+Arr2_Fisherman_Text_2:
+# 186 "data/maps/OldaleTown/scripts.pory"
+	.string "Not even a nibble...$"
+
+Arr2_Fisherman_Text_3:
+# 195 "data/maps/OldaleTown/scripts.pory"
+	.string "Oh good lord! He seems angry!$"
+
+Arr2_Fisherman_Text_4:
+# 196 "data/maps/OldaleTown/scripts.pory"
+	.string "No, don't attack me! Please, I won't fish\n"
+	.string "here anymore, I promise!$"
+
+Arr2_Fisherman_Text_5:
+# 205 "data/maps/OldaleTown/scripts.pory"
+	.string "Oh no, another one?! Somebody, please\n"
+	.string "help me!$"
+
+Arr2_TradeMagikarp_Text_0:
+# 226 "data/maps/OldaleTown/scripts.pory"
+	.string "Marcel$"
+
+Arr2_TradeMagikarp_Text_1:
+# 227 "data/maps/OldaleTown/scripts.pory"
+	.string "I always dreamed of having a Gyarados.\n"
+	.string "Seems easy, Magikarps are everywhere\l"
+	.string "to be found, but... Not for me. I am\l"
+	.string "incredibely unlucky so they never come\l"
+	.string "accross my rod.$"
+
+Arr2_TradeMagikarp_Text_2:
+# 228 "data/maps/OldaleTown/scripts.pory"
+	.string "Do you want to trade a Magikarp for a\n"
+	.string "Luvdisc?$"
