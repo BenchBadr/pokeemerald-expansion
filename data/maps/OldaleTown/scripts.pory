@@ -48,8 +48,8 @@ script BattleZone1_Matchmaking {
 
 		hidefollower
 		
-
-		msgbox(format("Matchmaking in progress... {PAUSE 10} ... {PAUSE 10} ... "))
+		playSE(SE_DEX_SEARCH)
+		msgbox(format("Matchmaking in progress..."))
 
 
 		callnative(Script_SetupRandomOpponent)
@@ -198,10 +198,11 @@ script Arr2_Fisherman {
 	showobjectat(6, MAP_OLDALE_TOWN)
 	applymovement(6, moves(jump_in_place_left * 3))
 
-	applymovement(7, moves(face_right))
-
-	// emote(7, EMOTE_EXCLAMATION)
-	// waitemote
+	playSE(SE_PIN)
+	applymovement(7, moves(
+		emote_exclamation_mark
+		face_right
+	))
 
 	msgbox(format("Oh good lord! He seems angry!"))
 	msgbox(format("No, don't attack me! Please, I won't fish here anymore, I promise!"))
@@ -213,7 +214,9 @@ script Arr2_Fisherman {
 	))
 	waitmovement(0)
 
+	playSE(SE_PIN)
 	applymovement(8, moves(
+		emote_exclamation_mark
 		face_right
 		jump_in_place_right * 3))
 	waitmovement(0)
@@ -235,8 +238,8 @@ script Arr2_Fisherman {
 	setflag(FLAG_UNUSED_0x1DE)
 	setflag(FLAG_UNUSED_0x1DF)
 
-	// setwildbattle(SPECIES_MAGIKARP, 4, ITEM_NONE, SPECIES_MAGIKARP, 3, ITEM_NONE)
-	// dowildbattle
+	setwildbattle(SPECIES_MAGIKARP, 4, ITEM_NONE, SPECIES_MAGIKARP, 3, ITEM_NONE)
+	dowildbattle
 
 	clearflag(FLAG_UNUSED_0x1DE)
 	clearflag(FLAG_UNUSED_0x1DF)
@@ -371,13 +374,29 @@ script Arr2_BarBeerWaiter {
 		getplayerxy(VAR_TEMP_0, VAR_TEMP_1)
 	}
 
+	// place follower
+	getobjectxy(OBJ_EVENT_ID_FOLLOWER, 0, VAR_TEMP_0, VAR_TEMP_1)
+	while (var(VAR_TEMP_0) > 81) {
+		applymovement(OBJ_EVENT_ID_FOLLOWER, moves(
+			walk_left
+		))
+		waitmovement(0)
+		getobjectxy(OBJ_EVENT_ID_FOLLOWER, 0, VAR_TEMP_0, VAR_TEMP_1)
+	}
 
+	while (var(VAR_TEMP_1) < 15) {
+		applymovement(OBJ_EVENT_ID_FOLLOWER, moves(
+			walk_down
+		))
+		waitmovement
+		getobjectxy(OBJ_EVENT_ID_FOLLOWER, 0, VAR_TEMP_0, VAR_TEMP_1)
+	}
 
 	applymovement(OBJ_EVENT_ID_FOLLOWER, moves(
-		walk_left * 2
-		walk_down * 2
 		face_right
 	))
+
+	// place player
 
 	applymovement(OBJ_EVENT_ID_PLAYER, moves(
 		walk_down
@@ -385,7 +404,7 @@ script Arr2_BarBeerWaiter {
 	))
 	waitmovement(0)
 
-
+	// when the waiter is inside
 	delay(120)
 
 	// got the drinks
@@ -480,6 +499,10 @@ script Arr2_BarBeerWaiter {
 
 	setvar(VAR_0x8014, 1)
 
+	// special(GetFirstPartySpecies)
+	// playmoncry(VAR_RESULT, 0)
+    // waitmoncry
+
 	applymovement(OBJ_EVENT_ID_FOLLOWER, moves(
 		emote_heart
 		jump_in_place_right * 2
@@ -559,6 +582,7 @@ script Arr2_BarLady {
 
 	special(SpawnCameraObject)
 	applymovement(OBJ_EVENT_ID_CAMERA, moves(walk_fast_left * 2))
+	playSE(SE_PIN)
 	msgbox(format("No! Don't tell him!"))
 	applymovement(OBJ_EVENT_ID_CAMERA, moves(walk_fast_right * 2))
 	msgbox(format("Do you want to know ?"), MSGBOX_YESNO)
@@ -584,7 +608,7 @@ script Arr2_BarLady {
 			emote_heart
 		))
 
-		msgbox(format("I am glad a met you."))
+		msgbox(format("I am glad I met you."))
 
 		applymovement(OBJ_EVENT_ID_CAMERA, moves(walk_fast_right * 2))
 		waitmovement(0)

@@ -565,6 +565,12 @@ gSongTable::
 	song mus_rg_trainer_tower, MUSIC_PLAYER_BGM, 0
 	song mus_rg_slow_pallet, MUSIC_PLAYER_BGM, 0
 	song mus_rg_teachy_tv_menu, MUSIC_PLAYER_BGM, 0
+	song poiconneur_des_lilas, MUSIC_PLAYER_BGM, 0
+	song mus_xy_synca, MUSIC_PLAYER_BGM, 0
+	song mus_pokemon_xy_wild_pokemon, MUSIC_PLAYER_BGM, 0
+	song mus_battle_jacinthe, MUSIC_PLAYER_BGM, 0
+	song mus_pkmn_sword_shield_gym_battle_normal, MUSIC_PLAYER_BGM, 0
+	song mus_xytrainerbattle, MUSIC_PLAYER_BGM, 0
 	song ph_trap_blend, MUSIC_PLAYER_SE2, 2
 	song ph_trap_held, MUSIC_PLAYER_SE2, 2
 	song ph_trap_solo, MUSIC_PLAYER_SE2, 2

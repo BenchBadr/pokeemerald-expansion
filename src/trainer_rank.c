@@ -6,8 +6,11 @@
 #include "item_icon.h"
 #include "task.h"
 
+#include "sound.h"
 #include "window.h"
 #include "confetti_helper.h"
+
+#include "constants/songs.h"
 
 #define TAG_ITEM_ICON_BASE 9110
 
@@ -200,6 +203,8 @@ void DestroyRankBall(void) {
 }
 
 void DrawRankBar(void) {
+    PlaySE(SE_EXP);
+
     if (sRankBarId == 0) {
         sRankBarId = AddWindow(&sRankBarTemplate);
         PutWindowTilemap(sRankBarId);
@@ -255,6 +260,7 @@ void Script_AddTrainerPointsAnim(void)
     
     if (GetTrainerPoints() == GetRankGoal()) {
         StartHofConfetti(200);
+        PlayFanfare(SE_EXP);
     }
 
 }

@@ -9343,6 +9343,16 @@
       "secondary_tileset": "gTileset_Lab",
       "border_filepath": "data/layouts/Arr2_BlissRes_1/border.bin",
       "blockdata_filepath": "data/layouts/Arr2_BlissRes_1/map.bin"
+    },
+    {
+      "id": "LAYOUT_AMPHITEATRE",
+      "name": "Amphiteatre_Layout",
+      "width": 30,
+      "height": 30,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_BikeShop",
+      "border_filepath": "data/layouts/Amphiteatre/border.bin",
+      "blockdata_filepath": "data/layouts/Amphiteatre/map.bin"
     }
   ]
 }
