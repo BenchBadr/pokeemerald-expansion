@@ -283,7 +283,7 @@ static const struct SpriteFrameImage sPicTable_Nurse[] = {
 };
 
 static const struct SpriteFrameImage sPicTable_ProfBirch[] = {
-    overworld_ascending_frames(gObjectEventPic_ProfBirch, 2, 4),
+    overworld_ascending_frames(gObjectEventPic_ProfBirch, 4, 4),
 };
 
 static const struct SpriteFrameImage sPicTable_Man4[] = {

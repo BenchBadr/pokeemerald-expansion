@@ -423,17 +423,17 @@ Arr2_BarBeerWaiter_19:
 	compare VAR_RESULT, 0
 	goto_if_ne Arr2_BarBeerWaiter_25
 Arr2_BarBeerWaiter_24:
-# 474 "data/maps/OldaleTown/scripts.pory"
-	msgbox Arr2_BarBeerWaiter_Text_23
 # 476 "data/maps/OldaleTown/scripts.pory"
-	closemessage
+	msgbox Arr2_BarBeerWaiter_Text_23
 # 478 "data/maps/OldaleTown/scripts.pory"
+	closemessage
+# 480 "data/maps/OldaleTown/scripts.pory"
 	applymovement 11, Arr2_BarBeerWaiter_Movement_6
-# 483 "data/maps/OldaleTown/scripts.pory"
-	waitmovement 0
 # 485 "data/maps/OldaleTown/scripts.pory"
+	waitmovement 0
+# 487 "data/maps/OldaleTown/scripts.pory"
 	hidefollower
-# 488 "data/maps/OldaleTown/scripts.pory"
+# 490 "data/maps/OldaleTown/scripts.pory"
 	release
 	end
 
@@ -484,38 +484,38 @@ Arr2_BarBeerWaiter_20:
 	goto Arr2_BarBeerWaiter_19
 
 Arr2_BarBeerWaiter_22:
-# 493 "data/maps/OldaleTown/scripts.pory"
+# 495 "data/maps/OldaleTown/scripts.pory"
 	applymovement 11, Arr2_BarBeerWaiter_Movement_6
-# 498 "data/maps/OldaleTown/scripts.pory"
-	waitmovement 0
 # 500 "data/maps/OldaleTown/scripts.pory"
+	waitmovement 0
+# 502 "data/maps/OldaleTown/scripts.pory"
 	setvar VAR_0x8014, 1
-# 506 "data/maps/OldaleTown/scripts.pory"
+# 508 "data/maps/OldaleTown/scripts.pory"
 	applymovement OBJ_EVENT_ID_FOLLOWER, Arr2_BarBeerWaiter_Movement_7
-# 510 "data/maps/OldaleTown/scripts.pory"
-	waitmovement
 # 512 "data/maps/OldaleTown/scripts.pory"
-	bufferleadmonspeciesname 0
+	waitmovement
 # 514 "data/maps/OldaleTown/scripts.pory"
-	msgbox Arr2_BarBeerWaiter_Text_24
+	bufferleadmonspeciesname 0
 # 516 "data/maps/OldaleTown/scripts.pory"
+	msgbox Arr2_BarBeerWaiter_Text_24
+# 518 "data/maps/OldaleTown/scripts.pory"
 	switch VAR_0x8002
-# 517 "data/maps/OldaleTown/scripts.pory"
-	case 1, Arr2_BarBeerWaiter_30
 # 519 "data/maps/OldaleTown/scripts.pory"
+	case 1, Arr2_BarBeerWaiter_30
+# 521 "data/maps/OldaleTown/scripts.pory"
 	case 2, Arr2_BarBeerWaiter_31
 Arr2_BarBeerWaiter_28:
-# 523 "data/maps/OldaleTown/scripts.pory"
+# 525 "data/maps/OldaleTown/scripts.pory"
 	callnative Script_FriendshipAndStats
-# 524 "data/maps/OldaleTown/scripts.pory"
-	msgbox Arr2_BarBeerWaiter_Text_27
 # 526 "data/maps/OldaleTown/scripts.pory"
+	msgbox Arr2_BarBeerWaiter_Text_27
+# 528 "data/maps/OldaleTown/scripts.pory"
 	closemessage
-# 529 "data/maps/OldaleTown/scripts.pory"
+# 531 "data/maps/OldaleTown/scripts.pory"
 	setvar VAR_0x8014, 0
-# 532 "data/maps/OldaleTown/scripts.pory"
-	hidefollower
 # 534 "data/maps/OldaleTown/scripts.pory"
+	hidefollower
+# 536 "data/maps/OldaleTown/scripts.pory"
 	release
 	end
 
@@ -546,8 +546,10 @@ Arr2_BarBeerWaiter_23:
 	case 1, Arr2_BarBeerWaiter_35
 # 467 "data/maps/OldaleTown/scripts.pory"
 	case 2, Arr2_BarBeerWaiter_36
-Arr2_BarBeerWaiter_32:
 # 471 "data/maps/OldaleTown/scripts.pory"
+	hidemoneybox
+Arr2_BarBeerWaiter_32:
+# 473 "data/maps/OldaleTown/scripts.pory"
 	closemessage
 	goto Arr2_BarBeerWaiter_22
 
@@ -558,12 +560,12 @@ Arr2_BarBeerWaiter_25:
 	goto Arr2_BarBeerWaiter_24
 
 Arr2_BarBeerWaiter_30:
-# 518 "data/maps/OldaleTown/scripts.pory"
+# 520 "data/maps/OldaleTown/scripts.pory"
 	bufferstring STR_VAR_1, Arr2_BarBeerWaiter_Text_25
 	goto Arr2_BarBeerWaiter_28
 
 Arr2_BarBeerWaiter_31:
-# 520 "data/maps/OldaleTown/scripts.pory"
+# 522 "data/maps/OldaleTown/scripts.pory"
 	bufferstring STR_VAR_1, Arr2_BarBeerWaiter_Text_26
 	goto Arr2_BarBeerWaiter_28
 
@@ -572,10 +574,10 @@ Arr2_BarBeerWaiter_34:
 	checkmoney 500
 # 448 "data/maps/OldaleTown/scripts.pory"
 	compare VAR_RESULT, 0
-	goto_if_ne Arr2_BarBeerWaiter_38
+	goto_if_ne Arr2_BarBeerWaiter_39
 # 454 "data/maps/OldaleTown/scripts.pory"
 	msgbox Arr2_BarBeerWaiter_Text_20
-Arr2_BarBeerWaiter_37:
+Arr2_BarBeerWaiter_38:
 # 456 "data/maps/OldaleTown/scripts.pory"
 	hidemoneybox
 	goto Arr2_BarBeerWaiter_32
@@ -585,10 +587,10 @@ Arr2_BarBeerWaiter_35:
 	checkmoney 100
 # 459 "data/maps/OldaleTown/scripts.pory"
 	compare VAR_RESULT, 0
-	goto_if_ne Arr2_BarBeerWaiter_42
+	goto_if_ne Arr2_BarBeerWaiter_43
 # 464 "data/maps/OldaleTown/scripts.pory"
 	msgbox Arr2_BarBeerWaiter_Text_20
-Arr2_BarBeerWaiter_41:
+Arr2_BarBeerWaiter_42:
 # 466 "data/maps/OldaleTown/scripts.pory"
 	hidemoneybox
 	goto Arr2_BarBeerWaiter_32
@@ -600,149 +602,155 @@ Arr2_BarBeerWaiter_36:
 	msgbox Arr2_BarBeerWaiter_Text_22
 	goto Arr2_BarBeerWaiter_32
 
-Arr2_BarBeerWaiter_38:
+Arr2_BarBeerWaiter_39:
 # 449 "data/maps/OldaleTown/scripts.pory"
 	removemoney 500
 # 450 "data/maps/OldaleTown/scripts.pory"
 	updatemoneybox
 # 452 "data/maps/OldaleTown/scripts.pory"
 	msgbox Arr2_BarBeerWaiter_Text_19
-	goto Arr2_BarBeerWaiter_37
+	goto Arr2_BarBeerWaiter_38
 
-Arr2_BarBeerWaiter_42:
+Arr2_BarBeerWaiter_43:
 # 460 "data/maps/OldaleTown/scripts.pory"
 	removemoney 100
 # 461 "data/maps/OldaleTown/scripts.pory"
 	updatemoneybox
 # 462 "data/maps/OldaleTown/scripts.pory"
 	msgbox Arr2_BarBeerWaiter_Text_21
-	goto Arr2_BarBeerWaiter_41
+	goto Arr2_BarBeerWaiter_42
 
 
 Arr2_BarWineWaiter::
-# 539 "data/maps/OldaleTown/scripts.pory"
-	lock
-# 540 "data/maps/OldaleTown/scripts.pory"
-	faceplayer
 # 541 "data/maps/OldaleTown/scripts.pory"
-	setspeaker Arr2_BarBeerWaiter_Text_0
+	lock
 # 542 "data/maps/OldaleTown/scripts.pory"
-	msgbox Arr2_BarWineWaiter_Text_0
+	faceplayer
 # 543 "data/maps/OldaleTown/scripts.pory"
-	msgbox Arr2_BarWineWaiter_Text_1
+	setspeaker Arr2_BarBeerWaiter_Text_0
 # 544 "data/maps/OldaleTown/scripts.pory"
+	msgbox Arr2_BarWineWaiter_Text_0
+# 545 "data/maps/OldaleTown/scripts.pory"
+	msgbox Arr2_BarWineWaiter_Text_1
+# 546 "data/maps/OldaleTown/scripts.pory"
 	release
 	end
 
 
 Arr2_BarOldLady::
-# 550 "data/maps/OldaleTown/scripts.pory"
-	lock
-# 551 "data/maps/OldaleTown/scripts.pory"
-	msgbox Arr2_BarOldLady_Text_0
 # 552 "data/maps/OldaleTown/scripts.pory"
+	lock
+# 553 "data/maps/OldaleTown/scripts.pory"
+	faceplayer
+# 554 "data/maps/OldaleTown/scripts.pory"
+	msgbox Arr2_BarOldLady_Text_0
+# 555 "data/maps/OldaleTown/scripts.pory"
 	release
 	end
 
 
 Arr2_BarGentleman::
-# 557 "data/maps/OldaleTown/scripts.pory"
-	lock
-# 558 "data/maps/OldaleTown/scripts.pory"
-	faceplayer
-# 559 "data/maps/OldaleTown/scripts.pory"
-	msgbox Arr2_BarGentleman_Text_0
 # 560 "data/maps/OldaleTown/scripts.pory"
+	lock
+# 561 "data/maps/OldaleTown/scripts.pory"
+	faceplayer
+# 562 "data/maps/OldaleTown/scripts.pory"
+	msgbox Arr2_BarGentleman_Text_0
+# 563 "data/maps/OldaleTown/scripts.pory"
 	release
 	end
 
 
 Arr2_BarLady::
-# 565 "data/maps/OldaleTown/scripts.pory"
-	lock
-# 566 "data/maps/OldaleTown/scripts.pory"
-	faceplayer
 # 568 "data/maps/OldaleTown/scripts.pory"
+	lock
+# 569 "data/maps/OldaleTown/scripts.pory"
+	faceplayer
+# 571 "data/maps/OldaleTown/scripts.pory"
 	goto_if_set FLAG_RECEIVED_TM_SHOCK_WAVE, Arr2_BarLady_2
-# 575 "data/maps/OldaleTown/scripts.pory"
+# 578 "data/maps/OldaleTown/scripts.pory"
 	msgbox Arr2_BarLady_Text_1
-# 576 "data/maps/OldaleTown/scripts.pory"
+# 579 "data/maps/OldaleTown/scripts.pory"
 	applymovement 16, Arr2_BarLady_Movement_0
-# 581 "data/maps/OldaleTown/scripts.pory"
-	waitmovement 0
-# 583 "data/maps/OldaleTown/scripts.pory"
-	special SpawnCameraObject
 # 584 "data/maps/OldaleTown/scripts.pory"
-	applymovement OBJ_EVENT_ID_CAMERA, Arr2_BarLady_Movement_1
-# 585 "data/maps/OldaleTown/scripts.pory"
-	playSE SE_PIN
+	waitmovement 0
 # 586 "data/maps/OldaleTown/scripts.pory"
-	msgbox Arr2_BarLady_Text_2
+	special SpawnCameraObject
 # 587 "data/maps/OldaleTown/scripts.pory"
-	applymovement OBJ_EVENT_ID_CAMERA, Arr2_BarLady_Movement_2
+	applymovement OBJ_EVENT_ID_CAMERA, Arr2_BarLady_Movement_1
 # 588 "data/maps/OldaleTown/scripts.pory"
-	msgbox Arr2_BarLady_Text_3, MSGBOX_YESNO
+	playSE SE_PIN
 # 589 "data/maps/OldaleTown/scripts.pory"
+	msgbox Arr2_BarLady_Text_2
+# 590 "data/maps/OldaleTown/scripts.pory"
+	applymovement OBJ_EVENT_ID_CAMERA, Arr2_BarLady_Movement_2
+# 591 "data/maps/OldaleTown/scripts.pory"
+	msgbox Arr2_BarLady_Text_3, MSGBOX_YESNO
+# 592 "data/maps/OldaleTown/scripts.pory"
 	compare VAR_RESULT, 0
 	goto_if_ne Arr2_BarLady_5
 Arr2_BarLady_4:
-# 630 "data/maps/OldaleTown/scripts.pory"
+# 633 "data/maps/OldaleTown/scripts.pory"
 	special RemoveCameraObject
-# 631 "data/maps/OldaleTown/scripts.pory"
+# 634 "data/maps/OldaleTown/scripts.pory"
 	release
 	end
 
 Arr2_BarLady_2:
-# 570 "data/maps/OldaleTown/scripts.pory"
+# 573 "data/maps/OldaleTown/scripts.pory"
 	msgbox Arr2_BarLady_Text_0
-# 571 "data/maps/OldaleTown/scripts.pory"
+# 574 "data/maps/OldaleTown/scripts.pory"
 	release
 	end
 
 Arr2_BarLady_5:
-# 590 "data/maps/OldaleTown/scripts.pory"
+# 593 "data/maps/OldaleTown/scripts.pory"
 	msgbox Arr2_BarLady_Text_4
-# 592 "data/maps/OldaleTown/scripts.pory"
+# 595 "data/maps/OldaleTown/scripts.pory"
 	msgbox Arr2_BarLady_Text_5
-# 594 "data/maps/OldaleTown/scripts.pory"
-	msgbox Arr2_BarLady_Text_6
-# 596 "data/maps/OldaleTown/scripts.pory"
-	applymovement OBJ_EVENT_ID_CAMERA, Arr2_BarLady_Movement_1
 # 597 "data/maps/OldaleTown/scripts.pory"
-	waitmovement 0
-# 598 "data/maps/OldaleTown/scripts.pory"
-	msgbox Arr2_BarLady_Text_7
+	msgbox Arr2_BarLady_Text_6
 # 599 "data/maps/OldaleTown/scripts.pory"
-	applymovement OBJ_EVENT_ID_CAMERA, Arr2_BarLady_Movement_2
-# 601 "data/maps/OldaleTown/scripts.pory"
-	msgbox Arr2_BarLady_Text_8
-# 603 "data/maps/OldaleTown/scripts.pory"
 	applymovement OBJ_EVENT_ID_CAMERA, Arr2_BarLady_Movement_1
-# 604 "data/maps/OldaleTown/scripts.pory"
+# 600 "data/maps/OldaleTown/scripts.pory"
 	waitmovement 0
-# 606 "data/maps/OldaleTown/scripts.pory"
-	applymovement 16, Arr2_BarLady_Movement_3
-# 611 "data/maps/OldaleTown/scripts.pory"
-	msgbox Arr2_BarLady_Text_9
-# 613 "data/maps/OldaleTown/scripts.pory"
+# 601 "data/maps/OldaleTown/scripts.pory"
+	msgbox Arr2_BarLady_Text_7
+# 602 "data/maps/OldaleTown/scripts.pory"
 	applymovement OBJ_EVENT_ID_CAMERA, Arr2_BarLady_Movement_2
+# 604 "data/maps/OldaleTown/scripts.pory"
+	msgbox Arr2_BarLady_Text_8
+# 606 "data/maps/OldaleTown/scripts.pory"
+	applymovement OBJ_EVENT_ID_CAMERA, Arr2_BarLady_Movement_1
+# 607 "data/maps/OldaleTown/scripts.pory"
+	waitmovement 0
+# 609 "data/maps/OldaleTown/scripts.pory"
+	applymovement 16, Arr2_BarLady_Movement_3
 # 614 "data/maps/OldaleTown/scripts.pory"
-	waitmovement 0
+	msgbox Arr2_BarLady_Text_9
 # 616 "data/maps/OldaleTown/scripts.pory"
-	applymovement 17, Arr2_BarLady_Movement_4
-# 620 "data/maps/OldaleTown/scripts.pory"
+	applymovement OBJ_EVENT_ID_CAMERA, Arr2_BarLady_Movement_2
+# 617 "data/maps/OldaleTown/scripts.pory"
 	waitmovement 0
-# 622 "data/maps/OldaleTown/scripts.pory"
-	msgbox Arr2_BarLady_Text_10
-# 624 "data/maps/OldaleTown/scripts.pory"
-	faceplayer
+# 619 "data/maps/OldaleTown/scripts.pory"
+	applymovement 17, Arr2_BarLady_Movement_4
+# 623 "data/maps/OldaleTown/scripts.pory"
+	waitmovement 0
 # 625 "data/maps/OldaleTown/scripts.pory"
-	msgbox Arr2_BarLady_Text_11
-# 626 "data/maps/OldaleTown/scripts.pory"
-	giveitem ITEM_TM_SHOCK_WAVE
+	msgbox Arr2_BarLady_Text_10
 # 627 "data/maps/OldaleTown/scripts.pory"
+	faceplayer
+# 628 "data/maps/OldaleTown/scripts.pory"
+	msgbox Arr2_BarLady_Text_11
+# 629 "data/maps/OldaleTown/scripts.pory"
+	giveitem ITEM_TM_SHOCK_WAVE
+# 630 "data/maps/OldaleTown/scripts.pory"
 	setflag FLAG_RECEIVED_TM_SHOCK_WAVE
 	goto Arr2_BarLady_4
+
+
+Arr2_BarLass::
+	return
 
 
 # 75 "data/maps/OldaleTown/scripts.pory"
@@ -889,67 +897,67 @@ Arr2_BarBeerWaiter_Movement_5:
 	walk_down
 	step_end
 
-# 478 "data/maps/OldaleTown/scripts.pory"
+# 480 "data/maps/OldaleTown/scripts.pory"
 Arr2_BarBeerWaiter_Movement_6:
-# 479 "data/maps/OldaleTown/scripts.pory"
-	walk_up
-# 480 "data/maps/OldaleTown/scripts.pory"
-	walk_right
-# 480 "data/maps/OldaleTown/scripts.pory"
-	walk_right
 # 481 "data/maps/OldaleTown/scripts.pory"
+	walk_up
+# 482 "data/maps/OldaleTown/scripts.pory"
+	walk_right
+# 482 "data/maps/OldaleTown/scripts.pory"
+	walk_right
+# 483 "data/maps/OldaleTown/scripts.pory"
 	face_down
 	step_end
 
-# 506 "data/maps/OldaleTown/scripts.pory"
+# 508 "data/maps/OldaleTown/scripts.pory"
 Arr2_BarBeerWaiter_Movement_7:
-# 507 "data/maps/OldaleTown/scripts.pory"
+# 509 "data/maps/OldaleTown/scripts.pory"
 	emote_heart
-# 508 "data/maps/OldaleTown/scripts.pory"
+# 510 "data/maps/OldaleTown/scripts.pory"
 	jump_in_place_right
-# 508 "data/maps/OldaleTown/scripts.pory"
+# 510 "data/maps/OldaleTown/scripts.pory"
 	jump_in_place_right
 	step_end
 
-# 576 "data/maps/OldaleTown/scripts.pory"
-Arr2_BarLady_Movement_0:
-# 577 "data/maps/OldaleTown/scripts.pory"
-	emote_exclamation_mark
-# 578 "data/maps/OldaleTown/scripts.pory"
-	jump_in_place_right
 # 579 "data/maps/OldaleTown/scripts.pory"
+Arr2_BarLady_Movement_0:
+# 580 "data/maps/OldaleTown/scripts.pory"
+	emote_exclamation_mark
+# 581 "data/maps/OldaleTown/scripts.pory"
+	jump_in_place_right
+# 582 "data/maps/OldaleTown/scripts.pory"
 	face_left
 	step_end
 
-# 584 "data/maps/OldaleTown/scripts.pory"
+# 587 "data/maps/OldaleTown/scripts.pory"
 Arr2_BarLady_Movement_1:
-# 584 "data/maps/OldaleTown/scripts.pory"
+# 587 "data/maps/OldaleTown/scripts.pory"
 	walk_fast_left
-# 584 "data/maps/OldaleTown/scripts.pory"
+# 587 "data/maps/OldaleTown/scripts.pory"
 	walk_fast_left
 	step_end
 
-# 587 "data/maps/OldaleTown/scripts.pory"
+# 590 "data/maps/OldaleTown/scripts.pory"
 Arr2_BarLady_Movement_2:
-# 587 "data/maps/OldaleTown/scripts.pory"
+# 590 "data/maps/OldaleTown/scripts.pory"
 	walk_fast_right
-# 587 "data/maps/OldaleTown/scripts.pory"
+# 590 "data/maps/OldaleTown/scripts.pory"
 	walk_fast_right
 	step_end
 
-# 606 "data/maps/OldaleTown/scripts.pory"
+# 609 "data/maps/OldaleTown/scripts.pory"
 Arr2_BarLady_Movement_3:
-# 607 "data/maps/OldaleTown/scripts.pory"
+# 610 "data/maps/OldaleTown/scripts.pory"
 	face_right
-# 608 "data/maps/OldaleTown/scripts.pory"
+# 611 "data/maps/OldaleTown/scripts.pory"
 	emote_heart
 	step_end
 
-# 616 "data/maps/OldaleTown/scripts.pory"
+# 619 "data/maps/OldaleTown/scripts.pory"
 Arr2_BarLady_Movement_4:
-# 617 "data/maps/OldaleTown/scripts.pory"
+# 620 "data/maps/OldaleTown/scripts.pory"
 	face_left
-# 618 "data/maps/OldaleTown/scripts.pory"
+# 621 "data/maps/OldaleTown/scripts.pory"
 	emote_heart
 	step_end
 
@@ -1195,7 +1203,7 @@ Arr2_BarBeerWaiter_Text_14:
 
 Arr2_BarBeerWaiter_Text_15:
 # 441 "data/maps/OldaleTown/scripts.pory"
-	.string "{COLOR BLUE}{SHADOW LIGHT_BLUE}Give a tip ?$"
+	.string "{COLOR BLUE}{SHADOW LIGHT_BLUE}Give a tip?$"
 
 Arr2_BarBeerWaiter_Text_16:
 # 443 "data/maps/OldaleTown/scripts.pory"
@@ -1226,101 +1234,107 @@ Arr2_BarBeerWaiter_Text_22:
 	.string "...$"
 
 Arr2_BarBeerWaiter_Text_23:
-# 474 "data/maps/OldaleTown/scripts.pory"
+# 476 "data/maps/OldaleTown/scripts.pory"
 	.string "Wait, you can't pay for the drinks? Then\n"
 	.string "these are coming right back with me!$"
 
 Arr2_BarBeerWaiter_Text_24:
-# 514 "data/maps/OldaleTown/scripts.pory"
+# 516 "data/maps/OldaleTown/scripts.pory"
 	.string "{STR_VAR_1} had a sip of your drink.\n"
 	.string "It seems more attached to you.$"
 
 Arr2_BarBeerWaiter_Text_25:
-# 518 "data/maps/OldaleTown/scripts.pory"
+# 520 "data/maps/OldaleTown/scripts.pory"
 	.string "Attack$"
 
 Arr2_BarBeerWaiter_Text_26:
-# 520 "data/maps/OldaleTown/scripts.pory"
+# 522 "data/maps/OldaleTown/scripts.pory"
 	.string "Defense$"
 
 Arr2_BarBeerWaiter_Text_27:
-# 524 "data/maps/OldaleTown/scripts.pory"
+# 526 "data/maps/OldaleTown/scripts.pory"
 	.string "Its {STR_VAR_1} was raised a little.$"
 
 Arr2_BarWineWaiter_Text_0:
-# 542 "data/maps/OldaleTown/scripts.pory"
+# 544 "data/maps/OldaleTown/scripts.pory"
 	.string "Hello and welcome to {COLOR BLUE}{SHADOW LIGHT_BLUE}Wine Whip.$"
 
 Arr2_BarWineWaiter_Text_1:
-# 543 "data/maps/OldaleTown/scripts.pory"
+# 545 "data/maps/OldaleTown/scripts.pory"
 	.string "I am sorry but all our tables are full\n"
 	.string "today. Our neighbors are selling wine\l"
 	.string "too if you need, maybe as good as ours\l"
 	.string "but worth a try.$"
 
 Arr2_BarOldLady_Text_0:
-# 551 "data/maps/OldaleTown/scripts.pory"
-	.string "Hello and welcome to$"
+# 554 "data/maps/OldaleTown/scripts.pory"
+	.string "I knew this bar since I was a kid. The\n"
+	.string "place itself didn't change much but\l"
+	.string "everything else did. The people, the\l"
+	.string "surroundings and the staff. It was\l"
+	.string "before Lutecia became the capitale of\l"
+	.string "Kalos, when it was still a calm and\l"
+	.string "peaceful city.$"
 
 Arr2_BarGentleman_Text_0:
-# 559 "data/maps/OldaleTown/scripts.pory"
+# 562 "data/maps/OldaleTown/scripts.pory"
 	.string "I have been visiting this bar since I\n"
 	.string "was about as young as you. The taste\l"
 	.string "brings up so much memories...$"
 
 Arr2_BarLady_Text_0:
-# 570 "data/maps/OldaleTown/scripts.pory"
+# 573 "data/maps/OldaleTown/scripts.pory"
 	.string "I am glad I was in the bar that day. My\n"
 	.string "life would have been very different\l"
 	.string "otherwise.$"
 
 Arr2_BarLady_Text_1:
-# 575 "data/maps/OldaleTown/scripts.pory"
+# 578 "data/maps/OldaleTown/scripts.pory"
 	.string "You know, me and my husband met in this\n"
 	.string "very bar. We met under very special\l"
 	.string "circumstances.$"
 
 Arr2_BarLady_Text_2:
-# 586 "data/maps/OldaleTown/scripts.pory"
+# 589 "data/maps/OldaleTown/scripts.pory"
 	.string "No! Don't tell him!$"
 
 Arr2_BarLady_Text_3:
-# 588 "data/maps/OldaleTown/scripts.pory"
+# 591 "data/maps/OldaleTown/scripts.pory"
 	.string "Do you want to know ?$"
 
 Arr2_BarLady_Text_4:
-# 590 "data/maps/OldaleTown/scripts.pory"
+# 593 "data/maps/OldaleTown/scripts.pory"
 	.string "Well, he had too much wine that day. He\n"
 	.string "was so drunk people were gathering\l"
 	.string "around him thinking he was dead.$"
 
 Arr2_BarLady_Text_5:
-# 592 "data/maps/OldaleTown/scripts.pory"
+# 595 "data/maps/OldaleTown/scripts.pory"
 	.string "Then I came, ordered by Pokémon to use\n"
 	.string "{COLOR RED}{SHADOW LIGHT_RED}Shock Wave{COLOR DARK_GRAY}{SHADOW LIGHT_GRAY}, and he woke up abruptly.$"
 
 Arr2_BarLady_Text_6:
-# 594 "data/maps/OldaleTown/scripts.pory"
+# 597 "data/maps/OldaleTown/scripts.pory"
 	.string "He looked at me and said, 'Are you an\n"
 	.string "angel?' I never let him live that down.$"
 
 Arr2_BarLady_Text_7:
-# 598 "data/maps/OldaleTown/scripts.pory"
+# 601 "data/maps/OldaleTown/scripts.pory"
 	.string "I am so embarassed!$"
 
 Arr2_BarLady_Text_8:
-# 601 "data/maps/OldaleTown/scripts.pory"
+# 604 "data/maps/OldaleTown/scripts.pory"
 	.string "And well... here we are, years later!$"
 
 Arr2_BarLady_Text_9:
-# 611 "data/maps/OldaleTown/scripts.pory"
+# 614 "data/maps/OldaleTown/scripts.pory"
 	.string "I am glad I met you.$"
 
 Arr2_BarLady_Text_10:
-# 622 "data/maps/OldaleTown/scripts.pory"
+# 625 "data/maps/OldaleTown/scripts.pory"
 	.string "Me too... Me too...$"
 
 Arr2_BarLady_Text_11:
-# 625 "data/maps/OldaleTown/scripts.pory"
+# 628 "data/maps/OldaleTown/scripts.pory"
 	.string "Oh. I am rambling again. Here's a little\n"
 	.string "thank you for listening to me.$"

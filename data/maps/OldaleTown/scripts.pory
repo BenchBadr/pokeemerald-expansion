@@ -438,7 +438,7 @@ script Arr2_BarBeerWaiter {
 		msgbox(format("Transaction done. Tips are welcome if you'd like."))
 		hidemoneybox
 
-		msgbox(format("{COLOR BLUE}{SHADOW LIGHT_BLUE}Give a tip ?"))
+		msgbox(format("{COLOR BLUE}{SHADOW LIGHT_BLUE}Give a tip?"))
 		showmoneybox(18, 0)
 		dynmultichoice(0, 0, FALSE, 3, 0, DYN_MULTICHOICE_CB_NONE,  "500", "100", "0")
 
@@ -467,6 +467,8 @@ script Arr2_BarBeerWaiter {
 			case 2:
 				hidemoneybox
 				msgbox(format("..."))
+			default:
+				hidemoneybox
 		} 
 		closemessage
 	
@@ -548,7 +550,8 @@ script Arr2_BarWineWaiter {
 
 script Arr2_BarOldLady {
 	lock 
-	msgbox(format("Hello and welcome to "))
+	faceplayer
+	msgbox(format("I knew this bar since I was a kid. The place itself didn't change much but everything else did. The people, the surroundings and the staff. It was before Lutecia became the capitale of Kalos, when it was still a calm and peaceful city."))
 	release 
 	end
 }
@@ -630,4 +633,8 @@ script Arr2_BarLady {
 	special(RemoveCameraObject)
 	release 
 	end
+}
+
+script Arr2_BarLass {
+	
 }
