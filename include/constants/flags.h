@@ -110,6 +110,7 @@
 #define FLAG_UNUSED_0x055                    0x55  // Unused Flag
 
 #define FLAG_HIDE_CONTEST_POKE_BALL          0x56  // Always set after new game, object it hides is added directly
+
 #define FLAG_MET_RIVAL_MOM                   0x57
 #define FLAG_BIRCH_AIDE_MET                  0x58
 #define FLAG_DECLINED_BIKE                   0x59
@@ -288,7 +289,9 @@
 #define FLAG_RECEIVED_CHARCOAL               0xFE
 #define FLAG_LATIOS_OR_LATIAS_ROAMING        0xFF
 #define FLAG_RECEIVED_REPEAT_BALL            0x100
+
 #define FLAG_RECEIVED_OLD_ROD                0x101
+
 #define FLAG_RECEIVED_COIN_CASE              0x102
 #define FLAG_RETURNED_RED_OR_BLUE_ORB        0x103
 #define FLAG_RECEIVED_TM_SNATCH              0x104

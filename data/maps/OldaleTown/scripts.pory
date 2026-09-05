@@ -155,6 +155,12 @@ script ScraftyBeers_Sign {
 	end
 }
 
+script WineWhip_Sign {
+	msgbox(format("Wine Whip. \nIndependent wine bar. \p"), MSGBOX_SIGN)
+	closemessage
+	end
+}
+
 
 script TrainerClub_Sign {
 	msgbox(format("Trainer Club\n \p"), MSGBOX_SIGN)
@@ -192,40 +198,78 @@ script Arr2_Fisherman {
 	showobjectat(6, MAP_OLDALE_TOWN)
 	applymovement(6, moves(jump_in_place_left * 3))
 
+	applymovement(7, moves(face_right))
+
+	// emote(7, EMOTE_EXCLAMATION)
+	// waitemote
+
 	msgbox(format("Oh good lord! He seems angry!"))
 	msgbox(format("No, don't attack me! Please, I won't fish here anymore, I promise!"))
 
 	showobjectat(8, MAP_OLDALE_TOWN)
-	applymovement(6, moves(
-		face_right
-		jump_in_place_left * 3
-	))
-	applymovement(6, moves(jump_in_place_left * 3))
 
-    msgbox(format("Oh no, another one?! Somebody, please help me!"))
+	applymovement(7, moves(
+		jump_in_place_left
+	))
+	waitmovement(0)
+
+	applymovement(8, moves(
+		face_right
+		jump_in_place_right * 3))
+	waitmovement(0)
+
+
+
+	msgbox(format("Oh no, another one?!"))
+
+	applymovement(7, moves(
+		jump_in_place_right
+		jump_in_place_left
+		jump_in_place_right
+		face_up
+	))
+	waitmovement(0)
+
+	msgbox(format("You, please help me!"))
 
 	setflag(FLAG_UNUSED_0x1DE)
 	setflag(FLAG_UNUSED_0x1DF)
 
-	setwildbattle(SPECIES_MAGIKARP, 4, ITEM_NONE, SPECIES_MAGIKARP, 3, ITEM_NONE)
-	dowildbattle
+	// setwildbattle(SPECIES_MAGIKARP, 4, ITEM_NONE, SPECIES_MAGIKARP, 3, ITEM_NONE)
+	// dowildbattle
 
 	clearflag(FLAG_UNUSED_0x1DE)
 	clearflag(FLAG_UNUSED_0x1DF)
-
+	
+	removeobject(6, MAP_OLDALE_TOWN)
+	removeobject(8, MAP_OLDALE_TOWN)
 
 	faceplayer
 	msgbox(format("Oh! You saved me! I wonder what could have happened if you weren't here. I don't want to fish anymore. I'll find myself another passion. Please, have this, I wont be using it anymore."))
 
 	giveitem(ITEM_OLD_ROD)
-	fadescreen(FADE_TO_BLACK)
+
+	closemessage
+
+	hidefollower
+	applymovement(OBJ_EVENT_ID_PLAYER, moves(
+		walk_up
+		face_down
+	))
+	waitmovement(0)
+
+	applymovement(7, moves(
+		walk_up * 1
+		walk_right * 2
+		walk_up * 7
+	))
+
+	waitmovement(0)
+
+
 	removeobject(7, MAP_OLDALE_TOWN)
 	setflag(FLAG_RECEIVED_OLD_ROD)
 	
-	fadescreen(FADE_FROM_BLACK)
-
-
-
 
 	release
 	end
@@ -233,15 +277,333 @@ script Arr2_Fisherman {
 
 }
 
-script Arr2_TradeMagikarp {
+script Arr2_BarTradeMagikarp {
 	lock 
 	faceplayer
 
 	setspeaker("Marcel")
+
+	if (flag(FLAG_RUSTBORO_NPC_TRADE_COMPLETED))
+	{
+		msgbox(format("Your Magikarp is so great!"))
+		release
+		end
+	}
+
 	msgbox(format("I've always dreamed of having a Gyarados. It should be easy : Magikarp are everywhere, but not for me. I'm so unlucky that one never bites my line."))
 	msgbox(format("All I have is this stupid Luvdisc my ex gave me. I don't even want it... it just reminds me of her."))
-	msgbox(format("Would you trade a Magikarp for a Luvdisc?"))
+
+	ingame_trade(INGAME_TRADE_SEEDOT, format("Would you trade a Magikarp for a Luvdisc?"), format("Arghhh... No luck even with trades."), format("That's not a Magikarp."), msgbox(format("Take care of it.")))
+	closemessage
+
+	setflag(FLAG_RUSTBORO_NPC_TRADE_COMPLETED)
 
 	release
+	end
+}
+
+script Arr2_BarDrinkerMachamp {
+	lock
+	faceplayer 
+
+	msgbox(format("Oh... I always drink too much. What? You're wondering if I'm scared of not making it home? No, not at all."))
+	msgbox(format("My Machamp always carries me with his four arms when I've had too much."))
+
+	release
+	end
+}
+
+script Arr2_BarBeerWaiter {
+	lock 
+	faceplayer
+	setspeaker("Waiter")
+	msgbox(format("Hello and welcome to {COLOR BLUE}{SHADOW LIGHT_BLUE}Scrafty Beers."))
+	if (flag(0x4F)) {
+		msgbox(format("Come with a Pokémon, it will be better trust me."))
+		release 
+		end
+	}
+
+	closemessage
+	msgbox(format("What will it be? Standard prices, everything comes at ¥500."))
+	dynmultichoice(0, 0, FALSE, 6, 0, DYN_MULTICHOICE_CB_NONE, "Cider", "Lager Beer", "Pale Ale Beer", "Red Wine", "White Wine", "Gin Tonic", "No thanks")
+
+	if (var(VAR_RESULT) == 6) {
+		release 
+		end
+	}
+
+	copyvar(VAR_0x8002, VAR_RESULT)
+	msgbox(format("Great choice!"))
+
+	// changes
+	setvar(VAR_0x8001, 10) // friendship
+	setvar(VAR_0x8003, 5) // EV count
+
+	msgbox(format("Please, take a seat."))
+	closemessage
+
+
+	// go get the drink
+	opendoor(84, 12)
+    waitdooranim
+
+	applymovement(11, moves(
+		walk_up
+		set_invisible
+	))
+	waitmovement(0)
+
+	// handle moving
+	getplayerxy(VAR_TEMP_0, VAR_TEMP_1)
+	if (var(VAR_TEMP_1) == 13) {
+		applymovement(OBJ_EVENT_ID_PLAYER, moves(
+			walk_down
+		))
+		waitmovement(0)
+	}
+
+	while (var(VAR_TEMP_0) > 83) {
+		applymovement(OBJ_EVENT_ID_PLAYER, moves(
+			walk_left
+		))
+		waitmovement(0)
+		getplayerxy(VAR_TEMP_0, VAR_TEMP_1)
+	}
+
+
+
+	applymovement(OBJ_EVENT_ID_FOLLOWER, moves(
+		walk_left * 2
+		walk_down * 2
+		face_right
+	))
+
+	applymovement(OBJ_EVENT_ID_PLAYER, moves(
+		walk_down
+		face_left
+	))
+	waitmovement(0)
+
+
+	delay(120)
+
+	// got the drinks
+	applymovement(11, moves(
+		set_visible
+		walk_down
+		walk_left * 2
+		walk_down
+	))
+	waitmovement(0)
+
+
+
+
+
+	closedoor(84, 12)
+    waitdooranim
+
+	setspeaker("Waiter")
+	msgbox(format("That will be ¥500 please."), MSGBOX_YESNO)
+	copyvar(VAR_TEMP_1, VAR_RESULT)
+	checkmoney(500)
+	closemessage
+
+	if (var(VAR_RESULT) && var(VAR_TEMP_1)) {
+
+		showmoneybox(18, 0)
+		msgbox(format("Just put your card over here..."))
+		removemoney(500)
+		updatemoneybox 
+		msgbox(format("Transaction done. Tips are welcome if you'd like."))
+		hidemoneybox
+
+		msgbox(format("{COLOR BLUE}{SHADOW LIGHT_BLUE}Give a tip ?"))
+		showmoneybox(18, 0)
+		dynmultichoice(0, 0, FALSE, 3, 0, DYN_MULTICHOICE_CB_NONE,  "500", "100", "0")
+
+		switch (var(VAR_RESULT)) {
+			case 0:
+				checkmoney(500)
+				if (var(VAR_RESULT)) {
+					removemoney(500)
+					updatemoneybox
+
+					msgbox(format("Enjoy your drink!"))
+				} else {
+					msgbox(format("Big talks for empty pockets."))
+				}
+				hidemoneybox
+			case 1:
+				checkmoney(100)
+				if (var(VAR_RESULT)) {
+					removemoney(100)
+					updatemoneybox
+					msgbox(format("Thanks!"))
+				} else {
+					msgbox(format("Big talks for empty pockets."))
+				}
+				hidemoneybox
+			case 2:
+				hidemoneybox
+				msgbox(format("..."))
+		} 
+		closemessage
+	
+	} else  {
+		msgbox(format("Wait, you can't pay for the drinks? Then these are coming right back with me!"))
+
+		closemessage
+
+		applymovement(11, moves(
+			walk_up 
+			walk_right * 2 
+			face_down
+		))
+		waitmovement(0)
+
+		hidefollower
+
+		
+		release 
+		end
+	}
+
+
+	applymovement(11, moves(
+		walk_up 
+		walk_right * 2 
+		face_down
+	))
+	waitmovement(0)
+
+	setvar(VAR_0x8014, 1)
+
+	applymovement(OBJ_EVENT_ID_FOLLOWER, moves(
+		emote_heart
+		jump_in_place_right * 2
+	))
+	waitmovement
+
+	bufferleadmonspeciesname(0)
+
+    msgbox(format("{STR_VAR_1} had a sip of your drink. It seems more attached to you."))
+
+	switch (var(VAR_0x8002)) {
+        case 1:
+            bufferstring(STR_VAR_1, "Attack")
+        case 2:
+            bufferstring(STR_VAR_1, "Defense")
+    }
+
+	callnative(Script_FriendshipAndStats)
+	msgbox(format("Its {STR_VAR_1} was raised a little."))
+
+	closemessage
+
+
+	setvar(VAR_0x8014, 0)
+	
+
+	hidefollower
+
+	release 
+	end
+}
+
+script Arr2_BarWineWaiter {
+	lock 
+	faceplayer	
+	setspeaker("Waiter")
+	msgbox(format("Hello and welcome to {COLOR BLUE}{SHADOW LIGHT_BLUE}Wine Whip."))
+	msgbox(format("I am sorry but all our tables are full today. Our neighbors are selling wine too if you need, maybe as good as ours but worth a try."))
+	release 
+	end
+}
+
+
+script Arr2_BarOldLady {
+	lock 
+	msgbox(format("Hello and welcome to "))
+	release 
+	end
+}
+
+script Arr2_BarGentleman {
+	lock 
+	faceplayer
+	msgbox(format("I have been visiting this bar since I was about as young as you. The taste brings up so much memories..."))
+	release 
+	end
+}
+
+script Arr2_BarLady {
+	lock 
+	faceplayer
+
+	if (flag(FLAG_RECEIVED_TM_SHOCK_WAVE)) 
+	{
+		msgbox(format("I am glad I was in the bar that day. My life would have been very different otherwise."))
+		release 
+		end
+	}
+
+	msgbox(format("You know, me and my husband met in this very bar. We met under very special circumstances."))
+	applymovement(16, moves(
+		emote_exclamation_mark
+		jump_in_place_right 
+		face_left
+	))
+	waitmovement(0)
+
+	special(SpawnCameraObject)
+	applymovement(OBJ_EVENT_ID_CAMERA, moves(walk_fast_left * 2))
+	msgbox(format("No! Don't tell him!"))
+	applymovement(OBJ_EVENT_ID_CAMERA, moves(walk_fast_right * 2))
+	msgbox(format("Do you want to know ?"), MSGBOX_YESNO)
+	if (var(VAR_RESULT)) {
+		msgbox(format("Well, he had too much wine that day. He was so drunk people were gathering around him thinking he was dead."))
+
+		msgbox(format("Then I came, ordered by Pokémon to use {COLOR RED}{SHADOW LIGHT_RED}Shock Wave{COLOR DARK_GRAY}{SHADOW LIGHT_GRAY}, and he woke up abruptly."))
+
+		msgbox(format("He looked at me and said, 'Are you an angel?' I never let him live that down."))
+
+		applymovement(OBJ_EVENT_ID_CAMERA, moves(walk_fast_left * 2))
+		waitmovement(0)
+		msgbox(format("I am so embarassed!"))
+		applymovement(OBJ_EVENT_ID_CAMERA, moves(walk_fast_right * 2))
+
+		msgbox(format("And well... here we are, years later!"))
+
+		applymovement(OBJ_EVENT_ID_CAMERA, moves(walk_fast_left * 2))
+		waitmovement(0)
+
+		applymovement(16, moves(
+			face_right
+			emote_heart
+		))
+
+		msgbox(format("I am glad a met you."))
+
+		applymovement(OBJ_EVENT_ID_CAMERA, moves(walk_fast_right * 2))
+		waitmovement(0)
+
+		applymovement(17, moves(
+			face_left 
+			emote_heart
+		))
+		waitmovement(0)
+
+		msgbox(format("Me too... Me too..."))
+
+		faceplayer
+		msgbox(format("Oh. I am rambling again. Here's a little thank you for listening to me."))
+		giveitem(ITEM_TM_SHOCK_WAVE) 
+		setflag(FLAG_RECEIVED_TM_SHOCK_WAVE)
+	}
+
+	special(RemoveCameraObject)
+	release 
 	end
 }

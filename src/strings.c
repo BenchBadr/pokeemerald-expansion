@@ -929,11 +929,11 @@ const u8 gText_TakeGoodCareOfX[] = _("Take good care of {STR_VAR_3}!");
 
 const u8 gText_ThreeQuestionMarks[] = _("???");
 const u8 gText_MaxHP[] = _("MAX. HP");
-const u8 gText_Attack[] = _("ATTACK");
-const u8 gText_Defense[] = _("DEFENSE");
-const u8 gText_Speed[] = _("SPEED");
-const u8 gText_SpAtk[] = _("SP. ATK");
-const u8 gText_SpDef[] = _("SP. DEF");
+const u8 gText_Attack[] = _("Attack");
+const u8 gText_Defense[] = _("Defense");
+const u8 gText_Speed[] = _("Speed");
+const u8 gText_SpAtk[] = _("Sp. Atk");
+const u8 gText_SpDef[] = _("Sp. Def");
 const u8 gText_Plus[] = _("{PLUS}");
 const u8 gText_Dash[] = _("-");
 const u8 gText_MixingRecords[] = _("Mixing records…");

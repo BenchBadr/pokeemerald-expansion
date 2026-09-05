@@ -218,7 +218,7 @@ static const struct SpriteFrameImage sPicTable_BlackBelt[] = {
 };
 
 static const struct SpriteFrameImage sPicTable_Beauty[] = {
-    overworld_ascending_frames(gObjectEventPic_Beauty, 2, 4),
+    overworld_ascending_frames(gObjectEventPic_Beauty, 4, 4),
 };
 
 static const struct SpriteFrameImage sPicTable_Scientist1[] = {
@@ -226,7 +226,7 @@ static const struct SpriteFrameImage sPicTable_Scientist1[] = {
 };
 
 static const struct SpriteFrameImage sPicTable_Lass[] = {
-    overworld_ascending_frames(gObjectEventPic_Lass, 2, 4),
+    overworld_ascending_frames(gObjectEventPic_Lass, 4, 4),
 };
 
 static const struct SpriteFrameImage sPicTable_Gentleman[] = {

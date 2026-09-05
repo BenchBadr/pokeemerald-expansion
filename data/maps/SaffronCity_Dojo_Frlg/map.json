@@ -3,7 +3,6 @@
   "name": "SaffronCity_Dojo_Frlg",
   "layout": "LAYOUT_SAFFRON_CITY_DOJO",
   "music": "MUS_RG_PEWTER",
-  "region": "REGION_KANTO",
   "region_map_section": "MAPSEC_SAFFRON_CITY",
   "requires_flash": false,
   "weather": "WEATHER_NONE",
@@ -12,12 +11,10 @@
   "allow_escaping": false,
   "allow_running": false,
   "show_map_name": false,
-  "floor_number": 0,
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
   "connections": null,
   "object_events": [
     {
-      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_BLACK_BELT_FRLG",
       "x": 11,
       "y": 10,
@@ -31,7 +28,6 @@
       "flag": "0"
     },
     {
-      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_BLACK_BELT_FRLG",
       "x": 1,
       "y": 10,
@@ -45,7 +41,6 @@
       "flag": "0"
     },
     {
-      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_BLACK_BELT_FRLG",
       "x": 11,
       "y": 8,
@@ -59,7 +54,6 @@
       "flag": "0"
     },
     {
-      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_BLACK_BELT_FRLG",
       "x": 1,
       "y": 8,
@@ -74,7 +68,6 @@
     },
     {
       "local_id": "LOCALID_KARATE_MASTER",
-      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_BLACK_BELT_FRLG",
       "x": 6,
       "y": 5,
@@ -88,7 +81,6 @@
       "flag": "0"
     },
     {
-      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
       "x": 5,
       "y": 3,
@@ -102,7 +94,6 @@
       "flag": "FLAG_HIDE_DOJO_HITMONLEE_BALL"
     },
     {
-      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
       "x": 7,
       "y": 3,
@@ -192,5 +183,7 @@
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "SaffronCity_Dojo_EventScript_RightScroll"
     }
-  ]
+  ],
+  "floor_number": 0,
+  "region": "REGION_KANTO"
 }
