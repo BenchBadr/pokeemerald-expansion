@@ -28,7 +28,7 @@ static const u8 *const sStatNames[NUM_STATS] =
 
 void Script_FriendshipAndStats(void)
 {
-    struct Pokemon *pkmn = &gPlayerParty[0];
+    struct Pokemon *pkmn = &gParties[B_TRAINER_PLAYER][0];
 
     if (GetMonData(&gParties[B_TRAINER_PLAYER][0], MON_DATA_SPECIES) != SPECIES_NONE &&
         !GetMonData(&gParties[B_TRAINER_PLAYER][0], MON_DATA_IS_EGG))

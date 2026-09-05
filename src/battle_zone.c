@@ -23,6 +23,8 @@
 #include "debug.h"
 #include "data.h"
 
+#include "event_object_movement.h"
+
 static const struct MatchmakingOpponent *opp = 0;
 
 
@@ -48,3 +50,5 @@ void Script_LoadOpponentSpeech(void)
     StringCopy(gStringVar3, opp->speechAfter);
 
 }
+
+

@@ -3011,3 +3011,15 @@
 	getbraillestringwidth \text
 	call EventScript_BrailleCursorWaitButton
 	.endm
+
+.macro createvirtualobjects startX:req, startY:req, count:req, type:req, direction:req, gap:req, isCol:req, idStart:req
+    .byte SCR_OP_CREATEVIRTUALOBJECTS
+    .2byte \startX
+    .2byte \startY
+    .2byte \count
+    .2byte \type
+    .2byte \direction
+    .2byte \gap
+    .2byte \isCol
+    .2byte \idStart
+    .endm

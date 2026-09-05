@@ -59,6 +59,9 @@
 #include "constants/union_room.h"
 #include "constants/weather.h"
 
+#include "field_player_avatar.h"
+#include "virtual_pools.h"
+
 #define SPECIAL_LOCALIDS_START (min(LOCALID_CAMERA, \
                                 min(LOCALID_PLAYER, \
                                 min(LOCALID_BERRY_BLENDER_PLAYER_END - MAX_RFU_PLAYERS + 1, \
@@ -2097,6 +2100,31 @@ u8 CreateVirtualObject(u16 graphicsId, u8 virtualObjId, s16 x, s16 y, u8 elevati
     }
     return spriteId;
 }
+
+void CreateVirtualObjects(u16 startX, u16 startY, u16 count, u8 poolType, u8 direction, u8 gap, bool8 isCol, u8 idStart)
+{
+    
+    // needs to be shifted based on player position 
+    // s16 pX, pY;
+    // PlayerGetDestCoords(&pX, &pY);
+    // startX = startX + pX;
+
+    const struct NpcPoolInfo *pool = &gVirtualNpcPools[poolType];
+
+    for (u16 i = 0; i < count; i++)
+    {
+        u16 randomGfx = pool->sprites[Random() % pool->count];
+
+        u8 virtualObjId = idStart + i; // unique id - map object should not be above idStart
+        u8 elevation = 3;
+
+        CreateVirtualObject(randomGfx, virtualObjId, isCol ? startX : startX + i * (gap+1), isCol ? startY + i * (gap+1) : startY, elevation, direction);
+    }
+}
+
+
+
+
 
 // Return address of first conscious party mon or NULL
 struct Pokemon *GetFirstLiveMon(void)

@@ -289,14 +289,7 @@
       "y": 20,
       "elevation": 0,
       "dest_map": "MAP_AMPHITEATRE",
-      "dest_warp_id": "2"
-    },
-    {
-      "x": 44,
-      "y": 20,
-      "elevation": 0,
-      "dest_map": "MAP_AMPHITEATRE",
-      "dest_warp_id": "3"
+      "dest_warp_id": "0"
     }
   ],
   "coord_events": [],

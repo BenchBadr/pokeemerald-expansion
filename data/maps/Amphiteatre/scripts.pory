@@ -1,0 +1,32 @@
+mapscripts Amphiteatre_MapScripts {
+    MAP_SCRIPT_ON_RESUME: Amphiteatre_OnResume
+}
+
+script Amphiteatre_OnResume {
+    // Only spawn if it hasn't been created yet
+    if (!flag(FLAG_TEMP_1)) {
+        setflag(FLAG_TEMP_1)
+        
+        // CreateVirtualObjects(
+        //      startX, 
+        //      startY, 
+        //      count, 
+        //      poolType, 
+        //      direction, 
+        //      padding,
+        //      isCol, 
+        //      idStart);
+
+        createvirtualobjects(12, 2, 3, 0, DIR_SOUTH, 1, 0, 20)
+        createvirtualobjects(25, 8, 2, 0, DIR_SOUTH, 1, 0, 23)
+        createvirtualobjects(12, 6, 2, 0, DIR_SOUTH, 1, 0, 25)
+        createvirtualobjects(12, 8, 3, 0, DIR_SOUTH, 1, 0, 27)
+        createvirtualobjects(21, 12, 4, 0, DIR_SOUTH, 1, 0, 30)
+        createvirtualobjects(21, 2, 4, 0, DIR_SOUTH, 1, 0, 34)
+        createvirtualobjects(21, 6, 4, 0, DIR_SOUTH, 1, 0, 38)
+        createvirtualobjects(14, 12, 2, 0, DIR_SOUTH, 1, 0, 42)
+        createvirtualobjects(12, 15, 2, 0, DIR_EAST, 1, 1, 44)
+        createvirtualobjects(12, 24, 3, 0, DIR_EAST, 1, 1, 46)
+    }
+    end
+}

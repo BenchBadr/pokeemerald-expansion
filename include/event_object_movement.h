@@ -510,6 +510,8 @@ u8 MovementType_Invisible_Step1(struct ObjectEvent *objectEvent, struct Sprite *
 u8 MovementType_Invisible_Step2(struct ObjectEvent *objectEvent, struct Sprite *sprite);
 
 u8 CreateVirtualObject(u16 graphicsId, u8 virtualObjId, s16 x, s16 y, u8 elevation, enum Direction direction);
+void CreateVirtualObjects(u16 startX, u16 startY, u16 count, u8 elevation, u8 direction, u8 padding, bool8 isCol, u8 idStart);
+
 void TurnVirtualObject(u8 virtualObjId, enum Direction direction);
 void SetVirtualObjectGraphics(u8 virtualObjId, u16 graphicsId);
 void SetVirtualObjectInvisibility(u8 virtualObjId, bool32 invisible);

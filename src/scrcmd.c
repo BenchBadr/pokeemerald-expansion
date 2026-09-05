@@ -3426,3 +3426,21 @@ bool8 ScrCmd_normalmsg(struct ScriptContext *ctx)
     gMsgIsSignPost = FALSE;
     return FALSE;
 }
+
+
+// Addition 
+bool8 ScrCmd_createvirtualobjects(struct ScriptContext *ctx)
+{
+    u16 startX    = VarGet(ScriptReadHalfword(ctx));
+    u16 startY    = VarGet(ScriptReadHalfword(ctx));
+    u16 count     = VarGet(ScriptReadHalfword(ctx));
+    u8 poolType  = VarGet(ScriptReadHalfword(ctx));
+    u8 direction  = VarGet(ScriptReadHalfword(ctx));
+    u8 gap    = VarGet(ScriptReadHalfword(ctx));
+    bool8 isCol   = VarGet(ScriptReadHalfword(ctx));
+    u8 idStart    = VarGet(ScriptReadHalfword(ctx));
+
+    CreateVirtualObjects(startX, startY, count, poolType, direction, gap, isCol, idStart);
+
+    return FALSE;
+}
