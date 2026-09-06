@@ -753,6 +753,20 @@ Arr2_BarLass::
 	return
 
 
+GiveRunShoes::
+# 643 "data/maps/OldaleTown/scripts.pory"
+	lock
+# 644 "data/maps/OldaleTown/scripts.pory"
+	faceplayer
+# 645 "data/maps/OldaleTown/scripts.pory"
+	msgbox GiveRunShoes_Text_0
+# 646 "data/maps/OldaleTown/scripts.pory"
+	setflag FLAG_RECEIVED_RUNNING_SHOES
+# 647 "data/maps/OldaleTown/scripts.pory"
+	release
+	end
+
+
 # 75 "data/maps/OldaleTown/scripts.pory"
 BattleZone1_Matchmaking_Movement_0:
 # 76 "data/maps/OldaleTown/scripts.pory"
@@ -1338,3 +1352,7 @@ Arr2_BarLady_Text_11:
 # 628 "data/maps/OldaleTown/scripts.pory"
 	.string "Oh. I am rambling again. Here's a little\n"
 	.string "thank you for listening to me.$"
+
+GiveRunShoes_Text_0:
+# 645 "data/maps/OldaleTown/scripts.pory"
+	.string "Take these shoes$"

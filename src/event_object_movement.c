@@ -2104,10 +2104,12 @@ u8 CreateVirtualObject(u16 graphicsId, u8 virtualObjId, s16 x, s16 y, u8 elevati
 void CreateVirtualObjects(u16 startX, u16 startY, u16 count, u8 poolType, u8 direction, u8 gap, bool8 isCol, u8 idStart)
 {
     
-    // needs to be shifted based on player position 
+    // needs to be shifted based on player position ?
     // s16 pX, pY;
     // PlayerGetDestCoords(&pX, &pY);
-    // startX = startX + pX;
+
+    // startX = startX;
+    // startY = startY;
 
     const struct NpcPoolInfo *pool = &gVirtualNpcPools[poolType];
 

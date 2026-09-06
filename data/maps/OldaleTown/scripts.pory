@@ -638,3 +638,12 @@ script Arr2_BarLady {
 script Arr2_BarLass {
 	
 }
+
+script GiveRunShoes {
+	lock 
+	faceplayer 
+	msgbox(format("Take these shoes"))
+	setflag(FLAG_RECEIVED_RUNNING_SHOES)
+	release 
+	end
+}

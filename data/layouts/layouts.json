@@ -9348,7 +9348,7 @@
       "id": "LAYOUT_AMPHITEATRE",
       "name": "Amphiteatre_Layout",
       "width": 30,
-      "height": 30,
+      "height": 37,
       "primary_tileset": "gTileset_Building",
       "secondary_tileset": "gTileset_BikeShop",
       "border_filepath": "data/layouts/Amphiteatre/border.bin",
