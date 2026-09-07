@@ -1006,7 +1006,8 @@ bool8 ScriptMenu_ShowPokemonPic(enum Species species, u8 x, u8 y)
         gTasks[taskId].tMonSpriteId = spriteId;
         gSprites[spriteId].callback = SpriteCallbackDummy;
         gSprites[spriteId].oam.priority = 0;
-        SetStandardWindowBorderStyle(gTasks[taskId].tWindowId, TRUE);
+        // SetStandardWindowBorderStyle(gTasks[taskId].tWindowId, TRUE);
+        DrawStdFrameWithCustomTileAndPalette(gTasks[taskId].tWindowId, TRUE, STD_WINDOW_BASE_TILE_NUM, 15);
         ScheduleBgCopyTilemapToVram(0);
         return TRUE;
     }

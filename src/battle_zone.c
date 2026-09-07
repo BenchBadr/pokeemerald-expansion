@@ -52,3 +52,8 @@ void Script_LoadOpponentSpeech(void)
 }
 
 
+void GetTrainerIdString(void)
+{
+    u16 trainerId = (gSaveBlock2Ptr->playerTrainerId[1] << 8) | gSaveBlock2Ptr->playerTrainerId[0];
+    ConvertIntToDecimalStringN(gStringVar1, trainerId, STR_CONV_MODE_LEADING_ZEROS, 5);
+}

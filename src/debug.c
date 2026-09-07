@@ -4160,12 +4160,14 @@ static void DebugAction_DestroyFollowerNPC(u8 taskId)
     X(MUS_RG_TRAINER_TOWER)         \
     X(MUS_RG_SLOW_PALLET)           \
     X(MUS_RG_TEACHY_TV_MENU)        \
-    X(MUS_POICONNEUR_LILAS)         \
-    X(MUS_XY_SYNCA)                 \
+    X(MUS_LUTECIA) \
+    X(MUS_SYCAMORE) \
     X(MUS_POKEMON_XY_WILD_POKEMON)  \
     X(MUS_BATTLE_JACINTHE)          \
     X(MUS_PKMN_SWORD_SHIELD_GYM_BATTLE_NORMAL) \
-    X(MUS_XYTRAINERBATTLE)
+    X(MUS_XYTRAINERBATTLE) \
+    X(MUS_VS_WILD_2) \
+    X(MUS_ZA_TRAINER)
 
 #define SOUND_LIST_SE               \
     X(SE_USE_ITEM)                  \

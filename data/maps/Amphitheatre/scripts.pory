@@ -1,0 +1,490 @@
+mapscripts Amphitheatre_MapScripts {
+    MAP_SCRIPT_ON_FRAME_TABLE [
+        VAR_TEMP_0, 0 { 
+            lock
+            if (!flag(FLAG_TEMP_1)) {
+                call(Amphitheatre_CreateCrowd)
+
+                setflag(FLAG_TEMP_1)
+
+                removeobject(6, MAP_AMPHITHEATRE)
+                removeobject(7, MAP_AMPHITHEATRE)
+                removeobject(8, MAP_AMPHITHEATRE)
+
+                setflag(FLAG_IS_CHOOSING_MON)
+            }
+
+            setvar(VAR_TEMP_0, 1)
+            release
+        }
+    ]
+}
+
+script Amphitheatre_CreateCrowd {
+
+    createvirtualobjects(12, 9, 3, VAR_TEMP_5, DIR_SOUTH, 1, 0, 20)
+    createvirtualobjects(25, 15, 2, VAR_TEMP_5, DIR_SOUTH, 1, 0, 23)
+    createvirtualobjects(12, 13, 2, VAR_TEMP_5, DIR_SOUTH, 1, 0, 25)
+    createvirtualobjects(12, 15, 3, VAR_TEMP_5, DIR_SOUTH, 1, 0, 27)
+    createvirtualobjects(21, 19, 4, VAR_TEMP_5, DIR_SOUTH, 1, 0, 30)
+
+    createvirtualobjects(22, 9, 3, VAR_TEMP_5, DIR_SOUTH, 1, 0, 34)
+
+    createvirtualobjects(21, 13, 4, VAR_TEMP_5, DIR_SOUTH, 1, 0, 38)
+    createvirtualobjects(14, 19, 2, VAR_TEMP_5, DIR_SOUTH, 1, 0, 42)
+
+    // east
+    createvirtualobjects(12, 22, 2, VAR_TEMP_5, DIR_EAST, 1, 1, 44)
+    createvirtualobjects(12, 31, 2, VAR_TEMP_5, DIR_EAST, 1, 1, 46)
+}
+
+script Amphitheatre_ClearCrowd {
+    special(DrawWholeMapView)
+    setflag(FLAG_TEMP_1)
+}
+
+
+
+
+/// The introduction script - When starter is given
+
+script Arr2_AmphiIntroduction {
+    lock
+    if (flag(FLAG_SYS_POKEMON_GET)) {
+        msgbox(format("Time to battle with Rival."))
+
+        
+        return
+    }
+
+    applymovement(OBJ_EVENT_ID_PLAYER, moves(
+        face_right
+    ))
+    waitmovement(0)
+
+    msgbox(format("You're late. Hurry up."))
+
+    closemessage
+
+    playSE(SE_PIN)
+
+    applymovement(OBJ_EVENT_ID_PLAYER, moves(
+        emote_exclamation_mark
+        player_run_down * 12
+        player_run_right * 2
+        face_down
+    ))
+    waitmovement(0)
+
+    delay(60) // once you're seated
+
+    // Camera moving
+    special(SpawnCameraObject)
+    applymovement(OBJ_EVENT_ID_CAMERA, moves(walk_down * 10))
+    waitmovement(0)
+
+
+    hideobjectat(6, MAP_AMPHITHEATRE)
+    hideobjectat(7, MAP_AMPHITHEATRE)
+    hideobjectat(8, MAP_AMPHITHEATRE)
+
+    call(Amphi_IntroScientist1)
+    call(Amphi_IntroSycamore1)
+    call(Amphi_IntroScientist2)
+    call(Amphi_IntroCallingNames)
+
+
+    special(RemoveCameraObject)
+
+    call(Amphi_CallingTrainer)
+
+    // applymovement(OBJ_EVENT_ID_CAMERA, moves(walk_up * 10))
+    // waitmovement(0)
+
+    special(RemoveCameraObject)
+
+
+    release 
+    end
+}
+
+script Amphi_IntroScientist1 {
+    setspeaker("Host")
+
+    msgbox(format("... that unexpectedly ascended into among the greatest trainers worldwide."))
+    msgbox(format("The PWC, stands for Pokémon World Championship. It's a world organization that help nominate the best trainer worldwide every five years. "))
+
+    msgbox(format("Not only that but it also funds a lot of infrastructures like {COLOR RED}{SHADOW LIGHT_RED}Pokémon Centers {COLOR DARK_GRAY}{SHADOW LIGHT_GRAY} or {COLOR RED}{SHADOW LIGHT_RED}Battle Zones."))
+
+    msgbox(format("We will now welcome Prof. Sycamore to talk about your goals."))
+
+    closemessage
+
+    applymovement(1, moves(
+        walk_down * 3
+        face_up
+    ))
+    waitmovement(0)
+
+    closemessage
+    return
+}
+
+script Amphi_IntroSycamore1 {
+    playbgm(MUS_SYCAMORE, FALSE)
+
+    applymovement(2, moves(walk_up * 3))
+    waitmovement(0)
+
+    setspeaker("Pr. Sycamore")
+    msgbox(format("Hello everyone."))
+    msgbox(format("Adding to what has been said, the PWC is also funding today's ceremony jointly with the Copernic Lab."))
+    msgbox(format("You are all about to receive a Pokémon, commonly known as a starter from the region you wish among a list."))
+    msgbox(format("We hope for three things : See as much of you in high ranked official battles, receive a lot of data with your respective Pokédexes and finally... create a lot of memories."))
+    msgbox(format("Thank you for your attention."))
+    closemessage
+
+    applymovement(2, moves(
+        walk_down * 3
+        face_up
+    ))
+    waitmovement(0)
+    playSE(SE_APPLAUSE)
+    delay(120)
+
+    closemessage
+    return
+}
+
+script Amphi_IntroScientist2 {
+
+    applymovement(1, moves(walk_up * 3))
+    waitmovement(0)
+
+
+    setspeaker("Host")
+
+    msgbox(format("We will now begin distributing the Pokémon."))
+    msgbox(format("Please note, there are exactly as much Pokémon than the number of people in this room."))
+    msgbox(format("That being said, the Pokémon you want may not be available by the time it's your turn."))
+    msgbox(format("Order is based on a random shuffle of all the trainer IDs."))
+
+    msgbox(format("When you hear your name, please come to the stand."))
+    msgbox(format("Let us get started."))
+
+    closemessage
+
+    applymovement(1, moves(
+        walk_down * 3
+        face_up
+    ))
+    waitmovement(0)
+
+
+    return
+}
+
+script Amphi_IntroCallingNames {
+    msgbox(format("Trainer ID : 290620."))
+    closemessage
+
+    applymovement(OBJ_EVENT_ID_CAMERA, moves(walk_fast_up * 10))
+    waitmovement(0)
+
+    playSE(SE_PIN)
+    applymovement(4, moves(
+        emote_exclamation_mark
+        jump_in_place_down
+    ))
+    msgbox(format("Oh nice, I'm first! I get to pick whatever Pokémon I want."))
+    closemessage
+
+
+
+    applymovement(4, moves(
+        walk_fast_right * 2
+        walk_fast_down * 9
+    ))
+    waitmovement(0)
+    removeobject(4)
+
+    setspeaker("Pr. Sycamore")
+    msgbox(format("From what region you want it?"))
+    closemessage
+
+    msgbox(format("From Hoenn! I want a Torchic."))
+    closemessage
+
+    delay(60)
+
+
+    applymovement(5, moves(face_left))
+    applymovement(OBJ_EVENT_ID_PLAYER, moves(face_right))
+
+    msgbox(format("Oh boy.. I sure hope we're not among the last ones."))
+    msgbox(format("All the best Pokémon will be picked by then."))
+    closemessage
+
+    applymovement(5, moves(face_down))
+    applymovement(OBJ_EVENT_ID_PLAYER, moves(face_down))
+
+
+    fadescreen(FADE_TO_BLACK)
+    setvar(VAR_0x8014, 2)
+
+    msgbox(format("A lot of time has passed. Everyone got their Pokémon except for two people."))
+
+    closemessage
+    callnative(DestroyVirtualObjects)
+
+    setvar(VAR_0x8014, 0)
+    fadescreen(FADE_FROM_BLACK)
+}
+
+script Amphi_CallingTrainer {
+    callnative(GetTrainerIdString)
+    msgbox(format("Trainer ID : {STR_VAR_1}. Name : {PLAYER}."))
+    closemessage
+
+
+    applymovement(OBJ_EVENT_ID_PLAYER, moves(
+        walk_fast_left * 2
+        walk_fast_down * 12
+    ))
+    waitmovement(0)
+
+    applymovement(1, moves(
+        walk_right * 2
+        walk_up
+    ))
+
+    applymovement(OBJ_EVENT_ID_PLAYER, moves(
+        walk_right * 4
+        face_up
+    ))
+    waitmovement(0)
+
+
+
+    setspeaker("Host")
+    msgbox(format("You are in luck. Someone did not show up. So there are three Pokémon remaining for you to choose from."))
+    closemessage 
+
+
+    applymovement(2, moves(
+        walk_up * 4
+        face_down
+    ))
+    waitmovement(0)
+
+    setspeaker("Pr. Sycamore")
+    msgbox(format("Which are..."))
+    closemessage
+
+    fadedefaultbgm
+
+    clearflag(FLAG_IS_CHOOSING_MON)
+
+    addobject(6)
+    addobject(7)
+    addobject(8)
+
+    showobjectat(6, MAP_AMPHITHEATRE)
+    showobjectat(7, MAP_AMPHITHEATRE)
+    showobjectat(8, MAP_AMPHITHEATRE)
+
+    playSE(SE_BALL_OPEN)
+    playSE(SE_BALL_OPEN)
+    playSE(SE_BALL_OPEN)
+
+    playmoncry(SPECIES_SNIVY, CRY_MODE_NORMAL)
+    playmoncry(SPECIES_CHIMCHAR, CRY_MODE_NORMAL)
+    playmoncry(SPECIES_SOBBLE, CRY_MODE_NORMAL)
+    waitmoncry
+
+
+    applymovement(6, moves(
+        exit_pokeball
+        face_right
+    ))
+    applymovement(7, moves(
+        exit_pokeball
+        face_down
+    ))
+    applymovement(8, moves(
+        exit_pokeball
+        face_left
+    ))
+    waitmovement(0)
+
+
+    delay(60)
+    special(SaveGame)
+
+
+    release 
+    end
+
+}
+
+
+script Amphi_ChooseSnivy {
+    lock
+    faceplayer
+    setvar(VAR_0x8014, 1)
+    playmoncry(SPECIES_SNIVY, CRY_MODE_NORMAL)
+    showmonpic(SPECIES_SNIVY, 0, 4)
+    msgbox("Would you like to choose Snivy?", MSGBOX_YESNO)
+    waitmoncry
+    hidemonpic
+    setvar(VAR_0x8014, 0)
+    if (var(VAR_RESULT)) {
+        applymovement(6, moves(
+            emote_heart
+            jump_in_place_right * 3
+        ))
+        waitmovement(0)
+        
+        givemon(SPECIES_SNIVY, 5, ITEM_NONE)
+        bufferspeciesname(STR_VAR_1, SPECIES_SNIVY)
+
+        applymovement(6, moves(
+            enter_pokeball
+        ))
+        waitmovement(0)
+
+        call(Amphi_StarterNickname)
+    }
+
+    closemessage
+}
+
+script Amphi_ChooseChimchar {
+    lock
+    faceplayer
+    setvar(VAR_0x8014, 1)
+    playmoncry(SPECIES_CHIMCHAR, CRY_MODE_NORMAL)
+    showmonpic(SPECIES_CHIMCHAR, 0, 4)
+    msgbox("Would you like to choose Chimchar?", MSGBOX_YESNO)
+    waitmoncry
+    hidemonpic
+    setvar(VAR_0x8014, 0)
+    if (var(VAR_RESULT)) {
+        applymovement(6, moves(
+            emote_heart
+            jump_in_place_right * 3
+        ))
+        waitmovement(0)
+        givemon(SPECIES_CHIMCHAR, 5, ITEM_NONE)
+        bufferspeciesname(STR_VAR_1, SPECIES_CHIMCHAR)
+
+        applymovement(6, moves(
+            enter_pokeball
+        ))
+        waitmovement(0)
+
+        call(Amphi_StarterNickname)
+    }
+
+    closemessage
+}
+
+script Amphi_ChooseSobble {
+    lock
+    faceplayer
+    setvar(VAR_0x8014, 1)
+    playmoncry(SPECIES_SOBBLE, CRY_MODE_NORMAL)
+    showmonpic(SPECIES_SOBBLE, 0, 4)
+    msgbox("Would you like to choose Sobble?", MSGBOX_YESNO)
+    waitmoncry
+    hidemonpic
+    setvar(VAR_0x8014, 0)
+    if (var(VAR_RESULT)) {
+        applymovement(6, moves(
+            emote_heart
+            jump_in_place_right * 3
+        ))
+        waitmovement(0)
+        givemon(SPECIES_SOBBLE, 5, ITEM_NONE)
+        bufferspeciesname(STR_VAR_1, SPECIES_SOBBLE)
+
+        applymovement(6, moves(
+            enter_pokeball
+        ))
+        waitmovement(0)
+
+        call(Amphi_StarterNickname)
+    }
+
+    closemessage
+}
+
+script Amphi_StarterNickname {
+    setflag(FLAG_SYS_POKEMON_GET)
+    msgbox(format("Would you like to give {STR_VAR_1} a nickname?"), MSGBOX_YESNO)
+    if (var(VAR_RESULT)==1){
+        if (var(VAR_RESULT)==1){
+            call(Common_EventScript_NameReceivedPartyMon)
+        }
+    }
+
+    applymovement(2, moves(
+        walk_down 
+        face_right 
+    ))
+
+    applymovement(3, moves(
+        face_left
+    ))
+
+    applymovement(6, moves(
+        enter_pokeball
+    ))
+
+    applymovement(7, moves(
+        enter_pokeball
+    ))
+
+    applymovement(8, moves(
+        enter_pokeball
+    ))
+
+    waitmovement(0)
+
+    setvar(VAR_0x8014, 0)
+    setspeaker("Pr. Sycamore")
+    msgbox(format("Now that you have your partner, here is a Pokédex. We hope that you fill as many pages as possible. That data will be valuable for our researches."))
+
+
+    // setflag(FLAG_SYS_POKEDEX_GET)
+    setflag(FLAG_SYS_POKENAV_GET)
+    setflag(FLAG_IS_CHOOSING_MON)
+
+    closemessage
+    release 
+    end
+}
+
+script Amphi_Policeman {
+    lock 
+    msgbox(format("Dummy text."))
+    release 
+    end
+}
+
+script Arr2_ForceChooseStarter {
+    lock
+    if (!flag(FLAG_SYS_POKEMON_GET)) 
+    {
+        msgbox(format("Host"))
+        msgbox(format("Where are you going?"))
+        
+        applymovement(OBJ_EVENT_ID_PLAYER, moves(
+            walk_right * 1
+        ))
+
+    }
+    release 
+    end 
+
+}

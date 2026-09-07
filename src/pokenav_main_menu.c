@@ -135,15 +135,15 @@ static const struct CompressedSpriteSheet sMenuLeftHeaderSpriteSheet =
 
 static const struct CompressedSpriteSheet sMenuLeftHeaderSpriteSheets[] =
 {
-    [POKENAV_GFX_MAIN_MENU] = {
-        .data = gPokenavLeftHeaderMainMenu_Gfx,
-        .size = 0x20,
-        .tag = 3
-    },
     [POKENAV_GFX_CONDITION_MENU] = {
         .data = gPokenavLeftHeaderCondition_Gfx,
         .size = 0x20,
         .tag = 1
+    },
+    [POKENAV_GFX_MAIN_MENU] = {
+        .data = gPokenavLeftHeaderMainMenu_Gfx,
+        .size = 0x20,
+        .tag = 3
     },
     [POKENAV_GFX_RIBBONS_MENU] = {
         .data = gPokenavLeftHeaderRibbons_Gfx,

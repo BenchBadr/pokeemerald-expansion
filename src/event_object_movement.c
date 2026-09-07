@@ -2101,6 +2101,8 @@ u8 CreateVirtualObject(u16 graphicsId, u8 virtualObjId, s16 x, s16 y, u8 elevati
     return spriteId;
 }
 
+// Create V Objects (row / col) - Note : The map needs to be fully loaded first (i.e onframe0) otherwise positionning gliches may occur
+
 void CreateVirtualObjects(u16 startX, u16 startY, u16 count, u8 poolType, u8 direction, u8 gap, bool8 isCol, u8 idStart)
 {
     
@@ -2124,7 +2126,7 @@ void CreateVirtualObjects(u16 startX, u16 startY, u16 count, u8 poolType, u8 dir
     }
 }
 
-
+// Clear V Object (by range)
 
 
 
@@ -10981,7 +10983,7 @@ static void SpriteCB_VirtualObject(struct Sprite *sprite)
     UpdateObjectEventSpriteInvisibility(sprite, sprite->sInvisible);
 }
 
-static void UNUSED DestroyVirtualObjects(void)
+void DestroyVirtualObjects(void)
 {
     int i;
 

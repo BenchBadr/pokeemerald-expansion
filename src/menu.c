@@ -194,7 +194,7 @@ u16 AddTextPrinterParameterized2(u8 windowId, u8 fontId, const u8 *str, u8 speed
 void AddTextPrinterForMessage(bool8 allowSkippingDelayWithButtonPress)
 {
     gTextFlags.canABSpeedUpPrint = allowSkippingDelayWithButtonPress;
-    AddTextPrinterParameterized2(0, FONT_NORMAL, gStringVar4, GetPlayerTextSpeedDelay(), NULL, TEXT_COLOR_DARK_GRAY, TEXT_COLOR_WHITE, TEXT_COLOR_LIGHT_GRAY);
+    AddTextPrinterParameterized2(0, FONT_NORMAL, gStringVar4, GetPlayerTextSpeedDelay(), NULL, TEXT_COLOR_DARK_GRAY, gSpecialVar_Unused_0x8014 < 2 ? TEXT_COLOR_WHITE : 0, TEXT_COLOR_LIGHT_GRAY);
 }
 
 void AddTextPrinterWithCustomSpeedForMessage(bool8 allowSkippingDelayWithButtonPress, u8 speed)
@@ -239,6 +239,8 @@ static void WindowFunc_DrawSignFrame(u8 bg, u8 left, u8 top, u8 width, u8 height
     FillMenuTilemapBufferRect(bg, BG_TILE_V_FLIP(BG_TILE_H_FLIP(1)), left + 26, top + 4, 1, 1);
 }
 
+
+
 static inline void *GetWindowFunc_DialogueFrame(void)
 {
     u8 dark = gSpecialVar_Unused_0x8014;
@@ -252,14 +254,20 @@ void DrawDialogueFrame(u8 windowId, bool8 copyToVram)
     sTileNum = DLG_WINDOW_BASE_TILE_NUM;
     sPaletteNum = DLG_WINDOW_PALETTE_NUM;
 
-    CallWindowFunction(windowId, GetWindowFunc_DialogueFrame());
 
-    FillWindowPixelBuffer(windowId, PIXEL_FILL(1));
+    if (dark > 1) 
+    {
+        FillWindowPixelBuffer(windowId, PIXEL_FILL(0));
+    } else {
+        CallWindowFunction(windowId, GetWindowFunc_DialogueFrame());
+        FillWindowPixelBuffer(windowId, PIXEL_FILL(1));
+    }
+    
     PutWindowTilemap(windowId);
 
 
 
-    if ((dark || gMsgIsSignPost) && !IsWeatherAlphaBlend()) {
+    if ((dark == 1 || gMsgIsSignPost) && !IsWeatherAlphaBlend()) {
 
         SetGpuReg(REG_OFFSET_BLDCNT, BLDCNT_TGT1_BG0 | BLDCNT_TGT2_BG1 | BLDCNT_TGT2_BG2 | BLDCNT_TGT2_BG3 | BLDCNT_EFFECT_BLEND);
 

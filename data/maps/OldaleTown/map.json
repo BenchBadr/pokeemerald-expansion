@@ -2,7 +2,7 @@
   "id": "MAP_OLDALE_TOWN",
   "name": "OldaleTown",
   "layout": "LAYOUT_OLDALE_TOWN",
-  "music": "MUS_POICONNEUR_LILAS",
+  "music": "MUS_LUTECIA",
   "region_map_section": "MAPSEC_OLDALE_TOWN",
   "requires_flash": false,
   "weather": "WEATHER_SUNNY",
@@ -12,7 +12,13 @@
   "allow_running": true,
   "show_map_name": true,
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
-  "connections": null,
+  "connections": [
+    {
+      "map": "MAP_DEWFORD_TOWN",
+      "offset": 20,
+      "direction": "up"
+    }
+  ],
   "object_events": [
     {
       "graphics_id": "OBJ_EVENT_GFX_RICH_BOY",
@@ -188,7 +194,7 @@
       "x": 89,
       "y": 18,
       "elevation": 0,
-      "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
+      "movement_type": "MOVEMENT_TYPE_WALK_IN_PLACE_RIGHT",
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
@@ -273,6 +279,19 @@
       "trainer_sight_or_berry_tree_id": "0",
       "script": "GiveRunShoes",
       "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(LUVDISC)",
+      "x": 87,
+      "y": 15,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_WALK_IN_PLACE_LEFT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "NULL",
+      "flag": "FLAG_BAR_TRADE_COMPLETED"
     }
   ],
   "warp_events": [
@@ -301,7 +320,7 @@
       "x": 39,
       "y": 20,
       "elevation": 0,
-      "dest_map": "MAP_AMPHITEATRE",
+      "dest_map": "MAP_AMPHITHEATRE",
       "dest_warp_id": "0"
     }
   ],

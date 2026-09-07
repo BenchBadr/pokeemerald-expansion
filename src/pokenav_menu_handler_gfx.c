@@ -17,6 +17,8 @@
 #include "constants/songs.h"
 #include "constants/rgb.h"
 
+#include "pokedex.h"
+
 #define GFXTAG_BLUE_LIGHT 1
 #define GFXTAG_OPTIONS    3
 
@@ -203,8 +205,8 @@ struct
         .yStart = 42,
         .deltaY = 20,
         .gfx = {
-            sOptionsLabelGfx_RegionMap,
             sOptionsLabelGfx_Condition,
+            sOptionsLabelGfx_RegionMap,
             sOptionsLabelGfx_SwitchOff
         }
     },
@@ -213,8 +215,8 @@ struct
         .yStart = 42,
         .deltaY = 20,
         .gfx = {
-            sOptionsLabelGfx_RegionMap,
             sOptionsLabelGfx_Condition,
+            sOptionsLabelGfx_RegionMap,
             sOptionsLabelGfx_MatchCall,
             sOptionsLabelGfx_SwitchOff
         }
@@ -683,32 +685,7 @@ static u32 LoopedTask_OpenConditionSearchMenu(s32 state)
 
 static u32 LoopedTask_ReturnToConditionMenu(s32 state)
 {
-    switch (state)
-    {
-    case 0:
-        ResetBldCnt();
-        StartOptionAnimations_Exit();
-        HideMainOrSubMenuLeftHeader(POKENAV_GFX_SEARCH_MENU, FALSE);
-        return LT_INC_AND_PAUSE;
-    case 1:
-        if (AreMenuOptionSpritesMoving())
-            return LT_PAUSE;
-        if (AreLeftHeaderSpritesMoving())
-            return LT_PAUSE;
-        DrawCurrentMenuOptionLabels();
-        return LT_INC_AND_PAUSE;
-    case 2:
-        StartOptionAnimations_Enter();
-        PrintCurrentOptionDescription();
-        return LT_INC_AND_PAUSE;
-    case 3:
-        if (AreMenuOptionSpritesMoving())
-            return LT_PAUSE;
-        if (IsTaskActive_UpdateBgDotsPalette())
-            return LT_PAUSE;
-        InitMenuOptionGlow();
-        break;
-    }
+    CB2_OpenPokedex();
     return LT_FINISH;
 }
 

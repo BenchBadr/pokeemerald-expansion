@@ -296,17 +296,17 @@ Arr2_BarTradeMagikarp::
 # 287 "data/maps/OldaleTown/scripts.pory"
 	setspeaker Arr2_BarTradeMagikarp_Text_0
 # 289 "data/maps/OldaleTown/scripts.pory"
-	goto_if_set FLAG_RUSTBORO_NPC_TRADE_COMPLETED, Arr2_BarTradeMagikarp_2
+	goto_if_set FLAG_BAR_TRADE_COMPLETED, Arr2_BarTradeMagikarp_2
 # 296 "data/maps/OldaleTown/scripts.pory"
 	msgbox Arr2_BarTradeMagikarp_Text_2
 # 297 "data/maps/OldaleTown/scripts.pory"
 	msgbox Arr2_BarTradeMagikarp_Text_3
 # 299 "data/maps/OldaleTown/scripts.pory"
-	ingame_trade INGAME_TRADE_SEEDOT, Arr2_BarTradeMagikarp_Text_4, Arr2_BarTradeMagikarp_Text_5, Arr2_BarTradeMagikarp_Text_6, Arr2_BarTradeMagikarp_Text_7
+	ingame_trade INGAME_TRADE_LUVDISC, Arr2_BarTradeMagikarp_Text_4, Arr2_BarTradeMagikarp_Text_5, Arr2_BarTradeMagikarp_Text_6, Arr2_BarTradeMagikarp_Text_7
 # 300 "data/maps/OldaleTown/scripts.pory"
 	closemessage
 # 302 "data/maps/OldaleTown/scripts.pory"
-	setflag FLAG_RUSTBORO_NPC_TRADE_COMPLETED
+	setflag FLAG_BAR_TRADE_COMPLETED
 # 304 "data/maps/OldaleTown/scripts.pory"
 	release
 	end
@@ -358,7 +358,7 @@ Arr2_BarBeerWaiter::
 # 340 "data/maps/OldaleTown/scripts.pory"
 	msgbox Arr2_BarBeerWaiter_Text_10
 # 343 "data/maps/OldaleTown/scripts.pory"
-	setvar VAR_0x8001, 10
+	setvar VAR_0x8001, 30
 # 344 "data/maps/OldaleTown/scripts.pory"
 	setvar VAR_0x8003, 5
 # 346 "data/maps/OldaleTown/scripts.pory"
@@ -759,10 +759,42 @@ GiveRunShoes::
 # 644 "data/maps/OldaleTown/scripts.pory"
 	faceplayer
 # 645 "data/maps/OldaleTown/scripts.pory"
-	msgbox GiveRunShoes_Text_0
+	setvar VAR_0x8014, 2
 # 646 "data/maps/OldaleTown/scripts.pory"
-	setflag FLAG_RECEIVED_RUNNING_SHOES
+	msgbox GiveRunShoes_Text_0
 # 647 "data/maps/OldaleTown/scripts.pory"
+	setflag FLAG_RECEIVED_RUNNING_SHOES
+# 648 "data/maps/OldaleTown/scripts.pory"
+	setvar VAR_0x8014, 0
+# 650 "data/maps/OldaleTown/scripts.pory"
+	release
+	end
+
+
+Arr2_Luvdisc::
+# 658 "data/maps/OldaleTown/scripts.pory"
+	lock
+# 659 "data/maps/OldaleTown/scripts.pory"
+	faceplayer
+# 660 "data/maps/OldaleTown/scripts.pory"
+	playmoncry SPECIES_LUVDISC, CRY_MODE_NORMAL
+# 661 "data/maps/OldaleTown/scripts.pory"
+	waitmoncry
+# 662 "data/maps/OldaleTown/scripts.pory"
+	release
+	end
+
+
+Arr2_Machamp::
+# 667 "data/maps/OldaleTown/scripts.pory"
+	lock
+# 668 "data/maps/OldaleTown/scripts.pory"
+	faceplayer
+# 669 "data/maps/OldaleTown/scripts.pory"
+	playmoncry SPECIES_MACHAMP, CRY_MODE_NORMAL
+# 670 "data/maps/OldaleTown/scripts.pory"
+	waitmoncry
+# 671 "data/maps/OldaleTown/scripts.pory"
 	release
 	end
 
@@ -1354,5 +1386,5 @@ Arr2_BarLady_Text_11:
 	.string "thank you for listening to me.$"
 
 GiveRunShoes_Text_0:
-# 645 "data/maps/OldaleTown/scripts.pory"
+# 646 "data/maps/OldaleTown/scripts.pory"
 	.string "Take these shoes$"

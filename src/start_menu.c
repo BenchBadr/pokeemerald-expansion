@@ -62,10 +62,10 @@
 // Menu actions
 enum
 {
+    MENU_ACTION_POKENAV,
     MENU_ACTION_POKEDEX,
     MENU_ACTION_POKEMON,
     MENU_ACTION_BAG,
-    MENU_ACTION_POKENAV,
     MENU_ACTION_PLAYER,
     MENU_ACTION_SAVE,
     MENU_ACTION_OPTION,
@@ -1634,3 +1634,14 @@ void Script_ForceSaveGame(struct ScriptContext *ctx)
 }
 
 
+void SavePrompt(void)
+{
+    LockPlayerFieldControls();
+
+    // ShowSaveMessage(gText_BattlePyramidConfirmRest, SaveYesNoCallback);
+    // ShowSaveInfoWindow();
+    InitSave();
+    LockPlayerFieldControls();
+    CreateTask(SaveGameTask, 0x50);
+    SaveCallback();
+}

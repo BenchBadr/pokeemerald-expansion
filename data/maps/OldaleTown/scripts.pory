@@ -286,7 +286,7 @@ script Arr2_BarTradeMagikarp {
 
 	setspeaker("Marcel")
 
-	if (flag(FLAG_RUSTBORO_NPC_TRADE_COMPLETED))
+	if (flag(FLAG_BAR_TRADE_COMPLETED))
 	{
 		msgbox(format("Your Magikarp is so great!"))
 		release
@@ -296,10 +296,10 @@ script Arr2_BarTradeMagikarp {
 	msgbox(format("I've always dreamed of having a Gyarados. It should be easy : Magikarp are everywhere, but not for me. I'm so unlucky that one never bites my line."))
 	msgbox(format("All I have is this stupid Luvdisc my ex gave me. I don't even want it... it just reminds me of her."))
 
-	ingame_trade(INGAME_TRADE_SEEDOT, format("Would you trade a Magikarp for a Luvdisc?"), format("Arghhh... No luck even with trades."), format("That's not a Magikarp."), msgbox(format("Take care of it.")))
+	ingame_trade(INGAME_TRADE_LUVDISC, format("Would you trade a Magikarp for a Luvdisc?"), format("Arghhh... No luck even with trades."), format("That's not a Magikarp."), msgbox(format("Take care of it.")))
 	closemessage
 
-	setflag(FLAG_RUSTBORO_NPC_TRADE_COMPLETED)
+	setflag(FLAG_BAR_TRADE_COMPLETED)
 
 	release
 	end
@@ -340,7 +340,7 @@ script Arr2_BarBeerWaiter {
 	msgbox(format("Great choice!"))
 
 	// changes
-	setvar(VAR_0x8001, 10) // friendship
+	setvar(VAR_0x8001, 30) // friendship
 	setvar(VAR_0x8003, 5) // EV count
 
 	msgbox(format("Please, take a seat."))
@@ -642,8 +642,32 @@ script Arr2_BarLass {
 script GiveRunShoes {
 	lock 
 	faceplayer 
+	setvar(VAR_0x8014, 2)
 	msgbox(format("Take these shoes"))
 	setflag(FLAG_RECEIVED_RUNNING_SHOES)
+	setvar(VAR_0x8014, 0)
+
 	release 
 	end
+}
+
+
+// Some Pokémon OW scripts
+
+script Arr2_Luvdisc {
+    lock
+    faceplayer
+    playmoncry(SPECIES_LUVDISC, CRY_MODE_NORMAL)
+    waitmoncry
+    release
+    end
+}
+
+script Arr2_Machamp {
+    lock
+    faceplayer
+    playmoncry(SPECIES_MACHAMP, CRY_MODE_NORMAL)
+    waitmoncry
+    release
+    end
 }

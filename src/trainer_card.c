@@ -1914,3 +1914,5 @@ static void CreateTrainerCardTrainerPic(void)
                     WIN_TRAINER_PIC);
     }
 }
+
+

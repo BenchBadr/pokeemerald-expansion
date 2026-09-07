@@ -27,3 +27,5 @@ static const struct MatchmakingOpponent sMatchmakingPool[] =
         .pts = 5
     },
 };
+
+void GetTrainerIdString(void);
