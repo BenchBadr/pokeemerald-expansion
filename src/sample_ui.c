@@ -42,6 +42,8 @@
 #include "option_menu.h"
 #include "trainer_card.h"
 #include "dexnav.h"
+#include "region_map.h"
+
 
 
 
@@ -248,6 +250,7 @@ void Task_OpenSampleUi_BlankTemplate(u8 taskId)
 {
     if (!gPaletteFade.active)
     {
+        PlayCry_NormalNoDucking(SPECIES_ROTOM,  0, CRY_VOLUME_RS, CRY_PRIORITY_NORMAL);
         CleanupOverworldWindowsAndTilemaps();
         SampleUi_Init(CB2_ReturnToFieldWithOpenMenu);
         DestroyTask(taskId);
@@ -263,6 +266,7 @@ static void SampleUi_Init(MainCallback callback)
         return;
     }
 
+    
     sSampleUiState->loadState = 0;
     sSampleUiState->savedCallback = callback;
 
@@ -820,6 +824,8 @@ static void OpenApp(MainCallback openApp)
     gTasks[taskId].data[1] = (u16)(((u32)openApp) >> 16);
 }
 
+
+
 static void HandleSelection(void) 
 {
 
@@ -836,13 +842,22 @@ static void HandleSelection(void)
     // Maps
     if (gridX == 1 && gridY == 0)
     {
-        DebugPrintf("todo");
+        sSavedCursorX = sSampleUiState->cursorX;
+        sSavedCursorY = sSampleUiState->cursorY;
+
+        // todo...
+
     }
 
     // Dexnav
     if (gridX == 2 && gridY == 0)
     {
-        DebugPrintf("todo");
+        sSavedCursorX = sSampleUiState->cursorX;
+        sSavedCursorY = sSampleUiState->cursorY;
+
+        gMain.savedCallback = CB2_ReturnToSampleUi;
+        BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 16, RGB_BLACK);
+        CreateTask(Task_OpenDexNavFromStartMenu, 0);
     }
 
 

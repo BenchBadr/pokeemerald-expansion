@@ -144,4 +144,6 @@ void SetFlyDestination(struct RegionMap* regionMap);
 extern const struct RegionMapLocation gRegionMapEntries[];
 extern const struct RegionMapInfo gRegionMapInfos[];
 
+void OpenSampleUiRegionMap(void);
+
 #endif //GUARD_REGION_MAP_H
