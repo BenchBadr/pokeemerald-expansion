@@ -26,7 +26,6 @@
 #include "pokemon_icon.h"
 #include "graphics.h"
 #include "data.h"
-#include "pokedex.h"
 #include "gpu_regs.h"
 
 #include "rtc.h"
@@ -36,6 +35,11 @@
 #include "graphics.h"
 
 #include "comfy_anim.h"
+
+#include "global.h"
+
+#include "pokedex.h"
+#include "option_menu.h"
 
 #define CURSOR_SPRITE_ID                sSampleUiState->spriteIDs[1]
 
@@ -73,6 +77,7 @@ enum WindowIds
 
 static void SpriteCallback_Cursor(struct Sprite *sprite);
 static void SampleUi_InitCursorMove(s16 targetX, s16 targetY);
+static void HandleSelection(void);
 
 static EWRAM_DATA struct SampleUiState *sSampleUiState = NULL;
 static EWRAM_DATA u8 *sBg1TilemapBuffer = NULL;
@@ -260,6 +265,8 @@ static void SampleUi_Init(MainCallback callback)
     SetMainCallback2(SampleUi_SetupCB);
 }
 
+
+
 // Credit: Jaizu, pret
 static void SampleUi_ResetGpuRegsAndBgs(void)
 {
@@ -392,6 +399,7 @@ static void Task_SampleUiMainInput(u8 taskId)
     if (JOY_NEW(A_BUTTON))
     {
         PlaySE(SE_SELECT);
+        HandleSelection();
     }
     if (JOY_NEW(DPAD_LEFT))
     {
@@ -732,4 +740,59 @@ static void SampleUi_InitCursorMove(s16 targetX, s16 targetY)
     config.from = Q_24_8(gSprites[CURSOR_SPRITE_ID].y);
     config.to = Q_24_8(targetY);
     sSampleUiState->comfyAnimY = CreateComfyAnim_Easing(&config);
+}
+
+
+static void CB2_ReturnToSampleUi(void)
+{
+    SetVBlankHBlankCallbacksToNull();
+    ResetAllBgsCoordinates();
+    SampleUi_Init(CB2_ReturnToFieldWithOpenMenu);
+}
+
+
+
+static void Task_TransitionOut(u8 taskId)
+{
+    if (gPaletteFade.active)
+        return;
+
+    MainCallback openApp = (MainCallback)(((u32)(u16)gTasks[taskId].data[1] << 16) 
+                                         | (u16)gTasks[taskId].data[0]);
+
+    gMain.savedCallback = CB2_ReturnToSampleUi;
+    SampleUi_FreeResources();
+
+    DestroyTask(taskId);
+    SetMainCallback2(openApp);
+}
+
+static void OpenApp(MainCallback openApp)
+{
+    BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 16, RGB_BLACK);
+    
+    u8 taskId = CreateTask(Task_TransitionOut, 0);
+    gTasks[taskId].data[0] = (u16)((u32)openApp);
+    gTasks[taskId].data[1] = (u16)(((u32)openApp) >> 16);
+}
+static void HandleSelection(void) 
+{
+
+    u8 gridX = sSampleUiState->cursorX % 3;
+    u8 gridY = sSampleUiState->cursorY % 2;
+
+    // Pokédex
+    if (gridX == 0 && gridY == 0)
+    {
+        BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 16, RGB_BLACK);
+        OpenApp(CB2_OpenPokedex);
+    }
+
+
+    // Settings
+    if (gridX == 2 && gridY == 1)
+    {
+        // BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 16, RGB_BLACK);
+        OpenApp(CB2_InitOptionMenu);
+    }
 }
