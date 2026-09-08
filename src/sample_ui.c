@@ -43,6 +43,7 @@
 #include "trainer_card.h"
 #include "dexnav.h"
 #include "region_map.h"
+#include "quests.h"
 
 
 
@@ -858,6 +859,15 @@ static void HandleSelection(void)
         gMain.savedCallback = CB2_ReturnToSampleUi;
         BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 16, RGB_BLACK);
         CreateTask(Task_OpenDexNavFromStartMenu, 0);
+    }
+
+    // Quests
+    if (gridX == 0 && gridY == 1) {
+        sSavedCursorX = sSampleUiState->cursorX;
+        sSavedCursorY = sSampleUiState->cursorY;
+        gMain.savedCallback = CB2_ReturnToSampleUi;
+        BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 16, RGB_BLACK);
+        CreateTask(Task_QuestMenu_OpenFromStartMenu, 0);
     }
 
 

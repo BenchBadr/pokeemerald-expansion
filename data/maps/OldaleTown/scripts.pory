@@ -644,7 +644,7 @@ script GiveRunShoes {
 	faceplayer 
 	setvar(VAR_0x8014, 2)
 	msgbox(format("Take these shoes"))
-	setflag(FLAG_RECEIVED_RUNNING_SHOES)
+	setflag(FLAG_SYS_QUEST_MENU_GET)
 	setvar(VAR_0x8014, 0)
 
 	release 

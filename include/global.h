@@ -27,6 +27,8 @@
 #include "constants/moves.h"
 #include "config/save.h"
 
+#include "constants/quests.h"
+
 // Prevent cross-jump optimization.
 #define BLOCK_CROSS_JUMP asm("");
 
@@ -632,7 +634,15 @@ struct SaveBlock2
 
     u8 trainerRank;    // Current Rank
     u8 trainerPoints; // Current Points
-}; // sizeof=0xF2C
+// }; // sizeof=0xF2C
+
+#define QUEST_FLAGS_COUNT ROUND_BITS_TO_BYTES(QUEST_COUNT)
+#define SUB_FLAGS_COUNT ROUND_BITS_TO_BYTES(SUB_QUEST_COUNT)
+#define QUEST_STATES 5 //Number of different quest states tracked in the saveblock
+
+    u8 questData[QUEST_FLAGS_COUNT * QUEST_STATES];
+    u8 subQuests[SUB_FLAGS_COUNT];
+}; 
 
 extern struct SaveBlock2 *gSaveBlock2Ptr;
 

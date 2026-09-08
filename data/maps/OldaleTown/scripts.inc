@@ -763,7 +763,7 @@ GiveRunShoes::
 # 646 "data/maps/OldaleTown/scripts.pory"
 	msgbox GiveRunShoes_Text_0
 # 647 "data/maps/OldaleTown/scripts.pory"
-	setflag FLAG_RECEIVED_RUNNING_SHOES
+	setflag FLAG_SYS_QUEST_MENU_GET
 # 648 "data/maps/OldaleTown/scripts.pory"
 	setvar VAR_0x8014, 0
 # 650 "data/maps/OldaleTown/scripts.pory"
