@@ -2670,3 +2670,5 @@ void IncrementDexNavChain(void)
     if (gSaveBlock3Ptr->dexNavChain < DEXNAV_CHAIN_MAX)
         gSaveBlock3Ptr->dexNavChain++;
 }
+
+

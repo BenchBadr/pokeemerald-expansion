@@ -40,6 +40,10 @@
 
 #include "pokedex.h"
 #include "option_menu.h"
+#include "trainer_card.h"
+#include "dexnav.h"
+
+
 
 #define CURSOR_SPRITE_ID                sSampleUiState->spriteIDs[1]
 
@@ -78,9 +82,14 @@ enum WindowIds
 static void SpriteCallback_Cursor(struct Sprite *sprite);
 static void SampleUi_InitCursorMove(s16 targetX, s16 targetY);
 static void HandleSelection(void);
+static void CB2_OpenTrainerCardFromSampleUi(void);
+
 
 static EWRAM_DATA struct SampleUiState *sSampleUiState = NULL;
 static EWRAM_DATA u8 *sBg1TilemapBuffer = NULL;
+
+static EWRAM_DATA u8 sSavedCursorX = 0;
+static EWRAM_DATA u8 sSavedCursorY = 0;
 
 
 
@@ -260,6 +269,10 @@ static void SampleUi_Init(MainCallback callback)
     sSampleUiState->comfyAnimX = INVALID_COMFY_ANIM;
     sSampleUiState->comfyAnimY = INVALID_COMFY_ANIM;
 
+    sSampleUiState->cursorX = sSavedCursorX;
+    sSampleUiState->cursorY = sSavedCursorY;
+
+
     CURSOR_SPRITE_ID = MAX_SPRITES;
 
     SetMainCallback2(SampleUi_SetupCB);
@@ -304,6 +317,11 @@ static void SampleUi_ResetGpuRegsAndBgs(void)
     // SetGpuReg(REG_OFFSET_WINOUT, 0);
     // CpuFill16(0, (void *)VRAM, VRAM_SIZE);
     // CpuFill32(0, (void *)OAM, OAM_SIZE);
+
+    SetGpuReg(REG_OFFSET_DISPCNT,
+    DISPCNT_MODE_0
+    | DISPCNT_OBJ_ON
+    | DISPCNT_OBJ_1D_MAP);
 }
 
 static void SampleUi_SetupCB(void)
@@ -552,7 +570,7 @@ static const u8 sText_Text2[] = _("Press {A_BUTTON} to make a sound!");
 
 static const u8 sText_Pokedex[] =  _(" Pokédex  ");
 static const u8 sText_Maps[] =     _("   Maps   ");
-static const u8 sText_Contacts[] = _(" Contacts ");
+static const u8 sText_DexNav[] =   _("  DexNav  ");
 
 static const u8 sText_Notes[] =    _("   Notes  ");
 static const u8 sText_Card[] =     _("   Card   ");
@@ -580,7 +598,7 @@ static void SampleUi_PrintUiSampleWindowText(void)
 
 
     AddTextPrinterParameterized4(WINDOW_0, FONT_SMALL, INIT_X_MENU_OPTIONS + GAP_MENU_OPTIONS * 2, INIT_Y_MENU_OPTIONS, 0, 0,
-        sSampleUiWindowFontColors[FONT_WHITE], TEXT_SKIP_DRAW, sText_Contacts);
+        sSampleUiWindowFontColors[FONT_WHITE], TEXT_SKIP_DRAW, sText_DexNav);
 
     AddTextPrinterParameterized4(WINDOW_0, FONT_SMALL, INIT_X_MENU_OPTIONS, INIT_Y_MENU_OPTIONS + GAP_MENU_OPTIONS, 0, 0,
         sSampleUiWindowFontColors[FONT_WHITE], TEXT_SKIP_DRAW, sText_Notes);
@@ -605,8 +623,13 @@ static void SampleUi_DisplaySprites(void)
         CreateSprite(&sRotomSpriteTemplate, 224, 130, 0);
     
     LoadCompressedSpriteSheet(&sSpriteSheet_Cursor);
-    CURSOR_SPRITE_ID = 
-        CreateSprite(&sSpriteTemplate_Cursor, INIT_X_MENU_OPTIONS, INIT_Y_MENU_OPTIONS - CURSOR_Y_SHIFT, 0);
+    CURSOR_SPRITE_ID =
+        CreateSprite(
+            &sSpriteTemplate_Cursor,
+            INIT_X_MENU_OPTIONS + GAP_MENU_OPTIONS * (sSampleUiState->cursorX % 3),
+            INIT_Y_MENU_OPTIONS - CURSOR_Y_SHIFT
+                + GAP_MENU_OPTIONS * (sSampleUiState->cursorY % 2),
+            0);
 }
 
 
@@ -745,10 +768,26 @@ static void SampleUi_InitCursorMove(s16 targetX, s16 targetY)
 
 static void CB2_ReturnToSampleUi(void)
 {
+    // wipe VRAM/OAM garbage
+    ResetSpriteData();
+    ResetTasks();
+    CpuFill16(0, (void *)VRAM, VRAM_SIZE);
+    CpuFill32(0, (void *)OAM, OAM_SIZE);
+
+    gMain.state = 0;
+
     SetVBlankHBlankCallbacksToNull();
     ResetAllBgsCoordinates();
     SampleUi_Init(CB2_ReturnToFieldWithOpenMenu);
 }
+
+
+static void CB2_OpenTrainerCardFromSampleUi(void)
+{
+    ShowPlayerTrainerCard(CB2_ReturnToSampleUi);
+}
+
+
 
 
 
@@ -769,12 +808,18 @@ static void Task_TransitionOut(u8 taskId)
 
 static void OpenApp(MainCallback openApp)
 {
+
+    sSavedCursorX = sSampleUiState->cursorX;
+    sSavedCursorY = sSampleUiState->cursorY;
+
     BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 16, RGB_BLACK);
+
     
     u8 taskId = CreateTask(Task_TransitionOut, 0);
     gTasks[taskId].data[0] = (u16)((u32)openApp);
     gTasks[taskId].data[1] = (u16)(((u32)openApp) >> 16);
 }
+
 static void HandleSelection(void) 
 {
 
@@ -784,10 +829,28 @@ static void HandleSelection(void)
     // Pokédex
     if (gridX == 0 && gridY == 0)
     {
-        BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 16, RGB_BLACK);
+        // BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 16, RGB_BLACK);
         OpenApp(CB2_OpenPokedex);
     }
 
+    // Maps
+    if (gridX == 1 && gridY == 0)
+    {
+        DebugPrintf("todo");
+    }
+
+    // Dexnav
+    if (gridX == 2 && gridY == 0)
+    {
+        DebugPrintf("todo");
+    }
+
+
+    // Card
+    if (gridX == 1 && gridY == 1)
+    {
+        OpenApp(CB2_OpenTrainerCardFromSampleUi);
+    }
 
     // Settings
     if (gridX == 2 && gridY == 1)

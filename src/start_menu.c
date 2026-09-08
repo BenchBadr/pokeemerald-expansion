@@ -842,7 +842,7 @@ static bool8 StartMenuBagCallback(void)
 
 static bool8 StartMenuPhoneCallback(void)
 {
-    // HideStartMenu();
+    HideStartMenu();
     // CreateTask(Task_OpenPhone, 0);
     DebugPrintf("Phone open here.");
     CreateTask(Task_OpenSampleUi_BlankTemplate, 0);

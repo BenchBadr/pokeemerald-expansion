@@ -381,8 +381,14 @@ static void Task_OptionMenuFadeOut(u8 taskId)
 {
     if (!gPaletteFade.active)
     {
+        
         DestroyTask(taskId);
         FreeAllWindowBuffers();
+
+        // 3. Reset hardware registers so window darken effects don't bleed into caller UI
+        SetGpuReg(REG_OFFSET_DISPCNT, 0);
+        SetGpuReg(REG_OFFSET_BLDCNT, 0);
+
         SetMainCallback2(gMain.savedCallback);
     }
 }
