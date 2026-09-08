@@ -379,6 +379,8 @@ Amphi_ChooseSnivy::
 	goto_if_ne Amphi_ChooseSnivy_2
 Amphi_ChooseSnivy_1:
 # 359 "data/maps/Amphitheatre/scripts.pory"
+	setvar VAR_0x8014, 0
+# 361 "data/maps/Amphitheatre/scripts.pory"
 	closemessage
 	return
 
@@ -396,175 +398,187 @@ Amphi_ChooseSnivy_2:
 # 354 "data/maps/Amphitheatre/scripts.pory"
 	waitmovement 0
 # 356 "data/maps/Amphitheatre/scripts.pory"
+	setvar VAR_0x8014, 0
+# 357 "data/maps/Amphitheatre/scripts.pory"
 	call Amphi_StarterNickname
 	goto Amphi_ChooseSnivy_1
 
 
 Amphi_ChooseChimchar::
-# 363 "data/maps/Amphitheatre/scripts.pory"
-	lock
-# 364 "data/maps/Amphitheatre/scripts.pory"
-	faceplayer
 # 365 "data/maps/Amphitheatre/scripts.pory"
-	setvar VAR_0x8014, 1
+	lock
 # 366 "data/maps/Amphitheatre/scripts.pory"
-	playmoncry SPECIES_CHIMCHAR, CRY_MODE_NORMAL
+	faceplayer
 # 367 "data/maps/Amphitheatre/scripts.pory"
-	showmonpic SPECIES_CHIMCHAR, 0, 4
+	setvar VAR_0x8014, 1
 # 368 "data/maps/Amphitheatre/scripts.pory"
-	msgbox Amphi_ChooseChimchar_Text_0, MSGBOX_YESNO
+	playmoncry SPECIES_CHIMCHAR, CRY_MODE_NORMAL
 # 369 "data/maps/Amphitheatre/scripts.pory"
-	waitmoncry
+	showmonpic SPECIES_CHIMCHAR, 0, 4
 # 370 "data/maps/Amphitheatre/scripts.pory"
-	hidemonpic
+	msgbox Amphi_ChooseChimchar_Text_0, MSGBOX_YESNO
 # 371 "data/maps/Amphitheatre/scripts.pory"
-	setvar VAR_0x8014, 0
+	waitmoncry
 # 372 "data/maps/Amphitheatre/scripts.pory"
+	hidemonpic
+# 373 "data/maps/Amphitheatre/scripts.pory"
+	setvar VAR_0x8014, 0
+# 374 "data/maps/Amphitheatre/scripts.pory"
 	compare VAR_RESULT, 0
 	goto_if_ne Amphi_ChooseChimchar_2
 Amphi_ChooseChimchar_1:
-# 389 "data/maps/Amphitheatre/scripts.pory"
+# 391 "data/maps/Amphitheatre/scripts.pory"
+	setvar VAR_0x8014, 0
+# 393 "data/maps/Amphitheatre/scripts.pory"
 	closemessage
 	return
 
 Amphi_ChooseChimchar_2:
-# 373 "data/maps/Amphitheatre/scripts.pory"
+# 375 "data/maps/Amphitheatre/scripts.pory"
 	applymovement 6, Amphi_ChooseSnivy_Movement_0
-# 377 "data/maps/Amphitheatre/scripts.pory"
-	waitmovement 0
-# 378 "data/maps/Amphitheatre/scripts.pory"
-	givemon SPECIES_CHIMCHAR, 5, ITEM_NONE
 # 379 "data/maps/Amphitheatre/scripts.pory"
-	bufferspeciesname STR_VAR_1, SPECIES_CHIMCHAR
-# 381 "data/maps/Amphitheatre/scripts.pory"
-	applymovement 6, Amphi_ChooseSnivy_Movement_1
-# 384 "data/maps/Amphitheatre/scripts.pory"
 	waitmovement 0
+# 380 "data/maps/Amphitheatre/scripts.pory"
+	givemon SPECIES_CHIMCHAR, 5, ITEM_NONE
+# 381 "data/maps/Amphitheatre/scripts.pory"
+	bufferspeciesname STR_VAR_1, SPECIES_CHIMCHAR
+# 383 "data/maps/Amphitheatre/scripts.pory"
+	applymovement 6, Amphi_ChooseSnivy_Movement_1
 # 386 "data/maps/Amphitheatre/scripts.pory"
+	waitmovement 0
+# 388 "data/maps/Amphitheatre/scripts.pory"
+	setvar VAR_0x8014, 0
+# 389 "data/maps/Amphitheatre/scripts.pory"
 	call Amphi_StarterNickname
 	goto Amphi_ChooseChimchar_1
 
 
 Amphi_ChooseSobble::
-# 393 "data/maps/Amphitheatre/scripts.pory"
-	lock
-# 394 "data/maps/Amphitheatre/scripts.pory"
-	faceplayer
-# 395 "data/maps/Amphitheatre/scripts.pory"
-	setvar VAR_0x8014, 1
-# 396 "data/maps/Amphitheatre/scripts.pory"
-	playmoncry SPECIES_SOBBLE, CRY_MODE_NORMAL
 # 397 "data/maps/Amphitheatre/scripts.pory"
-	showmonpic SPECIES_SOBBLE, 0, 4
+	lock
 # 398 "data/maps/Amphitheatre/scripts.pory"
-	msgbox Amphi_ChooseSobble_Text_0, MSGBOX_YESNO
+	faceplayer
 # 399 "data/maps/Amphitheatre/scripts.pory"
-	waitmoncry
+	setvar VAR_0x8014, 1
 # 400 "data/maps/Amphitheatre/scripts.pory"
-	hidemonpic
+	playmoncry SPECIES_SOBBLE, CRY_MODE_NORMAL
 # 401 "data/maps/Amphitheatre/scripts.pory"
-	setvar VAR_0x8014, 0
+	showmonpic SPECIES_SOBBLE, 0, 4
 # 402 "data/maps/Amphitheatre/scripts.pory"
+	msgbox Amphi_ChooseSobble_Text_0, MSGBOX_YESNO
+# 403 "data/maps/Amphitheatre/scripts.pory"
+	waitmoncry
+# 404 "data/maps/Amphitheatre/scripts.pory"
+	hidemonpic
+# 405 "data/maps/Amphitheatre/scripts.pory"
+	setvar VAR_0x8014, 0
+# 406 "data/maps/Amphitheatre/scripts.pory"
 	compare VAR_RESULT, 0
 	goto_if_ne Amphi_ChooseSobble_2
 Amphi_ChooseSobble_1:
-# 419 "data/maps/Amphitheatre/scripts.pory"
+# 423 "data/maps/Amphitheatre/scripts.pory"
+	setvar VAR_0x8014, 0
+# 425 "data/maps/Amphitheatre/scripts.pory"
 	closemessage
 	return
 
 Amphi_ChooseSobble_2:
-# 403 "data/maps/Amphitheatre/scripts.pory"
-	applymovement 6, Amphi_ChooseSnivy_Movement_0
 # 407 "data/maps/Amphitheatre/scripts.pory"
-	waitmovement 0
-# 408 "data/maps/Amphitheatre/scripts.pory"
-	givemon SPECIES_SOBBLE, 5, ITEM_NONE
-# 409 "data/maps/Amphitheatre/scripts.pory"
-	bufferspeciesname STR_VAR_1, SPECIES_SOBBLE
+	applymovement 6, Amphi_ChooseSnivy_Movement_0
 # 411 "data/maps/Amphitheatre/scripts.pory"
-	applymovement 6, Amphi_ChooseSnivy_Movement_1
-# 414 "data/maps/Amphitheatre/scripts.pory"
 	waitmovement 0
-# 416 "data/maps/Amphitheatre/scripts.pory"
+# 412 "data/maps/Amphitheatre/scripts.pory"
+	givemon SPECIES_SOBBLE, 5, ITEM_NONE
+# 413 "data/maps/Amphitheatre/scripts.pory"
+	bufferspeciesname STR_VAR_1, SPECIES_SOBBLE
+# 415 "data/maps/Amphitheatre/scripts.pory"
+	applymovement 6, Amphi_ChooseSnivy_Movement_1
+# 418 "data/maps/Amphitheatre/scripts.pory"
+	waitmovement 0
+# 420 "data/maps/Amphitheatre/scripts.pory"
+	setvar VAR_0x8014, 0
+# 421 "data/maps/Amphitheatre/scripts.pory"
 	call Amphi_StarterNickname
 	goto Amphi_ChooseSobble_1
 
 
 Amphi_StarterNickname::
-# 423 "data/maps/Amphitheatre/scripts.pory"
+# 429 "data/maps/Amphitheatre/scripts.pory"
+	setvar VAR_0x8014, 1
+# 430 "data/maps/Amphitheatre/scripts.pory"
 	setflag FLAG_SYS_POKEMON_GET
-# 424 "data/maps/Amphitheatre/scripts.pory"
+# 431 "data/maps/Amphitheatre/scripts.pory"
 	msgbox Amphi_StarterNickname_Text_0, MSGBOX_YESNO
-# 425 "data/maps/Amphitheatre/scripts.pory"
+# 432 "data/maps/Amphitheatre/scripts.pory"
 	compare VAR_RESULT, 1
 	goto_if_eq Amphi_StarterNickname_2
 Amphi_StarterNickname_1:
-# 431 "data/maps/Amphitheatre/scripts.pory"
+# 438 "data/maps/Amphitheatre/scripts.pory"
 	applymovement 2, Amphi_StarterNickname_Movement_0
-# 436 "data/maps/Amphitheatre/scripts.pory"
+# 443 "data/maps/Amphitheatre/scripts.pory"
 	applymovement 3, Amphi_IntroCallingNames_Movement_3
-# 440 "data/maps/Amphitheatre/scripts.pory"
+# 447 "data/maps/Amphitheatre/scripts.pory"
 	applymovement 6, Amphi_ChooseSnivy_Movement_1
-# 444 "data/maps/Amphitheatre/scripts.pory"
+# 451 "data/maps/Amphitheatre/scripts.pory"
 	applymovement 7, Amphi_ChooseSnivy_Movement_1
-# 448 "data/maps/Amphitheatre/scripts.pory"
-	applymovement 8, Amphi_ChooseSnivy_Movement_1
-# 452 "data/maps/Amphitheatre/scripts.pory"
-	waitmovement 0
-# 454 "data/maps/Amphitheatre/scripts.pory"
-	setvar VAR_0x8014, 0
 # 455 "data/maps/Amphitheatre/scripts.pory"
-	setspeaker Amphi_IntroSycamore1_Text_0
-# 456 "data/maps/Amphitheatre/scripts.pory"
-	msgbox Amphi_StarterNickname_Text_1
-# 460 "data/maps/Amphitheatre/scripts.pory"
-	setflag FLAG_SYS_POKENAV_GET
+	applymovement 8, Amphi_ChooseSnivy_Movement_1
+# 459 "data/maps/Amphitheatre/scripts.pory"
+	waitmovement 0
 # 461 "data/maps/Amphitheatre/scripts.pory"
-	setflag FLAG_IS_CHOOSING_MON
+	setvar VAR_0x8014, 0
+# 462 "data/maps/Amphitheatre/scripts.pory"
+	setspeaker Amphi_IntroSycamore1_Text_0
 # 463 "data/maps/Amphitheatre/scripts.pory"
+	msgbox Amphi_StarterNickname_Text_1
+# 467 "data/maps/Amphitheatre/scripts.pory"
+	setflag FLAG_SYS_PHONE_GET
+# 468 "data/maps/Amphitheatre/scripts.pory"
+	setflag FLAG_IS_CHOOSING_MON
+# 470 "data/maps/Amphitheatre/scripts.pory"
 	closemessage
-# 464 "data/maps/Amphitheatre/scripts.pory"
+# 471 "data/maps/Amphitheatre/scripts.pory"
 	release
 	end
 
 Amphi_StarterNickname_2:
-# 426 "data/maps/Amphitheatre/scripts.pory"
+# 433 "data/maps/Amphitheatre/scripts.pory"
 	compare VAR_RESULT, 1
 	goto_if_eq Amphi_StarterNickname_4
 	goto Amphi_StarterNickname_1
 
 Amphi_StarterNickname_4:
-# 427 "data/maps/Amphitheatre/scripts.pory"
+# 434 "data/maps/Amphitheatre/scripts.pory"
 	call Common_EventScript_NameReceivedPartyMon
 	goto Amphi_StarterNickname_1
 
 
 Amphi_Policeman::
-# 469 "data/maps/Amphitheatre/scripts.pory"
+# 476 "data/maps/Amphitheatre/scripts.pory"
 	lock
-# 470 "data/maps/Amphitheatre/scripts.pory"
+# 477 "data/maps/Amphitheatre/scripts.pory"
 	msgbox Amphi_Policeman_Text_0
-# 471 "data/maps/Amphitheatre/scripts.pory"
+# 478 "data/maps/Amphitheatre/scripts.pory"
 	release
 	end
 
 
 Arr2_ForceChooseStarter::
-# 476 "data/maps/Amphitheatre/scripts.pory"
+# 483 "data/maps/Amphitheatre/scripts.pory"
 	lock
-# 477 "data/maps/Amphitheatre/scripts.pory"
+# 484 "data/maps/Amphitheatre/scripts.pory"
 	goto_if_unset FLAG_SYS_POKEMON_GET, Arr2_ForceChooseStarter_2
 Arr2_ForceChooseStarter_1:
-# 487 "data/maps/Amphitheatre/scripts.pory"
+# 494 "data/maps/Amphitheatre/scripts.pory"
 	release
 	end
 
 Arr2_ForceChooseStarter_2:
-# 479 "data/maps/Amphitheatre/scripts.pory"
+# 486 "data/maps/Amphitheatre/scripts.pory"
 	msgbox Amphi_IntroScientist1_Text_0
-# 480 "data/maps/Amphitheatre/scripts.pory"
+# 487 "data/maps/Amphitheatre/scripts.pory"
 	msgbox Arr2_ForceChooseStarter_Text_0
-# 482 "data/maps/Amphitheatre/scripts.pory"
+# 489 "data/maps/Amphitheatre/scripts.pory"
 	applymovement OBJ_EVENT_ID_PLAYER, Arr2_ForceChooseStarter_Movement_0
 	goto Arr2_ForceChooseStarter_1
 
@@ -839,17 +853,17 @@ Amphi_ChooseSnivy_Movement_1:
 	enter_pokeball
 	step_end
 
-# 431 "data/maps/Amphitheatre/scripts.pory"
+# 438 "data/maps/Amphitheatre/scripts.pory"
 Amphi_StarterNickname_Movement_0:
-# 432 "data/maps/Amphitheatre/scripts.pory"
+# 439 "data/maps/Amphitheatre/scripts.pory"
 	walk_down
-# 433 "data/maps/Amphitheatre/scripts.pory"
+# 440 "data/maps/Amphitheatre/scripts.pory"
 	face_right
 	step_end
 
-# 482 "data/maps/Amphitheatre/scripts.pory"
+# 489 "data/maps/Amphitheatre/scripts.pory"
 Arr2_ForceChooseStarter_Movement_0:
-# 483 "data/maps/Amphitheatre/scripts.pory"
+# 490 "data/maps/Amphitheatre/scripts.pory"
 	walk_right
 	step_end
 
@@ -1003,29 +1017,29 @@ Amphi_ChooseSnivy_Text_0:
 	.string "Would you like to choose Snivy?$"
 
 Amphi_ChooseChimchar_Text_0:
-# 368 "data/maps/Amphitheatre/scripts.pory"
+# 370 "data/maps/Amphitheatre/scripts.pory"
 	.string "Would you like to choose Chimchar?$"
 
 Amphi_ChooseSobble_Text_0:
-# 398 "data/maps/Amphitheatre/scripts.pory"
+# 402 "data/maps/Amphitheatre/scripts.pory"
 	.string "Would you like to choose Sobble?$"
 
 Amphi_StarterNickname_Text_0:
-# 424 "data/maps/Amphitheatre/scripts.pory"
+# 431 "data/maps/Amphitheatre/scripts.pory"
 	.string "Would you like to give {STR_VAR_1} a\n"
 	.string "nickname?$"
 
 Amphi_StarterNickname_Text_1:
-# 456 "data/maps/Amphitheatre/scripts.pory"
+# 463 "data/maps/Amphitheatre/scripts.pory"
 	.string "Now that you have your partner, here is\n"
 	.string "a Pokédex. We hope that you fill as many\l"
 	.string "pages as possible. That data will be\l"
 	.string "valuable for our researches.$"
 
 Amphi_Policeman_Text_0:
-# 470 "data/maps/Amphitheatre/scripts.pory"
+# 477 "data/maps/Amphitheatre/scripts.pory"
 	.string "Dummy text.$"
 
 Arr2_ForceChooseStarter_Text_0:
-# 480 "data/maps/Amphitheatre/scripts.pory"
+# 487 "data/maps/Amphitheatre/scripts.pory"
 	.string "Where are you going?$"

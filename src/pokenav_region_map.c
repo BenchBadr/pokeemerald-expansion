@@ -252,6 +252,7 @@ bool32 GetZoomDisabled(void)
 
 bool32 OpenPokenavRegionMap(void)
 {
+    DebugPrintf("Opening map...");
     struct Pokenav_RegionMapGfx *state = AllocSubstruct(POKENAV_SUBSTRUCT_REGION_MAP_ZOOM, sizeof(struct Pokenav_RegionMapGfx));
     if (!state)
         return FALSE;

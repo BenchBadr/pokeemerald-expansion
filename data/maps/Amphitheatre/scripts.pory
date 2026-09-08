@@ -353,8 +353,10 @@ script Amphi_ChooseSnivy {
         ))
         waitmovement(0)
 
+        setvar(VAR_0x8014, 0)
         call(Amphi_StarterNickname)
     }
+    setvar(VAR_0x8014, 0)
 
     closemessage
 }
@@ -383,8 +385,10 @@ script Amphi_ChooseChimchar {
         ))
         waitmovement(0)
 
+        setvar(VAR_0x8014, 0)
         call(Amphi_StarterNickname)
     }
+    setvar(VAR_0x8014, 0)
 
     closemessage
 }
@@ -413,13 +417,16 @@ script Amphi_ChooseSobble {
         ))
         waitmovement(0)
 
+        setvar(VAR_0x8014, 0)
         call(Amphi_StarterNickname)
     }
+    setvar(VAR_0x8014, 0)
 
     closemessage
 }
 
 script Amphi_StarterNickname {
+    setvar(VAR_0x8014, 1)
     setflag(FLAG_SYS_POKEMON_GET)
     msgbox(format("Would you like to give {STR_VAR_1} a nickname?"), MSGBOX_YESNO)
     if (var(VAR_RESULT)==1){
@@ -457,7 +464,7 @@ script Amphi_StarterNickname {
 
 
     // setflag(FLAG_SYS_POKEDEX_GET)
-    setflag(FLAG_SYS_POKENAV_GET)
+    setflag(FLAG_SYS_PHONE_GET)
     setflag(FLAG_IS_CHOOSING_MON)
 
     closemessage

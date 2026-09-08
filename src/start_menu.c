@@ -30,7 +30,7 @@
 #include "palette.h"
 #include "party_menu.h"
 #include "pokedex.h"
-#include "pokenav.h"
+
 #include "safari_zone.h"
 #include "save.h"
 #include "scanline_effect.h"
@@ -55,6 +55,10 @@
 #include "trainer_rank.h"
 #include "pokeball.h"
 
+#include "sample_ui.h"
+
+// #include "phone.h"
+
 #define TAG_ITEM_ICON_BASE 9110
 
 
@@ -62,13 +66,13 @@
 // Menu actions
 enum
 {
-    MENU_ACTION_POKENAV,
-    MENU_ACTION_POKEDEX,
+    MENU_ACTION_PHONE,
+    // MENU_ACTION_POKEDEX,
     MENU_ACTION_POKEMON,
     MENU_ACTION_BAG,
     MENU_ACTION_PLAYER,
     MENU_ACTION_SAVE,
-    MENU_ACTION_OPTION,
+    // MENU_ACTION_OPTION,
     // MENU_ACTION_EXIT,
     MENU_ACTION_RETIRE_SAFARI,
     MENU_ACTION_PLAYER_LINK,
@@ -111,7 +115,7 @@ EWRAM_DATA static u8 sRankBarId = 0;
 static bool8 StartMenuPokedexCallback(void);
 static bool8 StartMenuPokemonCallback(void);
 static bool8 StartMenuBagCallback(void);
-static bool8 StartMenuPokeNavCallback(void);
+static bool8 StartMenuPhoneCallback(void);
 static bool8 StartMenuPlayerNameCallback(void);
 static bool8 StartMenuSaveCallback(void);
 static bool8 StartMenuOptionCallback(void);
@@ -204,13 +208,13 @@ static const u8 sText_MenuDebug[] = _("DEBUG");
 
 static const struct MenuAction sStartMenuItems[] =
 {
-    [MENU_ACTION_POKEDEX]         = {gText_MenuPokedex, {.u8_void = StartMenuPokedexCallback}},
+    // [MENU_ACTION_POKEDEX]         = {gText_MenuPokedex, {.u8_void = StartMenuPokedexCallback}},
+    [MENU_ACTION_PHONE]         = {gText_MenuPhone, {.u8_void = StartMenuPhoneCallback}},
     [MENU_ACTION_POKEMON]         = {gText_MenuPokemon, {.u8_void = StartMenuPokemonCallback}},
     [MENU_ACTION_BAG]             = {gText_MenuBag,     {.u8_void = StartMenuBagCallback}},
-    [MENU_ACTION_POKENAV]         = {gText_MenuPokenav, {.u8_void = StartMenuPokeNavCallback}},
     [MENU_ACTION_PLAYER]          = {gText_MenuPlayer,  {.u8_void = StartMenuPlayerNameCallback}},
     [MENU_ACTION_SAVE]            = {gText_MenuSave,    {.u8_void = StartMenuSaveCallback}},
-    [MENU_ACTION_OPTION]          = {gText_MenuOption,  {.u8_void = StartMenuOptionCallback}},
+    // [MENU_ACTION_OPTION]          = {gText_MenuOption,  {.u8_void = StartMenuOptionCallback}},
     // [MENU_ACTION_EXIT]            = {gText_MenuExit,    {.u8_void = StartMenuExitCallback}},
     [MENU_ACTION_RETIRE_SAFARI]   = {gText_MenuRetire,  {.u8_void = StartMenuSafariZoneRetireCallback}},
     [MENU_ACTION_PLAYER_LINK]     = {gText_MenuPlayer,  {.u8_void = StartMenuLinkModePlayerNameCallback}},
@@ -376,12 +380,6 @@ static void HideStartMenuRankIcon(void)
 }
 //--------------------------------------------------
 
-void SetDexPokemonPokenavFlags(void) // unused
-{
-    FlagSet(FLAG_SYS_POKEDEX_GET);
-    FlagSet(FLAG_SYS_POKEMON_GET);
-    FlagSet(FLAG_SYS_POKENAV_GET);
-}
 
 static void BuildStartMenuActions(void)
 {
@@ -428,88 +426,96 @@ static void AddStartMenuAction(u8 action)
 static void BuildNormalStartMenu(void)
 {
 
-    if (FlagGet(FLAG_SYS_POKEDEX_GET) == TRUE)
-        AddStartMenuAction(MENU_ACTION_POKEDEX);
+    if (FlagGet(FLAG_SYS_PHONE_GET) == TRUE)
+        AddStartMenuAction(MENU_ACTION_PHONE);
 
-    if (DN_FLAG_DEXNAV_GET != 0 && FlagGet(DN_FLAG_DEXNAV_GET))
-        AddStartMenuAction(MENU_ACTION_DEXNAV);
+    // if (FlagGet(FLAG_SYS_POKEDEX_GET) == TRUE)
+    //     AddStartMenuAction(MENU_ACTION_POKEDEX);
 
     if (FlagGet(FLAG_SYS_POKEMON_GET) == TRUE)
         AddStartMenuAction(MENU_ACTION_POKEMON);
 
+    if (DN_FLAG_DEXNAV_GET != 0 && FlagGet(DN_FLAG_DEXNAV_GET))
+        AddStartMenuAction(MENU_ACTION_DEXNAV);
+
+
     AddStartMenuAction(MENU_ACTION_BAG);
 
-    if (FlagGet(FLAG_SYS_POKENAV_GET) == TRUE)
-        AddStartMenuAction(MENU_ACTION_POKENAV);
 
     AddStartMenuAction(MENU_ACTION_PLAYER);
     AddStartMenuAction(MENU_ACTION_SAVE);
-    AddStartMenuAction(MENU_ACTION_OPTION);
+    // AddStartMenuAction(MENU_ACTION_OPTION);
     // AddStartMenuAction(MENU_ACTION_EXIT);
 }
 
 static void BuildDebugStartMenu(void)
 {
     AddStartMenuAction(MENU_ACTION_DEBUG);
-    if (FlagGet(FLAG_SYS_POKEDEX_GET) == TRUE)
-        AddStartMenuAction(MENU_ACTION_POKEDEX);
+
+    if (FlagGet(FLAG_SYS_PHONE_GET) == TRUE)
+        AddStartMenuAction(MENU_ACTION_PHONE);
+
+
     if (FlagGet(FLAG_SYS_POKEMON_GET) == TRUE)
         AddStartMenuAction(MENU_ACTION_POKEMON);
     AddStartMenuAction(MENU_ACTION_BAG);
-    if (FlagGet(FLAG_SYS_POKENAV_GET) == TRUE)
-        AddStartMenuAction(MENU_ACTION_POKENAV);
+
     AddStartMenuAction(MENU_ACTION_PLAYER);
     AddStartMenuAction(MENU_ACTION_SAVE);
-    AddStartMenuAction(MENU_ACTION_OPTION);
+    // AddStartMenuAction(MENU_ACTION_OPTION);
 }
 
 static void BuildSafariZoneStartMenu(void)
 {
     AddStartMenuAction(MENU_ACTION_RETIRE_SAFARI);
-    AddStartMenuAction(MENU_ACTION_POKEDEX);
+    // AddStartMenuAction(MENU_ACTION_POKEDEX);
     AddStartMenuAction(MENU_ACTION_POKEMON);
     AddStartMenuAction(MENU_ACTION_BAG);
     AddStartMenuAction(MENU_ACTION_PLAYER);
-    AddStartMenuAction(MENU_ACTION_OPTION);
+    // AddStartMenuAction(MENU_ACTION_OPTION);
     // AddStartMenuAction(MENU_ACTION_EXIT);
 }
 
 static void BuildLinkModeStartMenu(void)
 {
+
+    if (FlagGet(FLAG_SYS_PHONE_GET) == TRUE)
+    {
+        AddStartMenuAction(MENU_ACTION_PHONE);
+    }
+
     AddStartMenuAction(MENU_ACTION_POKEMON);
     AddStartMenuAction(MENU_ACTION_BAG);
 
-    if (FlagGet(FLAG_SYS_POKENAV_GET) == TRUE)
-    {
-        AddStartMenuAction(MENU_ACTION_POKENAV);
-    }
 
     AddStartMenuAction(MENU_ACTION_PLAYER_LINK);
-    AddStartMenuAction(MENU_ACTION_OPTION);
+    // AddStartMenuAction(MENU_ACTION_OPTION);
     // AddStartMenuAction(MENU_ACTION_EXIT);
 }
 
 static void BuildUnionRoomStartMenu(void)
 {
+
+    if (FlagGet(FLAG_SYS_PHONE_GET) == TRUE)
+    {
+        AddStartMenuAction(MENU_ACTION_PHONE);
+    }
+
     AddStartMenuAction(MENU_ACTION_POKEMON);
     AddStartMenuAction(MENU_ACTION_BAG);
 
-    if (FlagGet(FLAG_SYS_POKENAV_GET) == TRUE)
-    {
-        AddStartMenuAction(MENU_ACTION_POKENAV);
-    }
 
     AddStartMenuAction(MENU_ACTION_PLAYER);
-    AddStartMenuAction(MENU_ACTION_OPTION);
+    // AddStartMenuAction(MENU_ACTION_OPTION);
     // AddStartMenuAction(MENU_ACTION_EXIT);
 }
 
 static void BuildBattlePikeStartMenu(void)
 {
-    AddStartMenuAction(MENU_ACTION_POKEDEX);
+    // AddStartMenuAction(MENU_ACTION_POKEDEX);
     AddStartMenuAction(MENU_ACTION_POKEMON);
     AddStartMenuAction(MENU_ACTION_PLAYER);
-    AddStartMenuAction(MENU_ACTION_OPTION);
+    // AddStartMenuAction(MENU_ACTION_OPTION);
     // AddStartMenuAction(MENU_ACTION_EXIT);
 }
 
@@ -520,7 +526,7 @@ static void BuildBattlePyramidStartMenu(void)
     AddStartMenuAction(MENU_ACTION_PLAYER);
     AddStartMenuAction(MENU_ACTION_REST_FRONTIER);
     AddStartMenuAction(MENU_ACTION_RETIRE_FRONTIER);
-    AddStartMenuAction(MENU_ACTION_OPTION);
+    // AddStartMenuAction(MENU_ACTION_OPTION);
     // AddStartMenuAction(MENU_ACTION_EXIT);
 }
 
@@ -528,7 +534,7 @@ static void BuildMultiPartnerRoomStartMenu(void)
 {
     AddStartMenuAction(MENU_ACTION_POKEMON);
     AddStartMenuAction(MENU_ACTION_PLAYER);
-    AddStartMenuAction(MENU_ACTION_OPTION);
+    // AddStartMenuAction(MENU_ACTION_OPTION);
     // AddStartMenuAction(MENU_ACTION_EXIT);
 }
 
@@ -834,19 +840,14 @@ static bool8 StartMenuBagCallback(void)
     return FALSE;
 }
 
-static bool8 StartMenuPokeNavCallback(void)
+static bool8 StartMenuPhoneCallback(void)
 {
-    if (!gPaletteFade.active)
-    {
-        PlayRainStoppingSoundEffect();
-        RemoveExtraStartMenuWindows();
-        CleanupOverworldWindowsAndTilemaps();
-        SetMainCallback2(CB2_InitPokeNav);  // Display PokéNav
-
-        return TRUE;
-    }
-
-    return FALSE;
+    // HideStartMenu();
+    // CreateTask(Task_OpenPhone, 0);
+    DebugPrintf("Phone open here.");
+    CreateTask(Task_OpenSampleUi_BlankTemplate, 0);
+    PlaySE(SE_SELECT);
+    return TRUE;
 }
 
 static bool8 StartMenuPlayerNameCallback(void)

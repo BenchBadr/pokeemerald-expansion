@@ -109,7 +109,7 @@ RustboroCity_DevonCorp_3F_EventScript_MeetPresident::
 # 55 "data/maps/RustboroCity_DevonCorp_3F/scripts.pory"
 	waitfanfare
 # 56 "data/maps/RustboroCity_DevonCorp_3F/scripts.pory"
-	setflag FLAG_SYS_POKENAV_GET
+
 # 57 "data/maps/RustboroCity_DevonCorp_3F/scripts.pory"
 	setflag FLAG_RECEIVED_POKENAV
 # 58 "data/maps/RustboroCity_DevonCorp_3F/scripts.pory"

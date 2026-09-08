@@ -6,7 +6,7 @@
 #include "decompress.h"
 #include "graphics.h"
 #include "palette.h"
-#include "pokenav.h"
+
 #include "menu_specialized.h"
 #include "scanline_effect.h"
 #include "text.h"
@@ -1150,25 +1150,25 @@ static void SpriteCB_UpDown(struct Sprite *sprite)
 
 #undef tTimer
 
-static void LoadPartyInfo(void)
+static void UNUSED LoadPartyInfo(void)
 {
-    u16 i;
-    u16 numMons;
+    // u16 i;
+    // u16 numMons;
 
-    for (i = 0, numMons = 0; i < CalculatePlayerPartyCount(); i++)
-    {
-        if (!GetMonData(&gParties[B_TRAINER_PLAYER][i], MON_DATA_IS_EGG))
-        {
-            sMenu->party[numMons].boxId = TOTAL_BOXES_COUNT;
-            sMenu->party[numMons].monId = i;
-            sMenu->party[numMons].data = 0;
-            numMons++;
-        }
-    }
+    // for (i = 0, numMons = 0; i < CalculatePlayerPartyCount(); i++)
+    // {
+    //     if (!GetMonData(&gParties[B_TRAINER_PLAYER][i], MON_DATA_IS_EGG))
+    //     {
+    //         sMenu->party[numMons].boxId = TOTAL_BOXES_COUNT;
+    //         sMenu->party[numMons].monId = i;
+    //         sMenu->party[numMons].data = 0;
+    //         numMons++;
+    //     }
+    // }
 
-    sMenu->info.curSelection = 0;
-    sMenu->info.numSelections = numMons + 1;
-    LoadInitialMonInfo();
+    // sMenu->info.curSelection = 0;
+    // sMenu->info.numSelections = numMons + 1;
+    // LoadInitialMonInfo();
 }
 
 static void LoadInitialMonInfo(void)
@@ -1307,72 +1307,9 @@ static void LoadAndCreateSelectionIcons(void)
     LoadSpritePalette(&spritePal2);
 }
 
-static bool8 LoadUsePokeblockMenuGfx(void)
+static bool8 UNUSED LoadUsePokeblockMenuGfx(void)
 {
-    switch (sMenu->info.helperState)
-    {
-    case 0:
-        ChangeBgX(0, 0, BG_COORD_SET);
-        ChangeBgY(0, 0, BG_COORD_SET);
-        ChangeBgX(1, 0, BG_COORD_SET);
-        ChangeBgY(1, 0, BG_COORD_SET);
-        ChangeBgX(2, 0, BG_COORD_SET);
-        ChangeBgY(2, 0, BG_COORD_SET);
-        ChangeBgX(3, 0, BG_COORD_SET);
-        ChangeBgY(3, 136 << 6, BG_COORD_SET);
-        SetGpuReg(REG_OFFSET_DISPCNT, DISPCNT_OBJ_1D_MAP | DISPCNT_OBJ_ON | DISPCNT_WIN0_ON | DISPCNT_WIN1_ON);
-        SetGpuReg(REG_OFFSET_BLDCNT, BLDCNT_TGT1_BG2 | BLDCNT_EFFECT_BLEND | BLDCNT_TGT2_BG1);
-        SetGpuReg(REG_OFFSET_BLDALPHA, BLDALPHA_BLEND(11, 4));
-        break;
-    case 1:
-        sGraph_Gfx = Alloc(6656);
-        sGraph_Tilemap = Alloc(1280);
-        sMonFrame_TilemapPtr = Alloc(1280);
-        break;
-    case 2:
-        DecompressDataWithHeaderVram(sMonFrame_Tilemap, sMonFrame_TilemapPtr);
-        break;
-    case 3:
-        LoadBgTiles(3, sMonFrame_Gfx, 224, 0);
-        break;
-    case 4:
-         LoadBgTilemap(3, sMonFrame_TilemapPtr, 1280, 0);
-        break;
-    case 5:
-        LoadPalette(sMonFrame_Pal, BG_PLTT_ID(13), PLTT_SIZE_4BPP);
-        sMenu->curMonXOffset = -80;
-        break;
-    case 6:
-        DecompressDataWithHeaderVram(gUsePokeblockGraph_Gfx, sGraph_Gfx);
-        break;
-    case 7:
-        DecompressDataWithHeaderVram(gUsePokeblockGraph_Tilemap, sGraph_Tilemap);
-        LoadPalette(gUsePokeblockGraph_Pal, BG_PLTT_ID(2), PLTT_SIZE_4BPP);
-        break;
-    case 8:
-        LoadBgTiles(1, sGraph_Gfx, 6656, 160 << 2);
-        break;
-    case 9:
-        SetBgTilemapBuffer(1, sGraph_Tilemap);
-        CopyToBgTilemapBufferRect(1, gUsePokeblockNatureWin_Pal, 0, 13, 12, 4);
-        CopyBgTilemapBufferToVram(1);
-        break;
-    case 10:
-        DecompressDataWithHeaderVram(sGraphData_Tilemap, sMenu->tilemapBuffer);
-        break;
-    case 11:
-        LoadBgTilemap(2, sMenu->tilemapBuffer, 1280, 0);
-        LoadPalette(gConditionGraphData_Pal, BG_PLTT_ID(3), PLTT_SIZE_4BPP);
-        LoadPalette(gConditionText_Pal, BG_PLTT_ID(15), PLTT_SIZE_4BPP);
-        ConditionGraph_InitWindow(2);
-        break;
-    default:
-        sMenu->info.helperState = 0;
-        return FALSE;
-    }
-
-    sMenu->info.helperState++;
-    return TRUE;
+    return FALSE;
 }
 
 static void UpdateMonInfoText(u16 loadId, bool8 firstPrint)

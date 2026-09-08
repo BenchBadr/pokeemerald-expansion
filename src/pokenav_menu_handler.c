@@ -6,6 +6,7 @@
 #include "constants/songs.h"
 
 #include "pokedex.h"
+#include "option_menu.h"
 #include "overworld.h"
 
 struct Pokenav_Menu
@@ -48,8 +49,8 @@ static const u8 sMenuItems[][MAX_POKENAV_MENUITEMS] =
 {
     [POKENAV_MENU_TYPE_DEFAULT] =
     {
-        POKENAV_MENUITEM_MAP,
         POKENAV_MENUITEM_CONDITION,
+        POKENAV_MENUITEM_MAP,
         [2 ... MAX_POKENAV_MENUITEMS - 1] = POKENAV_MENUITEM_SWITCH_OFF
     },
     [POKENAV_MENU_TYPE_UNLOCK_MC] =
@@ -228,16 +229,19 @@ static u32 HandleMainMenuInput(struct Pokenav_Menu *menu)
             SetMenuIdAndCB(menu, POKENAV_REGION_MAP);
             return POKENAV_MENU_FUNC_OPEN_FEATURE;
         case POKENAV_MENUITEM_CONDITION:
-            // menu->menuType = POKENAV_MENU_TYPE_CONDITION;
+            // gSaveBlock2Ptr->pokenavCursorPos = menu->cursorPos;
             // menu->cursorPos = 0;
             // menu->currMenuItem = sMenuItems[POKENAV_MENU_TYPE_CONDITION][0];
             // menu->callback = HandleConditionMenuInput;
 
             IncrementGameStat(GAME_STAT_CHECKED_POKEDEX);
+
             
             gMain.savedCallback = CB2_InitPokeNav;
 
             SetMainCallback2(CB2_OpenPokedex);
+
+            return POKENAV_MENU_FUNC_NONE;
     return POKENAV_MENU_FUNC_EXIT;
         case POKENAV_MENUITEM_MATCH_CALL:
             menu->helpBarIndex = HELPBAR_MC_TRAINER_LIST;
@@ -256,7 +260,11 @@ static u32 HandleMainMenuInput(struct Pokenav_Menu *menu)
                 return POKENAV_MENU_FUNC_NO_RIBBON_WINNERS;
             }
         case POKENAV_MENUITEM_SWITCH_OFF:
-            return POKENAV_MENU_FUNC_EXIT;
+            // SetMenuIdAndCB(menu, POKENAV_MENUITEM_SWITCH_OFF);
+
+            gMain.savedCallback = CB2_InitPokeNav;
+            SetMainCallback2(CB2_InitOptionMenu);
+            return POKENAV_MENU_FUNC_NONE;
         }
     }
 
