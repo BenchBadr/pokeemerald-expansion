@@ -44,7 +44,18 @@ static const u32 sSampleUiTiles[] = INCBIN_U32("graphics/sample_ui/tiles.4bpp.lz
 static const u32 sSampleUiTilemap[] = INCBIN_U32("graphics/sample_ui/tilemap.bin.lz");
 static const u16 sSampleUiPalette[] = INCBIN_U16("graphics/sample_ui/00.gbapal");
 
-// static const u32 sSaveIcon_Gfx[] = INCGFX_U32("graphics/sample_ui/save_icon.png", ".4bpp");
+
+static const u32 sPokedex_Gfx[] = INCGFX_U32("graphics/sample_ui/pokedex.png", ".4bpp");
+static const u32 sMaps_Gfx[] = INCGFX_U32("graphics/sample_ui/maps.png", ".4bpp");
+static const u32 sDexNav_Gfx[] = INCGFX_U32("graphics/sample_ui/dexnav.png", ".4bpp");
+static const u32 sNotesIcon_Gfx[] = INCGFX_U32("graphics/sample_ui/notes_icon.png", ".4bpp");
+static const u32 sCard_Gfx[] = INCGFX_U32("graphics/sample_ui/card.png", ".4bpp");
+static const u32 sSettings_Gfx[] = INCGFX_U32("graphics/sample_ui/settings.png", ".4bpp");
+
+static const u16 sPhone_CirclesPal[] = INCBIN_U16("graphics/sample_ui/circles.gbapal");
+
+
+
 
 /*
  * Entry tasks for the different versions of the UI. In `start_menu.c', we'll launch a task using one of

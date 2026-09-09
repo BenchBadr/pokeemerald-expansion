@@ -1,3 +1,5 @@
+// Credit : Lucas Sample UI whom blank UI served as a base for this
+
 #include "sample_ui.h"
 
 #include "gba/types.h"
@@ -50,16 +52,28 @@
 
 #define CURSOR_SPRITE_ID                sSampleUiState->spriteIDs[1]
 
+#define SAVE_ICON_SPRITE_ID                sSampleUiState->spriteIDs[2]
+
 
 #define PALETTE_TAG_ROTOM               0x1000
-#define TILE_TAG_ROTOM                  0x2000
-#define TAG_CURSOR                      55121
-#define TAG_SAVE_ICON                   60000
+#define PALETTE_TAG_CIRCLES             0x1500
 
-#define INIT_X_MENU_OPTIONS 35
+#define DEFAULT_ANIM  0
+#define SELECTED_ANIM 0
+
+
+#define TILE_TAG_ROTOM                  0x2000
+#define TAG_CURSOR                      0x3000
+#define TAG_MENU_ICON_BASE              0x4000
+#define ICON_TILE_SIZE      ((32 * 32) / 2)
+
+#define INIT_X_MENU_OPTIONS 45
 #define INIT_Y_MENU_OPTIONS 60
 #define GAP_MENU_OPTIONS 54
 #define CURSOR_Y_SHIFT 20
+#define CURSOR_X_SHIFT 5
+
+#define MENU_ICON_SHIFT 20
 
 
 struct SampleUiState
@@ -69,7 +83,7 @@ struct SampleUiState
     u8 mode;
     u8 cursorX;
     u8 cursorY;
-    u8 spriteIDs[3];
+    u8 spriteIDs[8];
 
     // cursor state
     u8 comfyAnimX;
@@ -86,6 +100,10 @@ static void SpriteCallback_Cursor(struct Sprite *sprite);
 static void SampleUi_InitCursorMove(s16 targetX, s16 targetY);
 static void HandleSelection(void);
 static void CB2_OpenTrainerCardFromSampleUi(void);
+
+
+
+
 
 
 static EWRAM_DATA struct SampleUiState *sSampleUiState = NULL;
@@ -197,17 +215,88 @@ static const struct SpriteTemplate sSpriteTemplate_Cursor =
     .callback = SpriteCallback_Cursor
 };
 
-// static const struct SpriteTemplate sSpriteTemplate_SaveIcon =
-// {
-//     .tileTag = TAG_SAVE_ICON,
-//     .paletteTag = PALETTE_TAG_ROTOM, // change if it has its own palette
-//     .oam = &sSaveIconOam,
-//     .anims = sSaveIconAnims,
-//     .images = sSaveIconImages,
-//     .affineAnims = gDummySpriteAffineAnimTable,
-//     .callback = SpriteCallbackDummy,
-// };
 
+
+// Getting to the circular icons
+static const struct SpritePalette sPhone_CirclesSpritePalettes =
+{
+    .data = sPhone_CirclesPal,
+    .tag = PALETTE_TAG_CIRCLES
+};
+
+
+
+static const union AnimCmd sMenuIconFrame0[] = { ANIMCMD_FRAME(0, 30), ANIMCMD_END };
+static const union AnimCmd sMenuIconFrame1[] = { ANIMCMD_FRAME(16, 30), ANIMCMD_END };
+
+static const union AnimCmd* const sMenuIconAnimTable[] = {
+    sMenuIconFrame0,
+    sMenuIconFrame1,
+};
+
+static const struct OamData sMenuIconOam = {
+    .y = 0,
+    .x = 0,
+    .objMode = ST_OAM_OBJ_NORMAL,
+    .bpp = ST_OAM_4BPP,
+    .shape = SPRITE_SHAPE(32x32),
+    .size = SPRITE_SIZE(32x32),
+    .priority = 0,
+};
+
+
+static const u32 *const sMenuIconGfxPointers[] = {
+    sPokedex_Gfx,
+    sMaps_Gfx,
+    sDexNav_Gfx,
+    sNotesIcon_Gfx,
+    sCard_Gfx,
+    sSettings_Gfx,
+};
+
+static u8 CreateMenuIconSprite(const u32 *gfxData, u16 tag, u8 xGrid, u8 yGrid)
+{
+    struct SpriteSheet sheet = {
+        .data = gfxData,
+        .size = (32 * 32 / 2) * 2,
+        .tag = tag
+    };
+
+    struct SpriteTemplate template = {
+        .tileTag = tag,
+        .paletteTag = PALETTE_TAG_CIRCLES,
+        .oam = &sMenuIconOam,
+        .anims = sMenuIconAnimTable,
+        .images = NULL,
+        .affineAnims = gDummySpriteAffineAnimTable,
+        .callback = SpriteCallbackDummy,
+    };
+
+    LoadSpriteSheet(&sheet);
+
+    return CreateSprite(
+        &template,
+        INIT_X_MENU_OPTIONS + GAP_MENU_OPTIONS * xGrid + MENU_ICON_SHIFT,
+        INIT_Y_MENU_OPTIONS + GAP_MENU_OPTIONS * yGrid - CURSOR_Y_SHIFT,
+        0
+    );
+}
+
+static void UpdateMenuIconAnims(void)
+{
+    u8 selectedIndex = (sSampleUiState->cursorY % 2) * 3 + (sSampleUiState->cursorX % 3);
+    u8 i;
+
+    for (i = 0; i < 6; i++)
+    {
+        u8 spriteId = sSampleUiState->spriteIDs[i + 2];
+        if (spriteId != MAX_SPRITES)
+        {
+            u8 animId = (i == selectedIndex) ? 1 : 0;
+            StartSpriteAnim(&gSprites[spriteId], animId);
+        }
+    }
+}
 
 
 enum FontColor
@@ -279,6 +368,7 @@ static void SampleUi_Init(MainCallback callback)
 
 
     CURSOR_SPRITE_ID = MAX_SPRITES;
+    SAVE_ICON_SPRITE_ID = MAX_SPRITES;
 
     SetMainCallback2(SampleUi_SetupCB);
 }
@@ -430,7 +520,7 @@ static void Task_SampleUiMainInput(u8 taskId)
         sSampleUiState->cursorX--;
 
         SampleUi_InitCursorMove(
-            INIT_X_MENU_OPTIONS + GAP_MENU_OPTIONS * (sSampleUiState->cursorX % 3),
+            INIT_X_MENU_OPTIONS - CURSOR_X_SHIFT + GAP_MENU_OPTIONS * (sSampleUiState->cursorX % 3),
             INIT_Y_MENU_OPTIONS - CURSOR_Y_SHIFT + GAP_MENU_OPTIONS * (sSampleUiState->cursorY % 2)
         );
 
@@ -445,7 +535,7 @@ static void Task_SampleUiMainInput(u8 taskId)
         sSampleUiState->cursorX++;
 
         SampleUi_InitCursorMove(
-            INIT_X_MENU_OPTIONS + GAP_MENU_OPTIONS * (sSampleUiState->cursorX % 3),
+            INIT_X_MENU_OPTIONS - CURSOR_X_SHIFT + GAP_MENU_OPTIONS * (sSampleUiState->cursorX % 3),
             INIT_Y_MENU_OPTIONS - CURSOR_Y_SHIFT + GAP_MENU_OPTIONS * (sSampleUiState->cursorY % 2)
         );
 
@@ -459,7 +549,7 @@ static void Task_SampleUiMainInput(u8 taskId)
         sSampleUiState->cursorY++;
 
         SampleUi_InitCursorMove(
-            INIT_X_MENU_OPTIONS + GAP_MENU_OPTIONS * (sSampleUiState->cursorX % 3),
+            INIT_X_MENU_OPTIONS - CURSOR_X_SHIFT + GAP_MENU_OPTIONS * (sSampleUiState->cursorX % 3),
             INIT_Y_MENU_OPTIONS - CURSOR_Y_SHIFT + GAP_MENU_OPTIONS * (sSampleUiState->cursorY % 2)
         );
 
@@ -473,13 +563,15 @@ static void Task_SampleUiMainInput(u8 taskId)
         sSampleUiState->cursorY--;
 
         SampleUi_InitCursorMove(
-            INIT_X_MENU_OPTIONS + GAP_MENU_OPTIONS * (sSampleUiState->cursorX % 3),
+            INIT_X_MENU_OPTIONS - CURSOR_X_SHIFT + GAP_MENU_OPTIONS * (sSampleUiState->cursorX % 3),
             INIT_Y_MENU_OPTIONS - CURSOR_Y_SHIFT + GAP_MENU_OPTIONS * (sSampleUiState->cursorY % 2)
         );
 
         PlaySE(SE_SELECT);
 
     }
+
+    UpdateMenuIconAnims();
 }
 
 static void Task_SampleUiWaitFadeAndBail(u8 taskId)
@@ -621,6 +713,20 @@ static void SampleUi_PrintUiSampleWindowText(void)
 static void SampleUi_DisplaySprites(void)
 {
 
+    u8 i;
+
+    LoadSpritePalette(&sPhone_CirclesSpritePalettes);
+
+    for (i = 0; i < 6; i++)
+    {
+        sSampleUiState->spriteIDs[i + 2] = CreateMenuIconSprite(
+            sMenuIconGfxPointers[i],
+            TAG_MENU_ICON_BASE + i,
+            i % 3,
+            i / 3
+        );
+    }
+
     // display rotom
     LoadSpriteSheet(&sRotomSpriteSheet);
     LoadSpritePalette(&sRotomSpritePalette);
@@ -631,10 +737,16 @@ static void SampleUi_DisplaySprites(void)
     CURSOR_SPRITE_ID =
         CreateSprite(
             &sSpriteTemplate_Cursor,
-            INIT_X_MENU_OPTIONS + GAP_MENU_OPTIONS * (sSampleUiState->cursorX % 3),
+            INIT_X_MENU_OPTIONS - CURSOR_X_SHIFT + GAP_MENU_OPTIONS * (sSampleUiState->cursorX % 3),
             INIT_Y_MENU_OPTIONS - CURSOR_Y_SHIFT
                 + GAP_MENU_OPTIONS * (sSampleUiState->cursorY % 2),
             0);
+
+
+
+    // save icon 
+
+    UpdateMenuIconAnims();
 }
 
 
@@ -748,7 +860,6 @@ static void SampleUi_InitCursorMove(s16 targetX, s16 targetY)
 {
     struct ComfyAnimEasingConfig config;
 
-    // Release old anims
     if (sSampleUiState->comfyAnimX != INVALID_COMFY_ANIM)
         ReleaseComfyAnim(sSampleUiState->comfyAnimX);
 
@@ -759,12 +870,10 @@ static void SampleUi_InitCursorMove(s16 targetX, s16 targetY)
     config.durationFrames = 8;
     config.easingFunc = ComfyAnimEasing_EaseOutCubic;
 
-    // X
     config.from = Q_24_8(gSprites[CURSOR_SPRITE_ID].x);
     config.to = Q_24_8(targetX);
     sSampleUiState->comfyAnimX = CreateComfyAnim_Easing(&config);
 
-    // Y
     config.from = Q_24_8(gSprites[CURSOR_SPRITE_ID].y);
     config.to = Q_24_8(targetY);
     sSampleUiState->comfyAnimY = CreateComfyAnim_Easing(&config);
@@ -773,7 +882,6 @@ static void SampleUi_InitCursorMove(s16 targetX, s16 targetY)
 
 static void CB2_ReturnToSampleUi(void)
 {
-    // wipe VRAM/OAM garbage
     ResetSpriteData();
     ResetTasks();
     CpuFill16(0, (void *)VRAM, VRAM_SIZE);
@@ -836,7 +944,6 @@ static void HandleSelection(void)
     // Pokédex
     if (gridX == 0 && gridY == 0)
     {
-        // BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 16, RGB_BLACK);
         OpenApp(CB2_OpenPokedex);
     }
 
@@ -845,6 +952,8 @@ static void HandleSelection(void)
     {
         sSavedCursorX = sSampleUiState->cursorX;
         sSavedCursorY = sSampleUiState->cursorY;
+
+        
 
         // todo...
 
@@ -884,3 +993,5 @@ static void HandleSelection(void)
         OpenApp(CB2_InitOptionMenu);
     }
 }
+
+
