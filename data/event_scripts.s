@@ -1745,3 +1745,11 @@ EventScript_PalletTown_PlayersHouse_2F_TurnOnPC::
 	.include "data/maps/Arr2_BlissRes_1/scripts.inc"
 
 	.include "data/maps/Amphitheatre/scripts.inc"
+
+	.include "data/maps/Arr2_CopernicA1F/scripts.inc"
+
+	.include "data/maps/Arr2_Roof1/scripts.inc"
+
+	.include "data/maps/Arr2_Roof2/scripts.inc"
+
+	.include "data/maps/Arr2_TrainerClub_2F/scripts.inc"

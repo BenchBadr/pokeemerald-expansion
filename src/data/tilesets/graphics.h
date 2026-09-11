@@ -222,26 +222,26 @@ const u16 gTilesetPalettes_Fallarbor[][16] =
     INCGFX_U16("data/tilesets/secondary/fallarbor/palettes/15.pal", ".gbapal"),
 };
 
-const u32 gTilesetTiles_Fortree[] = INCGFX_U32("data/tilesets/secondary/fortree/tiles.png", ".4bpp.fastSmol", "-num_tiles 493 -Wnum_tiles");
+const u32 gTilesetTiles_Roofs[] = INCGFX_U32("data/tilesets/secondary/roofs/tiles.png", ".4bpp.fastSmol", "-num_tiles 493 -Wnum_tiles");
 
-const u16 gTilesetPalettes_Fortree[][16] =
+const u16 gTilesetPalettes_Roofs[][16] =
 {
-    INCGFX_U16("data/tilesets/secondary/fortree/palettes/00.pal", ".gbapal"),
-    INCGFX_U16("data/tilesets/secondary/fortree/palettes/01.pal", ".gbapal"),
-    INCGFX_U16("data/tilesets/secondary/fortree/palettes/02.pal", ".gbapal"),
-    INCGFX_U16("data/tilesets/secondary/fortree/palettes/03.pal", ".gbapal"),
-    INCGFX_U16("data/tilesets/secondary/fortree/palettes/04.pal", ".gbapal"),
-    INCGFX_U16("data/tilesets/secondary/fortree/palettes/05.pal", ".gbapal"),
-    INCGFX_U16("data/tilesets/secondary/fortree/palettes/06.pal", ".gbapal"),
-    INCGFX_U16("data/tilesets/secondary/fortree/palettes/07.pal", ".gbapal"),
-    INCGFX_U16("data/tilesets/secondary/fortree/palettes/08.pal", ".gbapal"),
-    INCGFX_U16("data/tilesets/secondary/fortree/palettes/09.pal", ".gbapal"),
-    INCGFX_U16("data/tilesets/secondary/fortree/palettes/10.pal", ".gbapal"),
-    INCGFX_U16("data/tilesets/secondary/fortree/palettes/11.pal", ".gbapal"),
-    INCGFX_U16("data/tilesets/secondary/fortree/palettes/12.pal", ".gbapal"),
-    INCGFX_U16("data/tilesets/secondary/fortree/palettes/13.pal", ".gbapal"),
-    INCGFX_U16("data/tilesets/secondary/fortree/palettes/14.pal", ".gbapal"),
-    INCGFX_U16("data/tilesets/secondary/fortree/palettes/15.pal", ".gbapal"),
+    INCGFX_U16("data/tilesets/secondary/roofs/palettes/00.pal", ".gbapal"),
+    INCGFX_U16("data/tilesets/secondary/roofs/palettes/01.pal", ".gbapal"),
+    INCGFX_U16("data/tilesets/secondary/roofs/palettes/02.pal", ".gbapal"),
+    INCGFX_U16("data/tilesets/secondary/roofs/palettes/03.pal", ".gbapal"),
+    INCGFX_U16("data/tilesets/secondary/roofs/palettes/04.pal", ".gbapal"),
+    INCGFX_U16("data/tilesets/secondary/roofs/palettes/05.pal", ".gbapal"),
+    INCGFX_U16("data/tilesets/secondary/roofs/palettes/06.pal", ".gbapal"),
+    INCGFX_U16("data/tilesets/secondary/roofs/palettes/07.pal", ".gbapal"),
+    INCGFX_U16("data/tilesets/secondary/roofs/palettes/08.pal", ".gbapal"),
+    INCGFX_U16("data/tilesets/secondary/roofs/palettes/09.pal", ".gbapal"),
+    INCGFX_U16("data/tilesets/secondary/roofs/palettes/10.pal", ".gbapal"),
+    INCGFX_U16("data/tilesets/secondary/roofs/palettes/11.pal", ".gbapal"),
+    INCGFX_U16("data/tilesets/secondary/roofs/palettes/12.pal", ".gbapal"),
+    INCGFX_U16("data/tilesets/secondary/roofs/palettes/13.pal", ".gbapal"),
+    INCGFX_U16("data/tilesets/secondary/roofs/palettes/14.pal", ".gbapal"),
+    INCGFX_U16("data/tilesets/secondary/roofs/palettes/15.pal", ".gbapal"),
 };
 
 const u32 gTilesetTiles_Lilycove[] = INCGFX_U32("data/tilesets/secondary/lilycove/tiles.png", ".4bpp.fastSmol");

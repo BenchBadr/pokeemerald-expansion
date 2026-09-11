@@ -130,15 +130,15 @@ const struct Tileset gTileset_Fallarbor =
     .callback = InitTilesetAnim_Fallarbor,
 };
 
-const struct Tileset gTileset_Fortree =
+const struct Tileset gTileset_Roofs =
 {
     .isCompressed = TRUE,
     .isSecondary = TRUE,
-    .tiles = gTilesetTiles_Fortree,
-    .palettes = gTilesetPalettes_Fortree,
-    .metatiles = gMetatiles_Fortree,
-    .metatileAttributes = gMetatileAttributes_Fortree,
-    .callback = InitTilesetAnim_Fortree,
+    .tiles = gTilesetTiles_Roofs,
+    .palettes = gTilesetPalettes_Roofs,
+    .metatiles = gMetatiles_Roofs,
+    .metatileAttributes = gMetatileAttributes_Roofs,
+    .callback = InitTilesetAnim_Roofs,
 };
 
 const struct Tileset gTileset_Lilycove =

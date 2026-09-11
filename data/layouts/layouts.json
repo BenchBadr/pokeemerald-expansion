@@ -51,7 +51,7 @@
       "width": 40,
       "height": 20,
       "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_Fortree",
+      "secondary_tileset": "gTileset_Roofs",
       "border_filepath": "data/layouts/FortreeCity/border.bin",
       "blockdata_filepath": "data/layouts/FortreeCity/map.bin",
       "layout_version": "emerald"
@@ -158,10 +158,10 @@
     {
       "id": "LAYOUT_VERDANTURF_TOWN",
       "name": "VerdanturfTown_Layout",
-      "width": 20,
-      "height": 20,
+      "width": 21,
+      "height": 24,
       "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_Mauville",
+      "secondary_tileset": "gTileset_Lavaridge",
       "border_filepath": "data/layouts/VerdanturfTown/border.bin",
       "blockdata_filepath": "data/layouts/VerdanturfTown/map.bin",
       "layout_version": "emerald"
@@ -381,7 +381,7 @@
       "width": 40,
       "height": 140,
       "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_Fortree",
+      "secondary_tileset": "gTileset_Lutecia",
       "border_filepath": "data/layouts/Route119/border.bin",
       "blockdata_filepath": "data/layouts/Route119/map.bin",
       "layout_version": "emerald"
@@ -392,7 +392,7 @@
       "width": 40,
       "height": 100,
       "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_Fortree",
+      "secondary_tileset": "gTileset_Lutecia",
       "border_filepath": "data/layouts/Route120/border.bin",
       "blockdata_filepath": "data/layouts/Route120/map.bin",
       "layout_version": "emerald"
@@ -686,10 +686,10 @@
     {
       "id": "LAYOUT_MART",
       "name": "Mart_Layout",
-      "width": 11,
-      "height": 8,
-      "primary_tileset": "gTileset_Building",
-      "secondary_tileset": "gTileset_Shop",
+      "width": 44,
+      "height": 18,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Lutecia",
       "border_filepath": "data/layouts/Mart/border.bin",
       "blockdata_filepath": "data/layouts/Mart/map.bin",
       "layout_version": "emerald"
@@ -1096,7 +1096,7 @@
       "width": 20,
       "height": 25,
       "primary_tileset": "gTileset_Building",
-      "secondary_tileset": "gTileset_FortreeGym",
+      "secondary_tileset": "gTileset_Roofs",
       "border_filepath": "data/layouts/FortreeCity_Gym/border.bin",
       "blockdata_filepath": "data/layouts/FortreeCity_Gym/map.bin",
       "layout_version": "emerald"
@@ -4429,7 +4429,7 @@
       "width": 29,
       "height": 26,
       "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_Fortree",
+      "secondary_tileset": "gTileset_Lutecia",
       "border_filepath": "data/layouts/FarawayIsland_Interior/border.bin",
       "blockdata_filepath": "data/layouts/FarawayIsland_Interior/map.bin",
       "layout_version": "emerald"
@@ -9327,10 +9327,10 @@
     {
       "id": "LAYOUT_ARR2_TRAINER_CLUB_1F",
       "name": "Arr2_TrainerClub_1F_Layout",
-      "width": 20,
-      "height": 10,
+      "width": 15,
+      "height": 13,
       "primary_tileset": "gTileset_Building",
-      "secondary_tileset": "gTileset_Lab",
+      "secondary_tileset": "gTileset_GenericBuilding",
       "border_filepath": "data/layouts/Arr2_TrainerClub_1F/border.bin",
       "blockdata_filepath": "data/layouts/Arr2_TrainerClub_1F/map.bin"
     },
@@ -9353,6 +9353,46 @@
       "secondary_tileset": "gTileset_BikeShop",
       "border_filepath": "data/layouts/Amphitheatre/border.bin",
       "blockdata_filepath": "data/layouts/Amphitheatre/map.bin"
+    },
+    {
+      "id": "LAYOUT_ARR2_COPERNIC_A1F",
+      "name": "Arr2_CopernicA1F_Layout",
+      "width": 10,
+      "height": 10,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_Lab",
+      "border_filepath": "data/layouts/Arr2_CopernicA1F/border.bin",
+      "blockdata_filepath": "data/layouts/Arr2_CopernicA1F/map.bin"
+    },
+    {
+      "id": "LAYOUT_ARR2_ROOF1",
+      "name": "Arr2_Roof1_Layout",
+      "width": 49,
+      "height": 42,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Roofs",
+      "border_filepath": "data/layouts/Arr2_Roof1/border.bin",
+      "blockdata_filepath": "data/layouts/Arr2_Roof1/map.bin"
+    },
+    {
+      "id": "LAYOUT_ARR2_ROOF2",
+      "name": "Arr2_Roof2_Layout",
+      "width": 40,
+      "height": 19,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Roofs",
+      "border_filepath": "data/layouts/Arr2_Roof2/border.bin",
+      "blockdata_filepath": "data/layouts/Arr2_Roof2/map.bin"
+    },
+    {
+      "id": "LAYOUT_ARR2_TRAINER_CLUB_2F",
+      "name": "Arr2_TrainerClub_2F_Layout",
+      "width": 16,
+      "height": 13,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_GenericBuilding",
+      "border_filepath": "data/layouts/Arr2_TrainerClub_2F/border.bin",
+      "blockdata_filepath": "data/layouts/Arr2_TrainerClub_2F/map.bin"
     }
   ]
 }

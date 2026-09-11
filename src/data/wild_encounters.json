@@ -36702,7 +36702,7 @@
               {
                 "min_level": 5,
                 "max_level": 7,
-                "species": "SPECIES_RIOLU"
+                "species": "SPECIES_EEVEE"
               },
               {
                 "min_level": 2,
@@ -36763,6 +36763,75 @@
                 "min_level": 5,
                 "max_level": 5,
                 "species": "SPECIES_WAILMER"
+              }
+            ]
+          }
+        },
+        {
+          "map": "MAP_ARR2_ROOF1",
+          "base_label": "gArr2_Roof1",
+          "land_mons": {
+            "encounter_rate": 7,
+            "mons": [
+              {
+                "min_level": 5,
+                "max_level": 5,
+                "species": "SPECIES_FLETCHLING"
+              },
+              {
+                "min_level": 5,
+                "max_level": 5,
+                "species": "SPECIES_SWABLU"
+              },
+              {
+                "min_level": 5,
+                "max_level": 5,
+                "species": "SPECIES_PIDOVE"
+              },
+              {
+                "min_level": 5,
+                "max_level": 5,
+                "species": "SPECIES_ROOKIDEE"
+              },
+              {
+                "min_level": 5,
+                "max_level": 5,
+                "species": "SPECIES_FLABEBE"
+              },
+              {
+                "min_level": 5,
+                "max_level": 5,
+                "species": "SPECIES_FLABEBE"
+              },
+              {
+                "min_level": 5,
+                "max_level": 5,
+                "species": "SPECIES_FLABEBE"
+              },
+              {
+                "min_level": 5,
+                "max_level": 5,
+                "species": "SPECIES_FLETCHLING"
+              },
+              {
+                "min_level": 5,
+                "max_level": 5,
+                "species": "SPECIES_FLETCHLING"
+              },
+              {
+                "min_level": 5,
+                "max_level": 5,
+                "species": "SPECIES_FLETCHLING"
+              },
+              {
+                "min_level": 5,
+                "max_level": 5,
+                "species": "SPECIES_FLETCHLING"
+              },
+              {
+                "min_level": 5,
+                "max_level": 5,
+                "species": "SPECIES_HAWLUCHA"
               }
             ]
           }

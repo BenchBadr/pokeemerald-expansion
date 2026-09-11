@@ -731,7 +731,7 @@ void InitTilesetAnim_Fallarbor(void)
     sSecondaryTilesetAnimCallback = NULL;
 }
 
-void InitTilesetAnim_Fortree(void)
+void InitTilesetAnim_Roofs(void)
 {
     sSecondaryTilesetAnimCounter = 0;
     sSecondaryTilesetAnimCounterMax = sPrimaryTilesetAnimCounterMax;

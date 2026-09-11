@@ -220,23 +220,6 @@
 #define METATILE_Fallarbor_RedCaveEntrance_Top       0x347
 #define METATILE_Fallarbor_RedRockWall               0x269
 
-// gTileset_Fortree
-#define METATILE_Fortree_BridgeOverGrass_Lowered           0x24F
-#define METATILE_Fortree_BridgeOverGrass_Raised            0x24E
-#define METATILE_Fortree_BridgeOverTrees_Lowered           0x257
-#define METATILE_Fortree_BridgeOverTrees_Raised            0x256
-#define METATILE_Fortree_LongGrass_Root                    0x208
-#define METATILE_Fortree_SecretBase_LongGrass_BottomLeft   0x281
-#define METATILE_Fortree_SecretBase_LongGrass_BottomMid    0x282
-#define METATILE_Fortree_SecretBase_LongGrass_BottomRight  0x283
-#define METATILE_Fortree_SecretBase_LongGrass_TopLeft      0x279
-#define METATILE_Fortree_SecretBase_LongGrass_TopMid       0x27A
-#define METATILE_Fortree_SecretBase_LongGrass_TopRight     0x27B
-#define METATILE_Fortree_SecretBase_Shrub                  0x271
-#define METATILE_Fortree_SecretBase_ShrubOpen              0x278
-#define METATILE_Fortree_WoodBridge1_Bottom                0x29F
-#define METATILE_Fortree_WoodBridge1_Top                   0x297
-
 // gTileset_FuchsiaCity
 #define METATILE_FuchsiaCity_Door                           0x2BF
 #define METATILE_FuchsiaCity_SafariZoneDoor                 0x2D2
@@ -1055,25 +1038,37 @@
 #define METATILE_ViridianForest_HugeTreeTopMiddle_Mowed  0x281
 
 // Other
-#define METATILE_GeneralFrlg_CalmWater               0x12B
-#define METATILE_GeneralFrlg_Door                    0x03D
-#define METATILE_GeneralFrlg_Plain_Grass             0x00D
-#define METATILE_GeneralFrlg_Plain_Mowed             0x001
-#define METATILE_GeneralFrlg_SlidingDoubleDoor       0x15B
-#define METATILE_GeneralFrlg_SlidingSingleDoor       0x062
-#define METATILE_GeneralFrlg_ThinTreeTop_Grass       0x00A
-#define METATILE_GeneralFrlg_ThinTreeTop_Mowed       0x013
-#define METATILE_GeneralFrlg_WideTreeTopLeft_Grass   0x00B
-#define METATILE_GeneralFrlg_WideTreeTopLeft_Mowed   0x00E
-#define METATILE_GeneralFrlg_WideTreeTopRight_Grass  0x00C
-#define METATILE_GeneralFrlg_WideTreeTopRight_Mowed  0x00F
-#define METATILE_RSCave_CrackedFloor                 0x22F
-#define METATILE_RSCave_CrackedFloor_Hole            0x206
-#define METATILE_RSMossdeepGym_RedArrow_Down         0x205
-#define METATILE_RSMossdeepGym_RedArrow_Left         0x20C
-#define METATILE_RSMossdeepGym_RedArrow_Right        0x204
-#define METATILE_RSMossdeepGym_RedArrow_Up           0x20D
-#define METATILE_RSMossdeepGym_Switch_Down           0x239
-#define METATILE_RSMossdeepGym_Switch_Up             0x238
+#define METATILE_Fortree_BridgeOverGrass_Lowered           0x24F
+#define METATILE_Fortree_BridgeOverGrass_Raised            0x24E
+#define METATILE_Fortree_BridgeOverTrees_Lowered           0x257
+#define METATILE_Fortree_BridgeOverTrees_Raised            0x256
+#define METATILE_Fortree_LongGrass_Root                    0x208
+#define METATILE_Fortree_SecretBase_LongGrass_BottomMid    0x282
+#define METATILE_Fortree_SecretBase_LongGrass_BottomRight  0x283
+#define METATILE_Fortree_SecretBase_LongGrass_TopMid       0x27A
+#define METATILE_Fortree_SecretBase_LongGrass_TopRight     0x27B
+#define METATILE_Fortree_SecretBase_Shrub                  0x271
+#define METATILE_Fortree_WoodBridge1_Bottom                0x29F
+#define METATILE_Fortree_WoodBridge1_Top                   0x297
+#define METATILE_GeneralFrlg_CalmWater                     0x12B
+#define METATILE_GeneralFrlg_Door                          0x03D
+#define METATILE_GeneralFrlg_Plain_Grass                   0x00D
+#define METATILE_GeneralFrlg_Plain_Mowed                   0x001
+#define METATILE_GeneralFrlg_SlidingDoubleDoor             0x15B
+#define METATILE_GeneralFrlg_SlidingSingleDoor             0x062
+#define METATILE_GeneralFrlg_ThinTreeTop_Grass             0x00A
+#define METATILE_GeneralFrlg_ThinTreeTop_Mowed             0x013
+#define METATILE_GeneralFrlg_WideTreeTopLeft_Grass         0x00B
+#define METATILE_GeneralFrlg_WideTreeTopLeft_Mowed         0x00E
+#define METATILE_GeneralFrlg_WideTreeTopRight_Grass        0x00C
+#define METATILE_GeneralFrlg_WideTreeTopRight_Mowed        0x00F
+#define METATILE_RSCave_CrackedFloor                       0x22F
+#define METATILE_RSCave_CrackedFloor_Hole                  0x206
+#define METATILE_RSMossdeepGym_RedArrow_Down               0x205
+#define METATILE_RSMossdeepGym_RedArrow_Left               0x20C
+#define METATILE_RSMossdeepGym_RedArrow_Right              0x204
+#define METATILE_RSMossdeepGym_RedArrow_Up                 0x20D
+#define METATILE_RSMossdeepGym_Switch_Down                 0x239
+#define METATILE_RSMossdeepGym_Switch_Up                   0x238
 
 #endif // GUARD_METATILE_LABELS_H
