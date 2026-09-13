@@ -3176,3 +3176,11 @@
     subquestmenu QUEST_MENU_CHECK_COMPLETE \parent \child
     call_if_eq VAR_RESULT, FALSE, \dest
     .endm
+
+
+
+@ Check if player caught all land mon
+	.macro donelandmon  map:req
+	.byte SCR_OP_DONELANDMON
+	map \map
+	.endm

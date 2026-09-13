@@ -1,0 +1,64 @@
+mapscripts Arr1_TrainScene_MapScripts {
+    MAP_SCRIPT_ON_FRAME_TABLE [
+        VAR_TEMP_0, 0: Arr1_TrainScene_WhichWay
+    ]
+}
+
+script Arr1_TrainScene_WhichWay {
+    if (!var(VAR_TEMP_0)) {
+        call(Arr1_TrainScene_ToRight)
+    }
+}
+
+script Arr1_TrainScene_ToRight {
+    lock 
+
+    applymovement(OBJ_EVENT_ID_PLAYER, moves(set_invisible))
+
+    addobject(1, MAP_ARR1_TRAIN_SCENE)
+    addobject(2, MAP_ARR1_TRAIN_SCENE)
+    addobject(3, MAP_ARR1_TRAIN_SCENE)
+    addobject(4, MAP_ARR1_TRAIN_SCENE)
+    addobject(5, MAP_ARR1_TRAIN_SCENE)
+
+    applymovement(1, train_decalage)
+    applymovement(2, train_decalage)
+    applymovement(3, train_decalage)
+    applymovement(4, train_decalage)
+    applymovement(5, train_decalage)
+
+    special(SpawnCameraObject)
+    applymovement(OBJ_EVENT_ID_CAMERA, moves(walk_right * 30))
+
+
+    setvar(VAR_0x8014, 1)
+    playSE(SE_DING_DONG)
+    msgbox(format("{FONT_SMALL}{SHADOW GREEN}{COLOR LIGHT_GREEN}We are now entering the Gare de Saint-Chandelure. Please do not forget your luggage."))
+    closemessage
+    setvar(VAR_0x8014, 0)
+
+
+    waitmovement(0)
+
+    fadescreen(FADE_TO_BLACK)
+    special(RemoveCameraObject)
+    setspeaker("Speaker")
+    msgbox(format("We inform you that we are entering a new timezone. We recommend you to set your watch accordingly."))
+    call(PlayersHouse_2F_EventScript_SetWallClock)
+    setflag(FLAG_SYS_B_DASH)
+    closemessage
+
+    fadescreen(FADE_FROM_BLACK)
+
+
+    warp(MAP_OLDALE_TOWN_POKEMON_CENTER_2F, 13, 3)
+
+    waitstate
+    release 
+    end
+}
+
+movement train_decalage {
+    walk_right * 50
+}
+

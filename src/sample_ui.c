@@ -944,6 +944,7 @@ static void HandleSelection(void)
     // Pokédex
     if (gridX == 0 && gridY == 0)
     {
+        IncrementGameStat(GAME_STAT_CHECKED_POKEDEX);
         OpenApp(CB2_OpenPokedex);
     }
 

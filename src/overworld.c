@@ -85,6 +85,8 @@
 #include "constants/trainer_hill.h"
 #include "constants/weather.h"
 
+#include "quests.h"
+
 STATIC_ASSERT((B_FLAG_FOLLOWERS_DISABLED == 0 || OW_FOLLOWERS_ENABLED), FollowersFlagAssignedWithoutEnablingThem);
 
 struct CableClubPlayer
@@ -1938,10 +1940,9 @@ void CB2_NewGame(void)
     PlayTimeCounter_Start();
     ScriptContext_Init();
     UnlockPlayerFieldControls();
-    if (IS_FRLG)
-        gFieldCallback = FieldCB_WarpExitFadeFromBlack;
-    else
-        gFieldCallback = ExecuteTruckSequence;
+
+    gFieldCallback = FieldCB_WarpExitFadeFromBlack;
+    
     gFieldCallback2 = NULL;
     DoMapLoadLoop(&gMain.state);
     SetFieldVBlankCallback();
@@ -2008,6 +2009,7 @@ void CB2_ReturnToFieldContestHall(void)
     }
     if (LoadMapInStepsLocal(&gMain.state, TRUE))
     {
+        RefreshQuestIcons();
         SetFieldVBlankCallback();
         SetMainCallback1(CB1_Overworld);
         SetMainCallback2(CB2_Overworld);
@@ -2081,6 +2083,7 @@ void CB2_ReturnToFieldWithOpenMenu(void)
 {
     FieldClearVBlankHBlankCallbacks();
     gFieldCallback2 = FieldCB_ReturnToFieldOpenStartMenu;
+    RefreshQuestIcons();
     CB2_ReturnToField();
 }
 
@@ -2610,6 +2613,7 @@ static void InitObjectEventsLink(void)
     ResetObjectEvents();
     TrySpawnObjectEvents(0, 0);
     TryRunOnWarpIntoMapScript();
+    RefreshQuestIcons();
 }
 
 static void InitObjectEventsLocal(void)
@@ -2636,6 +2640,7 @@ static void InitObjectEventsReturnToField(void)
     SpawnObjectEventsOnReturnToField(0, 0);
     RotatingGate_InitPuzzleAndGraphics();
     RunOnReturnToFieldMapScript();
+    RefreshQuestIcons();
 }
 
 static void SetCameraToTrackPlayer(void)
@@ -3752,8 +3757,8 @@ void ScriptShowItemDescription(struct ScriptContext *ctx)
     FillWindowPixelBuffer(sHeaderBoxWindowId, PIXEL_FILL(0));
     PutWindowTilemap(sHeaderBoxWindowId);
     CopyWindowToVram(sHeaderBoxWindowId, 3);
-    SetStandardWindowBorderStyle(sHeaderBoxWindowId, FALSE);
-    DrawStdFrameWithCustomTileAndPalette(sHeaderBoxWindowId, FALSE, 0x21A, 14);
+    // SetStandardWindowBorderStyle(sHeaderBoxWindowId, FALSE);
+    DrawStdFrameWithCustomTileAndPalette(sHeaderBoxWindowId, TRUE, STD_WINDOW_BASE_TILE_NUM, 15);
 
     if (ReformatItemDescription(item, dst) == 1)
         textY = 4;

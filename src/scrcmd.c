@@ -69,6 +69,7 @@
 #include "constants/party_menu.h"
 
 #include "quests.h"
+#include "wild_encounter.h"
 
 typedef u16 (*SpecialFunc)(void);
 typedef void (*NativeFunc)(struct ScriptContext *ctx);
@@ -3556,6 +3557,17 @@ bool8 ScrCmd_subquestmenu(struct ScriptContext *ctx)
             QuestMenu_CopySubquestName(gStringVar1,parentId,childId);
             break;
     }
+
+    return TRUE;
+}
+
+
+bool8 ScrCmd_donelandmon(struct ScriptContext *ctx)
+{
+    u8 mapGroup = ScriptReadByte(ctx);
+    u8 mapNum = ScriptReadByte(ctx);
+
+    CheckAllLandMon(mapGroup, mapNum);
 
     return TRUE;
 }

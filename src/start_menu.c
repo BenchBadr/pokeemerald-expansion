@@ -336,7 +336,7 @@ static void ShowStartMenuRankIcon(void)
         if (sRankIconSpriteId != MAX_SPRITES)
         {
             gSprites[sRankIconSpriteId].callback = SpriteCallbackDummy;
-            gSprites[sRankIconSpriteId].oam.priority = 1;
+            gSprites[sRankIconSpriteId].oam.priority = 0;
 
             if (goalRank == currentPoints) 
             {

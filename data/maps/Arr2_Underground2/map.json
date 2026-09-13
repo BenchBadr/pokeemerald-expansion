@@ -1,0 +1,28 @@
+{
+  "id": "MAP_ARR2_UNDERGROUND2",
+  "name": "Arr2_Underground2",
+  "layout": "LAYOUT_ARR2_UNDERGROUND2",
+  "music": "MUS_DUMMY",
+  "region_map_section": "MAPSEC_ABANDONED_SHIP",
+  "requires_flash": false,
+  "weather": "WEATHER_NONE",
+  "map_type": "MAP_TYPE_NONE",
+  "allow_cycling": false,
+  "allow_escaping": false,
+  "allow_running": false,
+  "show_map_name": true,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": null,
+  "object_events": [],
+  "warp_events": [
+    {
+      "x": 14,
+      "y": 40,
+      "elevation": 0,
+      "dest_map": "MAP_ARR2_UNDERGROUND",
+      "dest_warp_id": "1"
+    }
+  ],
+  "coord_events": [],
+  "bg_events": []
+}

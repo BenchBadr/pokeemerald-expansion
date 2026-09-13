@@ -2,7 +2,7 @@ mapscripts OldaleTown_PokemonCenter_2F_MapScripts {
     MAP_SCRIPT_ON_FRAME_TABLE [
 		
         VAR_TEMP_0, 0 {
-			if (!flag(FLAG_UNUSED_0x493)) {
+			if (!flag(FLAG_SYS_POKEMON_GET)) {
                 lock
 
 				// setvar(VAR_0x8004, 2)  // vertical pan
@@ -11,9 +11,15 @@ mapscripts OldaleTown_PokemonCenter_2F_MapScripts {
                 // setvar (VAR_0x8007, 5)  // shake delay
 				// special(ShakeCamera)
 
-                msgbox(format("{FONT_SMALL}{COLOR GREEN}{SHADOW LIGHT_GREEN}This train terminates at {COLOR RED}{SHADOW LIGHT_RED}Place Suicune."))
-				applymovement(OBJ_EVENT_ID_PLAYER, moves(face_right))
-				msgbox(format("I assume it's your first time in a Lutecian metro."))
+
+				setvar(VAR_0x8014, 1)
+				msgbox(format("{FONT_SMALL}{COLOR GREEN}{SHADOW LIGHT_GREEN}This train terminates at {COLOR RED}{SHADOW LIGHT_RED}Copernic Labs"))
+				setvar(VAR_0x8014, 0)
+
+				applymovement(OBJ_EVENT_ID_PLAYER, moves(face_left))
+				applymovement(2, moves(face_right))
+	
+				msgbox(format("Is it your first time in Lutecia?"))
 				closemessage
 				msgbox(format("Take some water, you must be tired with all that traveling."))
 				closemessage
@@ -26,9 +32,17 @@ mapscripts OldaleTown_PokemonCenter_2F_MapScripts {
 				closemessage
 				msgbox(format("So next time you take one, keep battling until you arrive!"))
 				closemessage
-				msgbox(format("{FONT_SMALL}{COLOR GREEN}{SHADOW LIGHT_GREEN}Place Suicune."))
-				msgbox(format("{FONT_SMALL}{COLOR GREEN}{SHADOW LIGHT_GREEN}This is our last stop."))
-				warp(MAP_DEWFORD_TOWN, 0)
+
+
+				setvar(VAR_0x8014, 1)
+				playSE(SE_TRUCK_STOP)
+				playSE(SE_DING_DONG)
+				msgbox(format("{FONT_SMALL}{COLOR LIGHT_GREEN}{SHADOW GREEN}Copernic Labs."))
+				msgbox(format("{FONT_SMALL}{COLOR LIGHT_GREEN}{SHADOW GREEN}This is our last stop."))
+				setvar(VAR_0x8014, 0)
+
+				warp(MAP_OLDALE_TOWN, 0)
+				waitstate
                 release
                 end
             }

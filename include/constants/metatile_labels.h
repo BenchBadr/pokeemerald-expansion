@@ -250,7 +250,7 @@
 #define METATILE_General_Door                  0x021
 #define METATILE_General_Door_Contest          0x1DB
 #define METATILE_General_Door_Gym              0x1CD
-#define METATILE_General_Door_PokeCenter       0x061
+#define METATILE_General_Door_PokeCenter       0x042
 #define METATILE_General_Door_PokeMart         0x041
 #define METATILE_General_Grass                 0x001
 #define METATILE_General_Grass_TreeLeft        0x1CE
@@ -302,12 +302,11 @@
 #define METATILE_InsideShip_IntactDoor_Bottom_Unlocked  0x22B
 
 // gTileset_Lavaridge
-#define METATILE_Lavaridge_AshGrass             0x207
-#define METATILE_Lavaridge_CaveEntrance_Bottom  0x25E
-#define METATILE_Lavaridge_CaveEntrance_Top     0x256
-#define METATILE_Lavaridge_LavaField            0x271
-#define METATILE_Lavaridge_NormalGrass          0x206
-#define METATILE_Lavaridge_RockWall             0x274
+#define METATILE_Lavaridge_AshGrass          0x207
+#define METATILE_Lavaridge_CaveEntrance_Top  0x256
+#define METATILE_Lavaridge_LavaField         0x271
+#define METATILE_Lavaridge_NormalGrass       0x206
+#define METATILE_Lavaridge_RockWall          0x274
 
 // gTileset_LavenderTown
 #define METATILE_LavenderTown_Door  0x2A2

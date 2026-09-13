@@ -48,6 +48,7 @@ const struct Tileset gTileset_Lutecia =
     .isSecondary = TRUE,
     .tiles = gTilesetTiles_Lutecia,
     .palettes = gTilesetPalettes_Lutecia,
+    .swapPalettes = SWAP_PAL(12) | SWAP_PAL(10) | SWAP_PAL(8),
     .metatiles = gMetatiles_Lutecia,
     .metatileAttributes = gMetatileAttributes_Lutecia,
     .callback = InitTilesetAnim_Lutecia,

@@ -671,3 +671,33 @@ script Arr2_Machamp {
     release
     end
 }
+
+
+script Arr2_Scientist {
+	lock 
+	faceplayer 
+	questmenu(QUEST_MENU_CHECK_ACTIVE, QUEST_1)
+	if (!var(VAR_RESULT)) {
+		msgbox(format("Hello there! I am making a little research about the evolution of the species of the area. Do you want to help?"), MSGBOX_YESNO)
+		if (var(VAR_RESULT))
+		{
+			msgbox(format("Awesome! Come talk to me when you have caught them all."))
+			questmenu(QUEST_MENU_SET_ACTIVE, QUEST_1)
+
+		} else {
+			msgbox(format("Oh... I guess I'll have to find someone else."))
+		}
+
+		closemessage
+		release 
+		end
+	}
+
+	msgbox(format("How's it going?"))
+
+	donelandmon(MAP_OLDALE_TOWN)
+
+	closemessage
+	release
+	end
+}

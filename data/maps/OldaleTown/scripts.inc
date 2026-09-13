@@ -799,6 +799,49 @@ Arr2_Machamp::
 	end
 
 
+Arr2_Scientist::
+# 677 "data/maps/OldaleTown/scripts.pory"
+	lock
+# 678 "data/maps/OldaleTown/scripts.pory"
+	faceplayer
+# 679 "data/maps/OldaleTown/scripts.pory"
+	questmenu QUEST_MENU_CHECK_ACTIVE, QUEST_1
+# 680 "data/maps/OldaleTown/scripts.pory"
+	compare VAR_RESULT, 0
+	goto_if_eq Arr2_Scientist_2
+# 696 "data/maps/OldaleTown/scripts.pory"
+	msgbox Arr2_Scientist_Text_3
+# 698 "data/maps/OldaleTown/scripts.pory"
+	donelandmon MAP_OLDALE_TOWN
+# 700 "data/maps/OldaleTown/scripts.pory"
+	closemessage
+# 701 "data/maps/OldaleTown/scripts.pory"
+	release
+	end
+
+Arr2_Scientist_2:
+# 681 "data/maps/OldaleTown/scripts.pory"
+	msgbox Arr2_Scientist_Text_0, MSGBOX_YESNO
+# 682 "data/maps/OldaleTown/scripts.pory"
+	compare VAR_RESULT, 0
+	goto_if_ne Arr2_Scientist_5
+# 688 "data/maps/OldaleTown/scripts.pory"
+	msgbox Arr2_Scientist_Text_2
+Arr2_Scientist_4:
+# 691 "data/maps/OldaleTown/scripts.pory"
+	closemessage
+# 692 "data/maps/OldaleTown/scripts.pory"
+	release
+	end
+
+Arr2_Scientist_5:
+# 684 "data/maps/OldaleTown/scripts.pory"
+	msgbox Arr2_Scientist_Text_1
+# 685 "data/maps/OldaleTown/scripts.pory"
+	questmenu QUEST_MENU_SET_ACTIVE, QUEST_1
+	goto Arr2_Scientist_4
+
+
 # 75 "data/maps/OldaleTown/scripts.pory"
 BattleZone1_Matchmaking_Movement_0:
 # 76 "data/maps/OldaleTown/scripts.pory"
@@ -1388,3 +1431,24 @@ Arr2_BarLady_Text_11:
 GiveRunShoes_Text_0:
 # 646 "data/maps/OldaleTown/scripts.pory"
 	.string "Take these shoes$"
+
+Arr2_Scientist_Text_0:
+# 681 "data/maps/OldaleTown/scripts.pory"
+	.string "Hello there! I am making a little\n"
+	.string "research about the evolution of the\l"
+	.string "species of the area. Do you want to\l"
+	.string "help?$"
+
+Arr2_Scientist_Text_1:
+# 684 "data/maps/OldaleTown/scripts.pory"
+	.string "Awesome! Come talk to me when you have\n"
+	.string "caught them all.$"
+
+Arr2_Scientist_Text_2:
+# 688 "data/maps/OldaleTown/scripts.pory"
+	.string "Oh... I guess I'll have to find someone\n"
+	.string "else.$"
+
+Arr2_Scientist_Text_3:
+# 696 "data/maps/OldaleTown/scripts.pory"
+	.string "How's it going?$"

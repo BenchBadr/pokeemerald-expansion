@@ -154,7 +154,10 @@
     "Arr2_CopernicA1F",
     "Arr2_Roof1",
     "Arr2_Roof2",
-    "Arr2_TrainerClub_2F"
+    "Arr2_TrainerClub_2F",
+    "Arr2_BlissRes_2",
+    "Arr2_Underground",
+    "Arr2_Underground2"
   ],
   "gMapGroup_IndoorDewford": [
     "DewfordTown_House1",
@@ -162,7 +165,8 @@
     "DewfordTown_PokemonCenter_2F",
     "DewfordTown_Gym",
     "DewfordTown_Hall",
-    "DewfordTown_House2"
+    "DewfordTown_House2",
+    "Arr1_TrainScene"
   ],
   "gMapGroup_IndoorLavaridge": [
     "LavaridgeTown_HerbShop",
@@ -192,7 +196,8 @@
     "VerdanturfTown_PokemonCenter_2F",
     "VerdanturfTown_WandasHouse",
     "VerdanturfTown_FriendshipRatersHouse",
-    "VerdanturfTown_House"
+    "VerdanturfTown_House",
+    "ProtaHouse"
   ],
   "gMapGroup_IndoorPacifidlog": [
     "PacifidlogTown_PokemonCenter_1F",

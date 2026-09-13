@@ -259,6 +259,8 @@ gScriptCmdTable::
 	script_cmd_table_entry SCR_OP_SUBQUESTMENU					ScrCmd_subquestmenu,        		requests_effects=1  @ 0xe9
 	script_cmd_table_entry SCR_OP_RETURNQUESTSTATE				ScrCmd_returnqueststate,	        requests_effects=1  @ 0xeA
 
+	script_cmd_table_entry SCR_OP_DONELANDMON					ScrCmd_donelandmon,	     		    requests_effects=1  @ 0xeF
+
 
 	.if ALLOCATE_SCRIPT_CMD_TABLE
 gScriptCmdTableEnd::

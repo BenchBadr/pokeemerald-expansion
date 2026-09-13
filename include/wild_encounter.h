@@ -80,4 +80,6 @@ enum TimeOfDay GetTimeOfDayForEncounters(u32 headerId, enum WildPokemonArea area
 u8 GetLandEncounterSlotForMatchCall(void);
 u8 GetWaterEncounterSlotForMatchCall(void);
 
+u8 CheckAllLandMon(s8 mapGroup, s8 mapNum);
+
 #endif // GUARD_WILD_ENCOUNTER_H

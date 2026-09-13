@@ -36,6 +36,13 @@
 
 #include "random.h"
 
+#include "field_effect.h"
+#include "field_effect_helpers.h"
+#include "trainer_see.h"
+
+#include "constants/field_effects.h"
+#include "constants/trainer_types.h"
+
 #define tPageItems      data[4]
 #define tItemPcParam    data[6]
 
@@ -198,6 +205,12 @@ static void FreeResources(void);
 static void TurnOffQuestMenu(u8 taskId);
 static void Task_QuestMenuTurnOff1(u8 taskId);
 static void Task_QuestMenuTurnOff2(u8 taskId);
+
+// Quest icon functions
+static void SpawnQuestIconForObject(struct ObjectEvent*,  u32);
+static void RemoveQuestIconFieldEffect(struct ObjectEvent *objectEvent);
+static void SetQuestIconOnObject(struct ObjectEvent*);
+static bool32 ObjectEventAlreadyHasQuest(bool32);
 
 // Tiles, palettes and tilemaps for the Quest Menu
 static const u32 sQuestMenuTiles[] =
@@ -566,7 +579,7 @@ static const struct SideQuest sSideQuests[QUEST_COUNT] =
 	      gText_SideQuestDesc_1,
 	      gText_SideQuestDoneDesc_1,
 	      gText_SideQuestMap1,
-	      OBJ_EVENT_GFX_WALLY,
+	      OBJ_EVENT_GFX_SCIENTIST_1,
 	      OBJECT,
 	      NULL,
 	      0
@@ -2807,4 +2820,89 @@ void QuestMenu_ResetMenuSaveData(void)
 	       sizeof(gSaveBlock2Ptr->questData));
 	memset(&gSaveBlock2Ptr->subQuests, 0,
 	       sizeof(gSaveBlock2Ptr->subQuests));
+}
+
+
+void HandleQuestIconForSingleObjectEvent(struct ObjectEvent *objectEvent, u32 objectEventId)
+{
+    u32 localId = objectEvent->localId;
+    u32 mapNum = objectEvent->mapNum;
+    u32 mapGroup = objectEvent->mapGroup;
+	u32 questId;
+
+    const struct ObjectEventTemplate *obj = GetObjectEventTemplateByLocalIdAndMap(localId, mapNum, mapGroup);
+
+	questId = obj->questId;
+
+	// Never attempt to put a quest icon on the player
+	if (objectEvent->movementType == MOVEMENT_TYPE_PLAYER)
+    	return;
+
+    if (obj == NULL)
+        return;
+	
+	if (obj->trainerType != TRAINER_TYPE_QUEST_GIVER)
+        return;
+
+	// Remove icon if quest is completed
+	if (QuestMenu_GetSetQuestState(questId, FLAG_GET_COMPLETED))
+	{
+		RemoveQuestIconFieldEffect(objectEvent);
+		return;
+	}
+
+	// Already has icon? Do nothing
+	if (ObjectEventAlreadyHasQuest(objectEvent->hasQuestIcon))
+        return;
+
+	// Add icon to NPCs who have quests
+	if (!objectEvent->hasQuestIcon && !FieldEffectActiveListContains(FLDEFF_QUEST_ICON))
+		SpawnQuestIconForObject(objectEvent, objectEventId);
+}
+
+static void RemoveQuestIconFieldEffect(struct ObjectEvent *objectEvent)
+{
+	objectEvent->hasQuestIcon = FALSE;
+	
+	if (FieldEffectActiveListContains(FLDEFF_QUEST_ICON))
+	{
+		u8 spriteId = objectEvent->spriteId;
+		struct Sprite *sprite = &gSprites[spriteId];
+		FieldEffectStop(sprite, FLDEFF_QUEST_ICON);
+	}
+}
+
+static bool32 ObjectEventAlreadyHasQuest(bool32 hasQuestIcon)
+{
+    if (!FieldEffectActiveListContains(FLDEFF_QUEST_ICON))
+        return FALSE;
+
+    return (hasQuestIcon);
+}
+
+
+static void SpawnQuestIconForObject(struct ObjectEvent *objectEvent, u32 objectEventId)
+{
+	SetQuestIconOnObject(objectEvent);
+	StartFieldEffectForObjectEvent(FLDEFF_QUEST_ICON, objectEvent);
+}
+
+void ResetQuestIconOnObject(struct ObjectEvent *objectEvent)
+{
+	objectEvent->hasQuestIcon = FALSE;
+}
+
+static void SetQuestIconOnObject(struct ObjectEvent *objectEvent)
+{
+	objectEvent->hasQuestIcon = TRUE;
+}
+
+void RefreshQuestIcons(void)
+{
+	u8 i;
+	for (i = 0; i < OBJECT_EVENTS_COUNT; i++)
+	{
+		if (gObjectEvents[i].active)
+			HandleQuestIconForSingleObjectEvent(&gObjectEvents[i], i);
+	}
 }

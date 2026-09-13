@@ -1,1 +1,60 @@
-mapscripts VerdanturfTown_MapScripts {}
+mapscripts VerdanturfTown_MapScripts {
+    MAP_SCRIPT_ON_FRAME_TABLE [
+        VAR_TEMP_0, 0: Intro_PalletTown_Goodbye
+    ]
+}
+
+
+
+script Intro_PalletTown_Goodbye {
+    lock 
+    setvar(VAR_TEMP_0, 1)
+
+    applymovement(OBJ_EVENT_ID_PLAYER, moves(
+        walk_down * 2 
+        face_up 
+    ))
+    waitmovement(0)
+
+    setvar(VAR_0x8014, 1)
+    msgbox(format("Time to say goodbye to Pallet Town. Goodbye Mom."))
+    closemessage
+    setvar(VAR_0x8014, 0)
+
+    applymovement(OBJ_EVENT_ID_PLAYER, moves(
+        walk_right * 5
+        walk_down * 9
+        walk_right * 6
+        face_up
+    ))
+    waitmovement(0)
+    
+    setvar(VAR_0x8014, 1)
+    msgbox(format("Goodbye, Prof. Oak. You've done a fine job keeping things running ever since your grandfather left us."))
+    closemessage
+    setvar(VAR_0x8014, 0)
+
+    applymovement(OBJ_EVENT_ID_PLAYER, moves(
+        player_run_left * 6
+        player_run_up * 10
+        face_down
+
+    ))
+    waitmovement(0)
+    delay(120)
+
+
+    fadescreen(FADE_TO_BLACK)
+    setvar(VAR_0x8014, 2)
+    msgbox(format("Goodbye, Pallet Town!"))
+    closemessage
+    setvar(VAR_0x8014, 0)
+
+    warp(MAP_ARR1_TRAIN_SCENE, 25, 2)
+    waitstate
+
+
+
+    releaseall
+    end
+}

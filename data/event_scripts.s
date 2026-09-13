@@ -1753,3 +1753,13 @@ EventScript_PalletTown_PlayersHouse_2F_TurnOnPC::
 	.include "data/maps/Arr2_Roof2/scripts.inc"
 
 	.include "data/maps/Arr2_TrainerClub_2F/scripts.inc"
+
+	.include "data/maps/Arr2_BlissRes_2/scripts.inc"
+
+	.include "data/maps/Arr2_Underground/scripts.inc"
+
+	.include "data/maps/Arr2_Underground2/scripts.inc"
+
+	.include "data/maps/ProtaHouse/scripts.inc"
+
+	.include "data/maps/Arr1_TrainScene/scripts.inc"

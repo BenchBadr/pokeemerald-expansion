@@ -158,8 +158,8 @@
     {
       "id": "LAYOUT_VERDANTURF_TOWN",
       "name": "VerdanturfTown_Layout",
-      "width": 21,
-      "height": 24,
+      "width": 20,
+      "height": 34,
       "primary_tileset": "gTileset_General",
       "secondary_tileset": "gTileset_Lavaridge",
       "border_filepath": "data/layouts/VerdanturfTown/border.bin",
@@ -675,10 +675,10 @@
     {
       "id": "LAYOUT_POKEMON_CENTER_2F",
       "name": "PokemonCenter_2F_Layout",
-      "width": 14,
-      "height": 10,
+      "width": 32,
+      "height": 7,
       "primary_tileset": "gTileset_Building",
-      "secondary_tileset": "gTileset_PokemonCenter",
+      "secondary_tileset": "gTileset_InsideOfTruck",
       "border_filepath": "data/layouts/PokemonCenter_2F/border.bin",
       "blockdata_filepath": "data/layouts/PokemonCenter_2F/map.bin",
       "layout_version": "emerald"
@@ -9393,6 +9393,56 @@
       "secondary_tileset": "gTileset_GenericBuilding",
       "border_filepath": "data/layouts/Arr2_TrainerClub_2F/border.bin",
       "blockdata_filepath": "data/layouts/Arr2_TrainerClub_2F/map.bin"
+    },
+    {
+      "id": "LAYOUT_ARR2_BLISS_RES_2",
+      "name": "Arr2_BlissRes_2_Layout",
+      "width": 14,
+      "height": 12,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_Cave",
+      "border_filepath": "data/layouts/Arr2_BlissRes_2/border.bin",
+      "blockdata_filepath": "data/layouts/Arr2_BlissRes_2/map.bin"
+    },
+    {
+      "id": "LAYOUT_ARR2_UNDERGROUND",
+      "name": "Arr2_Underground_Layout",
+      "width": 68,
+      "height": 47,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Cave",
+      "border_filepath": "data/layouts/Arr2_Underground/border.bin",
+      "blockdata_filepath": "data/layouts/Arr2_Underground/map.bin"
+    },
+    {
+      "id": "LAYOUT_ARR2_UNDERGROUND2",
+      "name": "Arr2_Underground2_Layout",
+      "width": 59,
+      "height": 47,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Cave",
+      "border_filepath": "data/layouts/Arr2_Underground2/border.bin",
+      "blockdata_filepath": "data/layouts/Arr2_Underground2/map.bin"
+    },
+    {
+      "id": "LAYOUT_PROTA_HOUSE",
+      "name": "ProtaHouse_Layout",
+      "width": 10,
+      "height": 8,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_GenericBuilding",
+      "border_filepath": "data/layouts/ProtaHouse/border.bin",
+      "blockdata_filepath": "data/layouts/ProtaHouse/map.bin"
+    },
+    {
+      "id": "LAYOUT_ARR1_TRAIN_SCENE",
+      "name": "Arr1_TrainScene_Layout",
+      "width": 74,
+      "height": 10,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Lutecia",
+      "border_filepath": "data/layouts/Arr1_TrainScene/border.bin",
+      "blockdata_filepath": "data/layouts/Arr1_TrainScene/map.bin"
     }
   ]
 }

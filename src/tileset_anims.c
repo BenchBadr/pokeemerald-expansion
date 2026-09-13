@@ -900,10 +900,10 @@ static void TilesetAnim_Mauville(u16 timer)
 
 static void TilesetAnim_Lavaridge(u16 timer)
 {
-    if (timer % 16 == 0)
-        QueueAnimTiles_Lavaridge_Steam(timer / 16);
-    if (timer % 16 == 1)
-        QueueAnimTiles_Lavaridge_Lava(timer / 16);
+    // if (timer % 16 == 0)
+    //     QueueAnimTiles_Lavaridge_Steam(timer / 16);
+    // if (timer % 16 == 1)
+    //     QueueAnimTiles_Lavaridge_Lava(timer / 16);
 }
 
 static void TilesetAnim_EverGrande(u16 timer)
@@ -948,8 +948,8 @@ static void TilesetAnim_Underwater(u16 timer)
 
 static void TilesetAnim_Cave(u16 timer)
 {
-    if (timer % 16 == 1)
-        QueueAnimTiles_Cave_Lava(timer / 16);
+    // if (timer % 16 == 1)
+    //     QueueAnimTiles_Cave_Lava(timer / 16);
 }
 
 static void TilesetAnim_BattleFrontierOutsideWest(u16 timer)

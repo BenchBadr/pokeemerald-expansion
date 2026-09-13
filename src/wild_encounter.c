@@ -1227,3 +1227,14 @@ bool32 MapHasNoEncounterData(void)
 {
     return (GetCurrentMapWildMonHeaderId() == HEADER_NONE);
 }
+
+
+
+/////////////////////////
+//// For scripting ////
+/////////////////////////
+
+u8 CheckAllLandMon(s8 mapGroup, s8 mapNum)
+{
+    return 0;
+}

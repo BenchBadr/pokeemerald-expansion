@@ -62,6 +62,8 @@
 #include "field_player_avatar.h"
 #include "virtual_pools.h"
 
+#include "quests.h"
+
 #define SPECIAL_LOCALIDS_START (min(LOCALID_CAMERA, \
                                 min(LOCALID_PLAYER, \
                                 min(LOCALID_BERRY_BLENDER_PLAYER_END - MAX_RFU_PLAYERS + 1, \
@@ -1908,6 +1910,8 @@ u8 TrySpawnObjectEventTemplate(const struct ObjectEventTemplate *objectEventTemp
     if (subspriteTables)
         SetSubspriteTables(&gSprites[gObjectEvents[objectEventId].spriteId], subspriteTables);
 
+    
+    HandleQuestIconForSingleObjectEvent(&gObjectEvents[objectEventId], objectEventId);
     OnOverworldWildEncounterSpawn(&gObjectEvents[objectEventId]);
     return objectEventId;
 }
@@ -3074,6 +3078,7 @@ static void SpawnObjectEventOnReturnToField(u8 objectEventId, s16 x, s16 y)
 
         ResetObjectEventFldEffData(objectEvent);
         SetObjectSubpriorityByElevation(objectEvent->previousElevation, sprite, 1);
+        HandleQuestIconForSingleObjectEvent(objectEvent,objectEventId);
         RestoreSavedOWEBehaviorState(objectEvent, sprite);
     }
 }
@@ -3089,6 +3094,7 @@ static void ResetObjectEventFldEffData(struct ObjectEvent *objectEvent)
     objectEvent->inSandPile = FALSE;
     objectEvent->inHotSprings = FALSE;
     ObjectEventClearHeldMovement(objectEvent);
+    ResetQuestIconOnObject(objectEvent);
 }
 
 static void SetPlayerAvatarObjectEventIdAndObjectId(u8 objectEventId, u8 spriteId)

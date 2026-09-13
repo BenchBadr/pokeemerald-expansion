@@ -1,0 +1,66 @@
+mapscripts ProtaHouse_MapScripts {
+    // MAP_SCRIPT_ON_TRANSITION {
+    //     setvar(VAR_TEMP_0, 1)
+    // }
+
+    MAP_SCRIPT_ON_FRAME_TABLE [
+        VAR_TEMP_0, 0: PalletTown_IntroDream
+    ]
+}
+
+
+script PalletTown_IntroDream {
+    lockall
+
+    setvar(VAR_TEMP_0, 1)
+    fadescreen(FADE_TO_WHITE)
+
+    setvar(VAR_0x8014, 3)
+
+    playbgm(MUS_RG_OAK, FALSE)
+
+    msgbox(format("Hey! Wait!"))
+    msgbox(format("Don't go out!"))
+    msgbox("Wild Pokémon live in tall grass! \pYou need your own Pokémon for\nyour protection.\pHere, come with me!")
+    msgbox(format("..."))
+    closemessage
+    delay(120)
+
+    playbgm(MUS_RG_OAK_LAB, FALSE)
+
+    msgbox(format("On this table sit three Pokémon in their Poké Balls: Bulbasaur, Charmander, and Squirtle. Which one will you choose {COLOR RED}{SHADOW LIGHT_RED}Red {COLOR DARK_GRAY}{SHADOW LIGHT_GRAY} ?"))
+    msgbox(format("..."))
+    msgbox("{COLOR RED}{SHADOW LIGHT_RED}Red?")
+
+    fadeoutbgm(0)
+    msgbox(format("..."))
+    msgbox(format("{PLAYER}?"))
+    msgbox(format("..."))
+    playse(SE_SUPER_EFFECTIVE)
+    msgbox(format("{PLAYER}!!! Wake up, you are late! You will miss your boat to Kalos!"))
+    closemessage
+    setvar(VAR_0x8014, 0)
+    fadescreen(FADE_FROM_WHITE)
+
+    playbgm(MUS_RG_PALLET, 0)
+    
+    setvar(VAR_0x8014, 1)
+    msgbox(format("What a weird dream..."))
+    closemessage
+    setvar(VAR_0x8014, 0)
+
+    applymovement(OBJ_EVENT_ID_PLAYER, moves(
+        player_run_right * 8 
+        player_run_up * 2
+        player_run_left
+        set_invisible
+    ))
+    waitmovement(0)
+
+    warp(MAP_VERDANTURF_TOWN, 4, 16)
+    waitstate
+
+    release 
+    end 
+    
+}

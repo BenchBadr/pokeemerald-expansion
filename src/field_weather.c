@@ -21,6 +21,8 @@
 #include "field_camera.h"
 #include "overworld.h"
 
+#include "event_data.h"
+
 #define DROUGHT_COLOR_INDEX(color) ((((color) >> 1) & 0xF) | (((color) >> 2) & 0xF0) | (((color) >> 3) & 0xF00))
 
 struct RGBColor
@@ -740,6 +742,8 @@ void FadeScreen(u8 mode, s8 delay)
 
 void FadeSelectedPals(u8 mode, s8 delay, u32 selectedPalettes)
 {
+    if (FlagGet(FLAG_DISABLE_FADE))
+        return;
     u32 fadeColor;
     bool8 fadeOut;
     bool8 useWeatherPal;
